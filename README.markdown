@@ -15,4 +15,4 @@ These experiental/unpopular packages are maintained by me in the unofficial [cit
   http://pkgbuild.com/~bgyorgy/city/os/
 
 * You can download source packages from here:  
-  http://pkgbuild.com/~bgyorgy/city/src/](http://pkgbuild.com/~bgyorgy/city/src/
+  http://pkgbuild.com/~bgyorgy/city/src/

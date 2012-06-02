@@ -18,6 +18,8 @@ sha256sums=('7f8deef3129060c5103f43bb94e29723747060c8feb5bb66a278ae48c44b3030'
 build() {
   cd "$srcdir/$pkgname-$pkgver"
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' src/accerciser.in plugins/ipython_view.py
+
+  # https://bugzilla.gnome.org/show_bug.cgi?id=671261
   patch -Np1 -i "$srcdir/Fix-for-bug-671261.patch"
 
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \

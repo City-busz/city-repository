@@ -1,0 +1,19 @@
+Index: ubuntuone-couch-0.3.0/ubuntuone/couch/auth.py
+===================================================================
+--- ubuntuone-couch-0.3.0.orig/ubuntuone/couch/auth.py	2011-12-27 22:17:17.000000000 +0100
++++ ubuntuone-couch-0.3.0/ubuntuone/couch/auth.py	2012-01-12 16:10:02.847258737 +0100
+@@ -134,10 +134,13 @@
+     for key, value in urlparse.parse_qs(query).items():
+         parameters[key] = value[0]
+ 
++    request_len = len(request_body) if request_body else 0
++    timeout = 10 * (request_len / 1024 / 1024 + 1)  # 10 seconds per megabyte
++
+     oauth_header = get_oauth_request_header(
+         consumer, token, url, http_method, signature_method, parameters)
+     headers = headers or {}
+     headers.update(oauth_header)
+-    http = httplib2.Http(timeout=10)
++    http = httplib2.Http(timeout=timeout)
+     return http.request(
+         url, method=http_method, headers=headers, body=request_body)

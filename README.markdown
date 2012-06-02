@@ -1,0 +1,18 @@
+[city] repository for Arch Linux
+================================
+
+These experiental/unpopular packages are maintained by me in the unofficial [city] repository for Arch Linux.
+
+* If you want to use this repository, add the following lines to /etc/pacman.conf:
+  [city]
+  SigLevel = PackageRequired
+  Server = http://pkgbuild.com/~bgyorgy/$repo/os/$arch
+
+* For the full list of packages, check:
+  [http://pkgbuild.com/~bgyorgy/city.html](http://pkgbuild.com/~bgyorgy/city.html)
+
+* You can download packages individually from here:
+  [http://pkgbuild.com/~bgyorgy/city/os/](http://pkgbuild.com/~bgyorgy/city/os/)
+
+* You can download source packages from here:
+  [http://pkgbuild.com/~bgyorgy/city/src/](http://pkgbuild.com/~bgyorgy/city/src/)

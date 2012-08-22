@@ -1,0 +1,58 @@
+# $Id$
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+# Contributor: Thomas Baechler <thomas@archlinux.org>
+# Contributor : Natrio <natrio@list.ru>
+
+pkgname=nvidia-96xx
+pkgver=96.43.20
+_extramodules=extramodules-3.4-ARCH
+pkgrel=1
+pkgdesc="NVIDIA drivers for linux, 96xx branch."
+arch=('i686' 'x86_64')
+[ "$CARCH" = "i686"   ] && ARCH=x86
+[ "$CARCH" = "x86_64" ] && ARCH=x86_64
+url="http://www.nvidia.com/"
+depends=('linux>=3.4' 'linux<3.5' "nvidia-96xx-utils=${pkgver}")
+makedepends=('linux-headers>=3.4' 'linux-headers<3.5')
+conflicts=('nvidia' 'nvidia-173xx')
+license=('custom')
+install=nvidia.install
+source=("http://download.nvidia.com/XFree86/Linux-$ARCH/${pkgver}/NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run"
+        generated.patch
+        patchlevel.patch
+        switch_to.patch)
+options=(!strip)
+md5sums=('875cc011385ea26ab5edd54a9b65a003'
+         '6ecffbafdffdd38756185377de4ede31'
+         '8b1ebaf6bd871d1f56b4b315f8bb800c'
+         'd5e6410dd8048a5b920214967e0af06e')
+
+[ "$CARCH" = "x86_64" ] && md5sums=('df3c87005487bdf54a6c5b783ff373db'
+         '6ecffbafdffdd38756185377de4ede31'
+         '8b1ebaf6bd871d1f56b4b315f8bb800c'
+         'd5e6410dd8048a5b920214967e0af06e')
+
+build() {
+        _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
+	cd $srcdir
+	sh NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run --extract-only
+	cd NVIDIA-Linux-$ARCH-${pkgver}-pkg0
+	cd usr/src/nv/
+	patch -p1 -i "${srcdir}/generated.patch"
+	patch -p1 -i "${srcdir}/patchlevel.patch"
+	patch -p1 -i "${srcdir}/switch_to.patch"
+	ln -s Makefile.kbuild Makefile
+	make SYSSRC=/usr/lib/modules/${_kernver}/build module
+}
+
+package() {
+        cd $srcdir/NVIDIA-Linux-$ARCH-${pkgver}-pkg0/usr/src/nv/
+	mkdir -p $pkgdir/usr/lib/modules/${_extramodules}/
+	install -m644 nvidia.ko $pkgdir/usr/lib/modules/${_extramodules}/
+
+        mkdir -p $pkgdir/usr/lib/modprobe.d
+        echo "blacklist nouveau" >> $pkgdir/usr/lib/modprobe.d/nouveau_blacklist.conf
+	sed -i -e "s/EXTRAMODULES='.*'/EXTRAMODULES='${_extramodules}'/" $startdir/nvidia.install
+        # gzip -9 module
+        gzip "${pkgdir}/usr/lib/modules/${_extramodules}/nvidia.ko"
+}

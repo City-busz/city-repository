@@ -1,0 +1,26 @@
+# Maintainer: Allan McRae <allan@archlinux.org>
+
+pkgname=urlwatch
+pkgver=1.15
+pkgrel=1
+pkgdesc="A tool for monitoring webpages for updates"
+arch=('any')
+url="http://thp.io/2008/urlwatch/"
+license=('custom:BSD')
+depends=('python2' 'python2-futures')
+source=(http://thp.io/2008/urlwatch/$pkgname-$pkgver.tar.gz)
+md5sums=('a0a739d4ea18f15c121e5f12bb75cbc9')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+  sed -i 's|#!/usr/bin/python|#!/usr/bin/python2|' lib/urlwatch/*.py
+  python2 setup.py build
+}
+
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+  python2 setup.py install --root=${pkgdir} --optimize=1
+  
+  install -Dm644 COPYING ${pkgdir}/usr/share/licenses/${pkgname}/COPYING
+}

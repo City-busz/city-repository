@@ -1,0 +1,39 @@
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+pkgname=devtools-city
+pkgver=1
+pkgrel=1
+pkgdesc="Tools for György Balló package maintainer"
+arch=('any')
+url="http://pkgbuild.com/~bgyorgy/city.html"
+license=('GPL')
+depends=('devtools')
+optdepends=('mono: for find-monodeps'
+            'snakefood-hg: for find-pythondeps')
+source=(find-monodeps.sh
+        find-pythondeps.sh
+        pacman-city.conf
+        pacman-ayatana.conf
+        citypkg.sh)
+md5sums=('dba48cb20004259876d680a8ebaf6dc7'
+         '34f935dc7c3577911970581e6d49a883'
+         '5e9dc13f6aac10d12b5acbfef9296211'
+         '285b73d1f88d7ecad94795436685088e'
+         '7e7ed5a75fa27e7e95dbff5c66ef257e')
+
+package() {
+  cd "$srcdir"
+
+  install -Dm755 "$srcdir/find-monodeps.sh" "$pkgdir/usr/bin/find-monodeps"
+  install -Dm755 "$srcdir/find-pythondeps.sh" "$pkgdir/usr/bin/find-pythondeps"
+
+  install -Dm644 pacman-city.conf "$pkgdir/usr/share/devtools/pacman-city.conf"
+  ln -s archbuild "$pkgdir/usr/bin/city-i686-build"
+  ln -s archbuild "$pkgdir/usr/bin/city-x86_64-build"
+
+  install -Dm644 pacman-ayatana.conf "$pkgdir/usr/share/devtools/pacman-ayatana.conf"
+  ln -s archbuild "$pkgdir/usr/bin/ayatana-i686-build"
+  ln -s archbuild "$pkgdir/usr/bin/ayatana-x86_64-build"
+
+  install -Dm755 citypkg.sh "$pkgdir/usr/bin/citypkg"
+  ln -s citypkg "$pkgdir/usr/bin/ayatanapkg"
+}

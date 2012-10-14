@@ -4,7 +4,8 @@
 
 pkgbase=xorg-server1.12
 _pkgbase=xorg-server
-pkgname=('xorg-server1.12' 'xorg-server1.12-xephyr' 'xorg-server1.12-xdmx' 'xorg-server1.12-xvfb' 'xorg-server1.12-xnest' 'xorg-server1.12-common' 'xorg-server1.12-devel')
+pkgname=xorg-server1.12
+true && pkgname=('xorg-server1.12' 'xorg-server1.12-xephyr' 'xorg-server1.12-xdmx' 'xorg-server1.12-xvfb' 'xorg-server1.12-xnest' 'xorg-server1.12-common' 'xorg-server1.12-devel')
 pkgver=1.12.4
 pkgrel=1
 arch=('i686' 'x86_64')

@@ -13,7 +13,7 @@ depends=('evolution')
 makedepends=('intltool')
 install=$pkgname.install
 options=('!libtool')
-source=(http://pkgbuild.com/~bgyorgy/sources/$pkgname-$pkgver.tar.xz)
+source=(http://gnome.eu.org/$pkgname-$pkgver.tar.xz)
 md5sums=('1f173a8a7cdb7222d8492c35d4889978')
 
 build() {

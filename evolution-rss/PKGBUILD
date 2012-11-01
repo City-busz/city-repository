@@ -3,7 +3,7 @@
 # Contributor: Borromini <gotleenucks at g-male dot com>
 
 pkgname=evolution-rss
-pkgver=0.3.91
+pkgver=0.3.92
 pkgrel=1
 pkgdesc="Plugin for Evolution Mail that enables reading of RSS/RDF/ATOM feeds"
 arch=('i686' 'x86_64')
@@ -12,9 +12,9 @@ license=('GPL')
 depends=('evolution')
 makedepends=('intltool')
 install=$pkgname.install
-options=('!libtool' '!emptydirs')
+options=('!libtool')
 source=(http://pkgbuild.com/~bgyorgy/sources/$pkgname-$pkgver.tar.xz)
-md5sums=('ec6910b1f80aae588488e51d999381de')
+md5sums=('1f173a8a7cdb7222d8492c35d4889978')
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"

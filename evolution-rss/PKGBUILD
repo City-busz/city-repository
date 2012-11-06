@@ -10,7 +10,7 @@ arch=('i686' 'x86_64')
 url="http://gnome.eu.org/index.php/Evolution_RSS_Reader_Plugin"
 license=('GPL')
 depends=('evolution')
-makedepends=('intltool')
+makedepends=('intltool' 'gconf')
 install=$pkgname.install
 options=('!libtool')
 source=(http://gnome.eu.org/$pkgname-$pkgver.tar.xz)
@@ -20,8 +20,7 @@ build() {
   cd "$srcdir/$pkgname-$pkgver"
 
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
-              --disable-static --disable-schemas-install \
-              --with-gconf-schema-file-dir=/usr/share/gconf/schemas
+              --disable-static --disable-schemas-compile
   make
 }
 

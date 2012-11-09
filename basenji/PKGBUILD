@@ -3,22 +3,19 @@
 # Contributor: JHeaton <jheaton at archlinux dot us>
 
 pkgname=basenji
-pkgver=0.9.0
-pkgrel=2
+pkgver=1.0.0
+pkgrel=1
 pkgdesc="Volume indexing tool designed for easy and fast indexing of volume collections"
 arch=('any')
 url="https://launchpad.net/basenji"
 license=('GPL')
 depends=('dbus-sharp-glib' 'gtk-sharp-2' 'taglib-sharp' 'gnome-desktop2' 'udisks')
 makedepends=('gio-sharp')
-source=(https://launchpad.net/basenji/trunk/0.9/+download/$pkgname-$pkgver.tar.gz
-        gio-gnomedesktop-port.patch)
-md5sums=('4d07077943b33443fd789b52c2a3ad0e'
-         '949eba0c98a72a3323a077a82dde8800')
+source=(https://launchpad.net/basenji/trunk/1.0/+download/$pkgname-$pkgver.tar.gz)
+md5sums=('75fc4ba025e645cbf3d3c6442c2b3c1a')
 
 build() {
   cd "$srcdir"
-  patch -Np1 -i gio-gnomedesktop-port.patch
 
   ./configure --prefix=/usr
   make

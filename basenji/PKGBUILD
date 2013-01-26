@@ -3,7 +3,7 @@
 # Contributor: JHeaton <jheaton at archlinux dot us>
 
 pkgname=basenji
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="Volume indexing tool designed for easy and fast indexing of volume collections"
 arch=('any')
@@ -11,8 +11,8 @@ url="https://launchpad.net/basenji"
 license=('GPL')
 depends=('dbus-sharp-glib' 'gtk-sharp-2' 'taglib-sharp' 'gnome-desktop2' 'udisks')
 makedepends=('gio-sharp')
-source=(https://launchpad.net/basenji/trunk/1.0/+download/$pkgname-$pkgver.tar.gz)
-md5sums=('75fc4ba025e645cbf3d3c6442c2b3c1a')
+source=(https://launchpad.net/basenji/trunk/$pkgver/+download/$pkgname-$pkgver.tar.gz)
+md5sums=('eee951ac995359bedab23b964a8e5502')
 
 build() {
   cd "$srcdir"

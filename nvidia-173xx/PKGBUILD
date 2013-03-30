@@ -3,35 +3,29 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgname=nvidia-173xx
-pkgver=173.14.36
-_extramodules=extramodules-3.7-ARCH
-pkgrel=7
+pkgver=173.14.37
+_extramodules=extramodules-3.8-ARCH
+pkgrel=1
 pkgdesc="NVIDIA drivers for linux, 173xx branch."
 arch=('i686' 'x86_64')
 [ "$CARCH" = "i686"   ] && ARCH=x86
 [ "$CARCH" = "x86_64" ] && ARCH=x86_64
 url="http://www.nvidia.com/"
-depends=('linux>=3.7' 'linux<3.8' "nvidia-173xx-utils=${pkgver}")
-makedepends=('linux-headers>=3.7' 'linux-headers<3.8')
+depends=('linux>=3.8' 'linux<3.9' "nvidia-173xx-utils=${pkgver}")
+makedepends=('linux-headers>=3.8' 'linux-headers<3.9')
 conflicts=('nvidia-96xx' 'nvidia')
 license=('custom')
 install=nvidia.install
-source=("http://download.nvidia.com/XFree86/Linux-$ARCH/${pkgver}/NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run"
-        nvidia-kernel-3.7.patch)
+source=("http://download.nvidia.com/XFree86/Linux-$ARCH/${pkgver}/NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run")
 options=(!strip)
-md5sums=('513677824e9684dd34ca17ad56a68500'
-         '4cddc386cdf2c22c81b12f9b7ffdb04b')
-[ "$CARCH" = "x86_64" ] && md5sums=('c341612429c2885980103b40542cb2b2'
-                                    '4cddc386cdf2c22c81b12f9b7ffdb04b')
+md5sums=('ca80332b4e27d21108ceab9314420b9b')
+[ "$CARCH" = "x86_64" ] && md5sums=('761fec0664e715df35cdb64cd4b087f4')
 
 build() {
         _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
 	cd $srcdir
 	sh NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run --extract-only
 	cd NVIDIA-Linux-$ARCH-${pkgver}-pkg0
-
-	# Build fix from Gentoo: https://bugs.gentoo.org/show_bug.cgi?id=447566
-	patch -Np0 -i "$srcdir/nvidia-kernel-3.7.patch"
 
 	cd usr/src/nv/
 	ln -s Makefile.kbuild Makefile

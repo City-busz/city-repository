@@ -3,7 +3,7 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgname=nvidia-173xx-lts
-pkgver=173.14.36
+pkgver=173.14.37
 _extramodules=extramodules-3.0-lts
 pkgrel=2
 pkgdesc="NVIDIA drivers for linux-lts, 173xx branch."
@@ -18,8 +18,8 @@ license=('custom')
 install=nvidia.install
 source=("http://download.nvidia.com/XFree86/Linux-$ARCH/${pkgver}/NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run")
 options=(!strip)
-md5sums=('513677824e9684dd34ca17ad56a68500')
-[ "$CARCH" = "x86_64" ] && md5sums=('c341612429c2885980103b40542cb2b2')
+md5sums=('ca80332b4e27d21108ceab9314420b9b')
+[ "$CARCH" = "x86_64" ] && md5sums=('761fec0664e715df35cdb64cd4b087f4')
 
 build() {
         _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"

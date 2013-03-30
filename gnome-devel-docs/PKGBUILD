@@ -1,16 +1,16 @@
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=gnome-devel-docs
-pkgver=3.6.2
+pkgver=3.8.0
 pkgrel=1
 pkgdesc="GNOME Developer documentation (incl. HIG, Platform Guide, a11y Guide, etc.)"
 arch=('any')
 url="http://developer.gnome.org/"
-license=('GPL')
+license=('FDL')
 depends=('yelp')
-makedepends=('gnome-doc-utils')
+makedepends=('itstool')
 source=(http://ftp.gnome.org/pub/GNOME/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
-sha256sums=('342ee059a2f15a9ef652e0ee7d452f78f6aa58db375a2f8e799c6fbed45841b3')
+sha256sums=('e23c0099417b6e304bc43672e8375e5f6fd208062320b98d9e7c6d41a445ea52')
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"

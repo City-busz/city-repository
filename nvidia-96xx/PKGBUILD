@@ -4,15 +4,15 @@
 
 pkgname=nvidia-96xx
 pkgver=96.43.23
-_extramodules=extramodules-3.8-ARCH
-pkgrel=8
+_extramodules=extramodules-3.9-ARCH
+pkgrel=9
 pkgdesc="NVIDIA drivers for linux, 96xx branch."
 arch=('i686' 'x86_64')
 [ "$CARCH" = "i686"   ] && ARCH=x86
 [ "$CARCH" = "x86_64" ] && ARCH=x86_64
 url="http://www.nvidia.com/"
-depends=('linux>=3.8' 'linux<3.9' "nvidia-96xx-utils=${pkgver}")
-makedepends=('linux-headers>=3.8' 'linux-headers<3.9')
+depends=('linux>=3.9' 'linux<3.10' "nvidia-96xx-utils=${pkgver}")
+makedepends=('linux-headers>=3.9' 'linux-headers<3.10')
 conflicts=('nvidia' 'nvidia-173xx')
 license=('custom')
 install=nvidia.install

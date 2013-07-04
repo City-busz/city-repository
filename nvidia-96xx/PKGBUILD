@@ -5,7 +5,7 @@
 pkgname=nvidia-96xx
 pkgver=96.43.23
 _extramodules=extramodules-3.9-ARCH
-pkgrel=9
+pkgrel=10
 pkgdesc="NVIDIA drivers for linux, 96xx branch."
 arch=('i686' 'x86_64')
 [ "$CARCH" = "i686"   ] && ARCH=x86

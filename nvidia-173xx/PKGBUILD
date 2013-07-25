@@ -4,28 +4,34 @@
 
 pkgname=nvidia-173xx
 pkgver=173.14.37
-_extramodules=extramodules-3.9-ARCH
-pkgrel=3
+_extramodules=extramodules-3.10-ARCH
+pkgrel=5
 pkgdesc="NVIDIA drivers for linux, 173xx branch."
 arch=('i686' 'x86_64')
 [ "$CARCH" = "i686"   ] && ARCH=x86
 [ "$CARCH" = "x86_64" ] && ARCH=x86_64
 url="http://www.nvidia.com/"
-depends=('linux>=3.9' 'linux<3.10' "nvidia-173xx-utils=${pkgver}")
-makedepends=('linux-headers>=3.9' 'linux-headers<3.10')
+depends=('linux>=3.10' 'linux<3.11' "nvidia-173xx-utils=${pkgver}")
+makedepends=('linux-headers>=3.10' 'linux-headers<3.11')
 conflicts=('nvidia-96xx' 'nvidia')
 license=('custom')
 install=nvidia.install
-source=("http://download.nvidia.com/XFree86/Linux-$ARCH/${pkgver}/NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run")
+source=("http://download.nvidia.com/XFree86/Linux-$ARCH/${pkgver}/NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run"
+        "fix-build-with-linux-3.10.patch")
 options=(!strip)
-md5sums=('ca80332b4e27d21108ceab9314420b9b')
-[ "$CARCH" = "x86_64" ] && md5sums=('761fec0664e715df35cdb64cd4b087f4')
+md5sums=('ca80332b4e27d21108ceab9314420b9b'
+         '8fba4b3cb51599af319b12e0a0ff2417')
+[ "$CARCH" = "x86_64" ] && md5sums=('761fec0664e715df35cdb64cd4b087f4'
+                                    '8fba4b3cb51599af319b12e0a0ff2417')
 
 build() {
         _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
 	cd $srcdir
 	sh NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run --extract-only
 	cd NVIDIA-Linux-$ARCH-${pkgver}-pkg0
+
+	# Build fix
+	patch -Np1 -i "$srcdir/fix-build-with-linux-3.10.patch"
 
 	cd usr/src/nv/
 	ln -s Makefile.kbuild Makefile

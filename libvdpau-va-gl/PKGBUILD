@@ -1,0 +1,31 @@
+# $Id$
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+# Contributor: Behem0th <grantipak@gmail.com>
+# Contributor: 謝致邦 <Yeking@Red54.com>
+
+pkgname=libvdpau-va-gl
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='VDPAU driver with OpenGL/VAAPI backend'
+arch=('i686' 'x86_64')
+url='https://github.com/i-rinat/libvdpau-va-gl'
+license=('LGPL3')
+depends=('ffmpeg' 'glu')
+makedepends=('cmake')
+install=$pkgname.install
+source=($pkgname-$pkgver.tar.gz::https://github.com/i-rinat/libvdpau-va-gl/archive/v$pkgver.tar.gz)
+md5sums=('cd56ad6ca1b69986c25a6fe6f608123f')
+
+build() {
+  cd $pkgname-$pkgver
+
+  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver
+
+  make DESTDIR="$pkgdir" install
+}
+

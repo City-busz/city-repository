@@ -1,0 +1,3 @@
+post_install() {
+    echo 'In order to use this driver, add VDPAU_DRIVER=va_gl to your environment.'
+}

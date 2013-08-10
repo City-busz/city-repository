@@ -18,7 +18,7 @@ md5sums=('941ca78c787487eabd74d1de1a88e5f4'
          '01a6c5989735d18d57756f51c41305ba'
          '8d0c25cbbfca16dfd102f2d43d54bd85')
 
-build() {
+package() {
   cd "$srcdir"
 
   convert "${pkgname}_128x128.gif" "${pkgname}_128x128.png"

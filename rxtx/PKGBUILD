@@ -12,6 +12,7 @@ license=('LGPL')
 depends=('glibc' 'java-runtime')
 makedepends=('java-environment')
 options=('!libtool')
+install=$pkgname.install
 source=(http://rxtx.qbang.org/pub/$pkgname/$pkgname-$pkgver.zip
         utsrelease.patch
         rxtx-2.2-lock.patch

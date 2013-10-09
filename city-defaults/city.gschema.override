@@ -1,10 +1,5 @@
-[org.gnome.desktop.background]
-show-desktop-icons=true
-
 [org.gnome.desktop.interface]
-buttons-have-icons=true
 clock-show-date=true
-menus-have-icons=true
 
 [org.gnome.desktop.wm.keybindings]
 show-desktop=['<Super>D']

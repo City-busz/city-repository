@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=1
+pkgrel=2
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -11,7 +11,7 @@ license=('GPL')
 install=$pkgname.install
 source=(city.gschema.override
         defaults.list)
-md5sums=('59496e0222d5df14174811a074bbb729'
+md5sums=('6a9250409ed8df602af4fa62ea3be65f'
          '1cf98db76dd97dee52969fd3ef0724a5')
 
 package() {

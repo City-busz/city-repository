@@ -4,22 +4,26 @@
 
 pkgname=nvidia-96xx-lts
 pkgver=96.43.23
-_extramodules=extramodules-3.0-lts
-pkgrel=2
+_extramodules=extramodules-3.10-lts
+pkgrel=3
 pkgdesc="NVIDIA drivers for linux-lts, 96xx branch."
 arch=('i686' 'x86_64')
 [ "$CARCH" = "i686"   ] && ARCH=x86
 [ "$CARCH" = "x86_64" ] && ARCH=x86_64
 url="http://www.nvidia.com/"
-depends=('linux-lts>=3.0.0' "nvidia-96xx-utils=${pkgver}")
-makedepends=('linux-lts-headers>=3.0.0')
+depends=('linux-lts>=3.10.0' "nvidia-96xx-utils=${pkgver}")
+makedepends=('linux-lts-headers>=3.10.0')
 conflicts=('nvidia-lts' 'nvidia-173xx-lts')
 license=('custom')
 install=nvidia.install
-source=("http://download.nvidia.com/XFree86/Linux-$ARCH/${pkgver}/NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run")
+source=("http://download.nvidia.com/XFree86/Linux-$ARCH/${pkgver}/NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run"
+         173.14.36-37.patch
+         173.14.37-38.patch)
 options=(!strip)
 md5sums=('ca0bc6ae3b37cb259f3a906b4dc4670b')
 [ "$CARCH" = "x86_64" ] && md5sums=('a043fe8dd639bd00b1792eea7a195677')
+md5sums+=('944ed806c8d0f9174d5e9e16ae065bf6'
+          'f2e605724a13ee01bf290df3bf9a3a93')
 
 build() {
         _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
@@ -27,6 +31,8 @@ build() {
 	sh NVIDIA-Linux-$ARCH-${pkgver}-pkg0.run --extract-only
 	cd NVIDIA-Linux-$ARCH-${pkgver}-pkg0
 	cd usr/src/nv/
+	patch -p1 -i "$srcdir"/173.14.36-37.patch
+	patch -p1 -i "$srcdir"/173.14.37-38.patch
 	ln -s Makefile.kbuild Makefile
 	make SYSSRC=/usr/lib/modules/${_kernver}/build module
 }

@@ -11,7 +11,7 @@ license=('GPL')
 install=$pkgname.install
 source=(city.gschema.override
         defaults.list)
-md5sums=('5bded421796a5fd20f3c0486d611ebba'
+md5sums=('63788e0d9793f54ef138e1e2fd3511d3'
          '1cf98db76dd97dee52969fd3ef0724a5')
 
 package() {

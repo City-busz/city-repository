@@ -4,6 +4,9 @@ show-desktop-icons=true
 [org.gnome.desktop.interface]
 clock-show-date=true
 
+[org.gnome.desktop.notifications]
+show-in-lock-screen=false
+
 [org.gnome.desktop.wm.keybindings]
 show-desktop=['<Super>D']
 
@@ -11,10 +14,9 @@ show-desktop=['<Super>D']
 natural-scroll=true
 tap-to-click=true
 
-# Broken: https://bugzilla.gnome.org/show_bug.cgi?id=712706
-#[org.gnome.settings-daemon.plugins.power]
-#sleep-inactive-ac-timeout=1800
-#sleep-inactive-battery-timeout=1800
+[org.gnome.settings-daemon.plugins.power]
+sleep-inactive-ac-timeout=1800
+sleep-inactive-battery-timeout=1800
 
 [org.gnome.nautilus.preferences]
 sort-directories-first=true

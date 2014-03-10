@@ -4,15 +4,15 @@
 
 pkgname=nvidia-173xx
 pkgver=173.14.39
-_extramodules=extramodules-3.12-ARCH
-pkgrel=1
+_extramodules=extramodules-3.13-ARCH
+pkgrel=2
 pkgdesc="NVIDIA drivers for linux, 173xx branch."
 arch=('i686' 'x86_64')
 [ "$CARCH" = "i686"   ] && ARCH=x86
 [ "$CARCH" = "x86_64" ] && ARCH=x86_64
 url="http://www.nvidia.com/"
-depends=('linux>=3.12' 'linux<3.13' "nvidia-173xx-utils=${pkgver}")
-makedepends=('linux-headers>=3.12' 'linux-headers<3.13')
+depends=('linux>=3.13' 'linux<3.14' "nvidia-173xx-utils=${pkgver}")
+makedepends=('linux-headers>=3.13' 'linux-headers<3.14')
 conflicts=('nvidia-96xx' 'nvidia')
 license=('custom')
 install=nvidia.install

@@ -254,7 +254,7 @@ if [[ -n $(git status -s .) ]]; then
 fi
 
 # Create sourceball
-makepkg -Sf
+mkaurball -f
 
 declare -a uploads
 declare -a commit_arches

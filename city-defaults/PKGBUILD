@@ -12,7 +12,7 @@ install=$pkgname.install
 source=(city.gschema.override
         defaults.list
         nautilus-mate.desktop)
-md5sums=('e7ca5e2cf85998ce271849b53f6109ba'
+md5sums=('7550ef42cabce77de6ea3f355449f9b2'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '9ccbe1cdcc2fe0c3a8532a97f76b2355')
 

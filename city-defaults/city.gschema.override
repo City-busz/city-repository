@@ -1,14 +1,36 @@
+[org.cinnamon.desktop.interface]
+font-name='Cantarell 11'
+
+[org.cinnamon.desktop.wm.preferences]
+titlebar-font='Cantarell Bold 11'
+
+[org.cinnamon.settings-daemon.peripherals.touchpad]
+horiz-scroll-enabled=true
+natural-scroll=true
+scroll-method='two-finger-scrolling'
+
+[org.cinnamon.settings-daemon.plugins.power]
+sleep-inactive-ac-timeout=1800
+sleep-inactive-battery-timeout=1800
+
+[org.cinnamon.settings-daemon.plugins.xsettings]
+antialiasing='grayscale'
+hinting='medium'
+
 [org.gnome.desktop.background]
 show-desktop-icons=true
 
 [org.gnome.desktop.interface]
 clock-show-date=true
 
-[org.gnome.desktop.notifications]
-show-in-lock-screen=false
-
 [org.gnome.desktop.wm.keybindings]
 show-desktop=['<Super>D']
+
+[org.gnome.desktop.wm.preferences]
+button-layout=":minimize,maximize,close"
+
+[org.gnome.nautilus.preferences]
+sort-directories-first=true
 
 [org.gnome.settings-daemon.peripherals.touchpad]
 natural-scroll=true
@@ -18,14 +40,11 @@ tap-to-click=true
 sleep-inactive-ac-timeout=1800
 sleep-inactive-battery-timeout=1800
 
-[org.gnome.nautilus.preferences]
-sort-directories-first=true
-
 [org.mate.applications-terminal]
 exec='gnome-terminal'
 
 [org.mate.background]
-picture-filename='/usr/share/themes/Adwaita/backgrounds/adwaita-timed.xml'
+picture-filename='/usr/share/backgrounds/gnome/adwaita-timed.xml'
 
 [org.mate.caja.desktop]
 font='Cantarell 11'
@@ -34,13 +53,14 @@ font='Cantarell 11'
 document-font-name='Sans 11'
 font-name='Cantarell 11'
 gtk-theme='Adwaita'
-icon-theme='gnome'
+icon-theme='Adwaita'
 monospace-font-name='Monospace 11'
 
 [org.mate.peripherals-mouse]
 cursor-theme='Adwaita'
 
 [org.mate.peripherals-touchpad]
+horiz-scroll-enabled=true
 scroll-method=2
 tap-to-click=true
 
@@ -57,6 +77,9 @@ show-desktop='<Super>D'
 command-screenshot='gnome-screenshot'
 command-window-screenshot='gnome-screenshot --window'
 
+[org.mate.panel.applet.multiload]
+system-monitor='gnome-system-monitor.desktop'
+
 [org.mate.power-manager]
 sleep-computer-ac=1800
 sleep-computer-battery=1800
@@ -64,6 +87,10 @@ sleep-computer-ups=1800
 sleep-display-ac=300
 sleep-display-battery=300
 sleep-display-ups=300
+
+[org.mate.session.required-components]
+filemanager='nautilus-mate'
+windowmanager='metacity'
 
 [org.mate.sound]
 event-sounds=true

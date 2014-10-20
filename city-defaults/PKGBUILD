@@ -3,18 +3,21 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=5
+pkgrel=6
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
 license=('GPL')
 install=$pkgname.install
 source=(city.gschema.override
-        defaults.list)
-md5sums=('1740c68cc9ce9f9194bdd8eec28f403c'
-         '1cf98db76dd97dee52969fd3ef0724a5')
+        defaults.list
+        nautilus-mate.desktop)
+md5sums=('7550ef42cabce77de6ea3f355449f9b2'
+         '466b3f2217a2f2c2b3782486728f7bc2'
+         '9ccbe1cdcc2fe0c3a8532a97f76b2355')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
   install -Dm644 defaults.list "$pkgdir/usr/share/applications/defaults.list"
+  install -Dm644 nautilus-mate.desktop "$pkgdir/usr/share/applications/nautilus-mate.desktop"
 }

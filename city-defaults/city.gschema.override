@@ -1,4 +1,5 @@
 [org.cinnamon.desktop.interface]
+clock-show-date=true
 font-name='Cantarell 11'
 
 [org.cinnamon.desktop.wm.preferences]

@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=6
+pkgrel=7
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"

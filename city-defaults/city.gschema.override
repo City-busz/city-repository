@@ -90,7 +90,6 @@ sleep-display-ups=300
 
 [org.mate.session.required-components]
 filemanager='nautilus-mate'
-windowmanager='metacity'
 
 [org.mate.sound]
 event-sounds=true

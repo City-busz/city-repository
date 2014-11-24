@@ -1,0 +1,26 @@
+# $Id$
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+
+pkgname=sugar-toolkit-gtk3
+pkgver=0.102.0
+pkgrel=1
+pkgdesc="Sugar GTK library"
+arch=('i686' 'x86_64')
+url="http://sugarlabs.org/"
+license=('GPL')
+depends=('alsa-lib' 'gtk3' 'librsvg' 'libsm' 'python2-cairo' 'python2-dateutil' 'python2-dbus'
+         'python2-decorator' 'python2-gobject' 'python2-telepathy' 'webkit2gtk')
+makedepends=('intltool' 'gobject-introspection')
+source=(http://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)
+md5sums=('328ee59ea98e2a1091a9afe4faf7e8c5')
+
+build() {
+  cd $pkgname-$pkgver
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make DESTDIR="$pkgdir" install
+}

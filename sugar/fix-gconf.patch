@@ -1,0 +1,15 @@
+diff -Naur sugar-0.102.0.orig/bin/sugar.in sugar-0.102.0/bin/sugar.in
+--- sugar-0.102.0.orig/bin/sugar.in	2014-05-29 20:21:47.000000000 +0200
++++ sugar-0.102.0/bin/sugar.in	2014-11-24 23:11:53.578606806 +0100
+@@ -47,6 +47,11 @@
+         . ~/.i18n
+ fi
+ 
++# Create user config directory if not exist (required for GConf)
++if [ ! -d ~/.config ]; then
++  mkdir -p ~/.config
++fi
++
+ profile_dir=$SUGAR_HOME/$SUGAR_PROFILE
+ debug_file_path=$profile_dir/debug
+ 

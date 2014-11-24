@@ -7,7 +7,7 @@ pkgrel=1
 pkgdesc="Sugar GTK library"
 arch=('i686' 'x86_64')
 url="http://sugarlabs.org/"
-license=('GPL')
+license=('LGPL')
 depends=('alsa-lib' 'gtk3' 'librsvg' 'libsm' 'python2-cairo' 'python2-dateutil' 'python2-dbus'
          'python2-decorator' 'python2-gobject' 'python2-telepathy' 'shared-mime-info' 'unzip'
          'webkit2gtk')

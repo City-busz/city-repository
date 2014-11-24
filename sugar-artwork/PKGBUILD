@@ -1,0 +1,27 @@
+# $Id$
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+
+pkgname=sugar-artwork
+pkgver=0.102.0
+pkgrel=1
+pkgdesc="Sugar icons and themes"
+arch=('i686' 'x86_64')
+url="http://sugarlabs.org/"
+license=('GPL')
+depends=('gtk3')
+makedepends=('gtk2' 'gtk3' 'icon-naming-utils' 'icon-slicer' 'python2')
+optdepends=('gtk2: GTK+ 2 theme')
+install=$pkgname.install
+source=(http://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)
+md5sums=('bcc78a11c96db9d12d567bab9a8f0966')
+
+build() {
+  cd $pkgname-$pkgver
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make DESTDIR="$pkgdir" install
+}

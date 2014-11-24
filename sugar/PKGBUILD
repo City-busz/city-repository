@@ -9,7 +9,7 @@ arch=('any')
 url="http://sugarlabs.org/"
 license=('GPL')
 depends=('gconf' 'gstreamer' 'gtksourceview3' 'libnm-glib' 'libwnck3' 'libxklavier'
-         'python2-gwebsockets' 'python2-xapian' 'sugar-toolkit-gtk3' 'webkitgtk')
+         'python2-gwebsockets' 'sugar-datastore' 'sugar-toolkit-gtk3' 'webkitgtk')
 makedepends=('intltool')
 install=$pkgname.install
 source=(http://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)

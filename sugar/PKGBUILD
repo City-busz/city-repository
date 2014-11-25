@@ -15,8 +15,10 @@ depends=('gconf' 'gst-plugins-espeak' 'gtksourceview3' 'gvfs' 'libwnck3' 'libxkl
 makedepends=('intltool')
 install=$pkgname.install
 source=(http://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz
+        fix-error-handling.patch
         fix-gconf.patch)
 md5sums=('540f08d29b2d894830c1d1b88f395cc4'
+         'af6320352a17f238e1dce6cbc6ac54ee'
          '565f45f09c0c189f652c079ff0d66754')
 
 prepare() {
@@ -24,6 +26,9 @@ prepare() {
 
   # Python2 fix
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' src/jarabe/model/update/aslo.py
+
+  # Fix error handling on unrecognised format in background settings
+  patch -Np1 -i ../fix-error-handling.patch
 
   # Create user config directory if not exist (required for GConf)
   patch -Np1 -i ../fix-gconf.patch

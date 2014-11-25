@@ -39,7 +39,6 @@ build() {
   ./configure --prefix=/usr --sysconfdir=/etc \
               --disable-schemas-install --disable-schemas-compile \
               --with-gconf-schema-file-dir=/usr/share/gconf/schemas
-
   make
 }
 

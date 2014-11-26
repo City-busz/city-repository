@@ -1,6 +1,6 @@
 diff -Naur Terminal-42.orig/terminal.py Terminal-42/terminal.py
---- Terminal-42.orig/terminal.py	2014-11-26 06:45:06.239793000 +0100
-+++ Terminal-42/terminal.py	2014-11-26 06:45:33.433783114 +0100
+--- Terminal-42.orig/terminal.py	2014-11-26 07:13:33.152002000 +0100
++++ Terminal-42/terminal.py	2014-11-26 07:14:02.372666787 +0100
 @@ -18,7 +18,7 @@
  
  import os
@@ -10,3 +10,21 @@ diff -Naur Terminal-42.orig/terminal.py Terminal-42/terminal.py
  import ConfigParser
  import logging
  from gettext import gettext as _
+@@ -389,7 +389,7 @@
+ 
+         fd = open(file_path, 'r')
+         text = fd.read()
+-        data = simplejson.loads(text)
++        data = json.loads(text)
+         fd.close()
+ 
+         # Clean out any existing tabs.
+@@ -438,7 +438,7 @@
+             data['tabs'].append(tab_state)
+ 
+         fd = open(file_path, 'w')
+-        text = simplejson.dumps(data)
++        text = json.dumps(data)
+         fd.write(text)
+         fd.close()
+ 

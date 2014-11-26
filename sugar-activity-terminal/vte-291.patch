@@ -1,0 +1,59 @@
+diff -Naur Terminal-42.orig/terminal.py Terminal-42/terminal.py
+--- Terminal-42.orig/terminal.py	2014-11-26 07:14:02.372666000 +0100
++++ Terminal-42/terminal.py	2014-11-26 07:30:31.933021773 +0100
+@@ -272,9 +272,6 @@
+         vt.connect("child-exited", self.__tab_child_exited_cb)
+         vt.connect("window-title-changed", self.__tab_title_changed_cb)
+ 
+-        # FIXME have to resend motion events to parent, see #1402
+-        vt.connect('motion-notify-event', self.__motion_notify_cb)
+-
+         vt.drag_dest_set(Gtk.DestDefaults.MOTION | Gtk.DestDefaults.DROP,
+                          [Gtk.TargetEntry.new('text/plain', 0, 0),
+                           Gtk.TargetEntry.new('STRING', 0, 1)],
+@@ -341,21 +338,19 @@
+             for l in tab_state['scrollback']:
+                 vt.feed(str(l) + '\r\n')
+ 
+-        sucess_, box.pid = vt.fork_command_full(Vte.PtyFlags.DEFAULT,
++        sucess_, box.pid = vt.spawn_sync(Vte.PtyFlags.DEFAULT,
+                                             os.environ["HOME"],
+                                             ["/bin/bash"],
+                                             [],
+                                             GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+                                             None,
++                                            None,
+                                             None)
+         self._notebook.props.page = index
+         vt.grab_focus()
+ 
+         return index
+ 
+-    def __motion_notify_cb(self, widget, event):
+-        self.emit('motion-notify-event', Gdk.Event(event))
+-
+     def __key_press_cb(self, window, event):
+         """Route some keypresses directly to the vte and then drop them.
+ 
+@@ -469,8 +464,8 @@
+         font = self._get_conf(conf, 'font', 'Monospace')
+         vt.set_font(Pango.FontDescription(font))
+ 
+-        fg_color = self._get_conf(conf, 'fg_color', '#000000')
+-        bg_color = self._get_conf(conf, 'bg_color', '#FFFFFF')
++        fg_color = self._get_conf(conf, 'fg_color', '#000000FF')
++        bg_color = self._get_conf(conf, 'bg_color', '#FFFFFFFF')
+         vt.set_colors(Gdk.color_parse(fg_color),
+                       Gdk.color_parse(bg_color), [])
+ 
+@@ -491,10 +486,4 @@
+         scroll_output = self._get_conf(conf, 'scroll_on_output', False)
+         vt.set_scroll_on_output(scroll_output)
+ 
+-        emulation = self._get_conf(conf, 'emulation', 'xterm')
+-        vt.set_emulation(emulation)
+-
+-        visible_bell = self._get_conf(conf, 'visible_bell', False)
+-        vt.set_visible_bell(visible_bell)
+-
+         conf.write(open(conf_file, 'w'))

@@ -12,9 +12,11 @@ license=('GPL')
 groups=('sugar-activities')
 depends=('sugar' 'vte3')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
-        json.patch)
+        json.patch
+        vte-291.patch)
 md5sums=('7b50f3521ec1c4e39a3a4fada984e19e'
-         '9dbda6cec5456ec27616289d36da33fe')
+         '1648baac66b42e846e567f468b9175dd'
+         'c3bae5305552e3523f6c241550c4e713')
 
 prepare() {
   cd $_pkgname-$pkgver
@@ -24,6 +26,9 @@ prepare() {
 
   # Use python's internal JSON library
   patch -Np1 -i ../json.patch
+
+  # Port to vte 2.91
+  patch -Np1 -i ../vte-291.patch
 }
 
 package() {

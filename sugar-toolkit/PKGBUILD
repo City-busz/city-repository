@@ -9,7 +9,7 @@ arch=('i686' 'x86_64')
 url="http://sugarlabs.org/"
 license=('LGPL')
 depends=('alsa-lib' 'hippo-canvas' 'libsm' 'python2-cairo' 'python2-dateutil' 'python2-dbus'
-         'python2-rsvg' 'python2-gconf' 'python2-telepathy')
+         'python2-rsvg' 'python2-gconf' 'python2-telepathy' 'sugar-base')
 makedepends=('intltool')
 source=(http://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.bz2)
 md5sums=('ff0e201eb0f404a6d2fa7297d5b723c1')

@@ -1,0 +1,12 @@
+diff -Naur Terminal-42.orig/terminal.py Terminal-42/terminal.py
+--- Terminal-42.orig/terminal.py	2014-11-26 06:45:06.239793000 +0100
++++ Terminal-42/terminal.py	2014-11-26 06:45:33.433783114 +0100
+@@ -18,7 +18,7 @@
+ 
+ import os
+ import sys
+-import simplejson
++import json
+ import ConfigParser
+ import logging
+ from gettext import gettext as _

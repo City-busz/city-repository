@@ -1,0 +1,31 @@
+diff -Naur Pippy-62.orig/pippy_app.py Pippy-62/pippy_app.py
+--- Pippy-62.orig/pippy_app.py	2014-08-28 20:40:58.000000000 +0200
++++ Pippy-62/pippy_app.py	2014-11-27 08:59:38.834065667 +0100
+@@ -358,8 +358,8 @@
+         self._vte.set_size(30, 5)
+         font = 'Monospace ' + str(font_zoom(style.FONT_SIZE))
+         self._vte.set_font(Pango.FontDescription(font))
+-        self._vte.set_colors(Gdk.color_parse('#000000'),
+-                             Gdk.color_parse('#E7E7E7'),
++        self._vte.set_colors(Gdk.color_parse('#000000FF'),
++                             Gdk.color_parse('#E7E7E7FF'),
+                              [])
+         self._vte.set_scrollback_lines(-1)
+         self._child_exited_handler = None
+@@ -528,7 +528,7 @@
+         copy2('%s/activity.py' % get_bundle_path(),
+               '%s/tmp/activity.py' % self.get_activity_root())
+ 
+-        self._pid = self._vte.fork_command_full(
++        self._pid = self._vte.spawn_sync(
+             Vte.PtyFlags.DEFAULT,
+             get_bundle_path(),
+             ['/bin/sh', '-c', 'python %s; sleep 1' % current_file,
+@@ -538,6 +538,7 @@
+                                            os.getenv('PYTHONPATH', ''))],
+             GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+             None,
++            None,
+             None,)
+ 
+     def _stop_button_cb(self, button):

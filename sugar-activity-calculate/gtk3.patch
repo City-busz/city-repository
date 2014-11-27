@@ -1,6 +1,6 @@
 diff -Naur Calculate-42.orig/calculate.py Calculate-42/calculate.py
 --- Calculate-42.orig/calculate.py	2013-06-21 01:39:24.000000000 +0200
-+++ Calculate-42/calculate.py	2014-11-27 05:44:40.218090087 +0100
++++ Calculate-42/calculate.py	2014-11-27 06:31:03.361332520 +0100
 @@ -24,20 +24,21 @@
  import os
  from gettext import gettext as _
@@ -297,6 +297,15 @@ diff -Naur Calculate-42.orig/calculate.py Calculate-42/calculate.py
              self.text_entry.select_region(newpos, sel[1])
          elif dir > 0:
              newpos = min(sel[1] + dir, slen)
+@@ -741,7 +741,7 @@
+  #       _logger.info('text_copy, sel: %r, str: %s', sel, str)
+             if len(sel) == 2:
+                 (start, end) = sel
+-                self.clipboard.set_text(str[start:end])
++                self.clipboard.set_text(str[start:end], -1)
+ 
+     def get_clipboard_text(self):
+         text = self.clipboard.wait_for_text()
 @@ -761,19 +761,19 @@
          if not self.text_entry.is_focus():
              return
@@ -350,7 +359,7 @@ diff -Naur Calculate-42.orig/calculate.py Calculate-42/calculate.py
  if __name__ == "__main__":
 diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
 --- Calculate-42.orig/layout.py	2013-06-21 01:39:24.000000000 +0200
-+++ Calculate-42/layout.py	2014-11-27 06:08:59.827390905 +0100
++++ Calculate-42/layout.py	2014-11-27 07:45:27.933713493 +0100
 @@ -2,22 +2,22 @@
  # Copyright (C) 2012 Aneesh Dogra <lionaneesh@gmail.com>
  
@@ -611,7 +620,7 @@ diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
          self.pad.set_row_spacings(12)
          self.pad.set_col_spacings(12)
          self.pad.set_border_width(12)
-@@ -221,69 +206,68 @@
+@@ -221,69 +206,67 @@
              self.buttons[cap] = button
              self.pad.attach(button, x, x + w, y, y + h)
  
@@ -684,7 +693,6 @@ diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
 -        scrolled_window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 +        # Right part: history
 +        scrolled_window = Gtk.ScrolledWindow()
-+        scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
  
 -        self.history_vbox = gtk.VBox()
 +        self.history_vbox = Gtk.VBox()
@@ -712,7 +720,7 @@ diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
                                               self._configure_cb)
  
      def _configure_cb(self, event):
-@@ -328,45 +312,21 @@
+@@ -328,45 +311,21 @@
              self.graph_selected = False
  
      def add_equation(self, textview, own, prepend=False):
@@ -766,7 +774,7 @@ diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
  
      def show_all_history(self):
          """Show both owned and other equations."""
-@@ -387,14 +347,14 @@
+@@ -387,14 +346,14 @@
                  key.hide()
  
      def add_variable(self, varname, textview):
@@ -783,7 +791,7 @@ diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
  
          # Reorder textviews for a sorted list
          names = self._var_textviews.keys()
-@@ -412,7 +372,7 @@
+@@ -412,7 +371,7 @@
  
      def create_button(self, cap, cb, fgcol, bgcol, width, height):
          """Create a button that is set up properly."""
@@ -792,10 +800,11 @@ diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
          self.modify_button_appearance(button, fgcol, bgcol, width, height)
          button.connect("clicked", cb)
          button.connect("key_press_event", self._parent.ignore_key_cb)
-@@ -421,12 +381,11 @@
+@@ -420,13 +379,11 @@
+ 
      def modify_button_appearance(self, button, fgcol, bgcol, width, height):
          """Modify button style."""
-         width = 50 * width
+-        width = 50 * width
 -        height = 50 * height
          button.get_child().set_size_request(width, height)
          button.get_child().modify_font(self.button_font)
@@ -808,7 +817,7 @@ diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
  
      def _history_filter_cb(self, combo):
          selection = combo.get_active()
-@@ -441,7 +400,7 @@
+@@ -441,7 +398,7 @@
  
      def _textview_realize_cb(self, widget):
          '''Change textview properties once window is created.'''

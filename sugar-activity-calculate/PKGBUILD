@@ -15,7 +15,7 @@ optdepends=('python2-matplotlib: alternative plotting backend')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
         gtk3.patch)
 md5sums=('2248559d5c9c30d5469ed51972fdb60a'
-         'ade004be773649cec93eb243b6f53437')
+         'c0633c8fba8bbeb993b169a4b3cd2882')
 
 prepare() {
   cd $_pkgname-$pkgver

@@ -1,0 +1,500 @@
+diff -Naur Calculate/activity/activity.info Calculate-42/activity/activity.info
+--- Calculate/activity/activity.info	2014-11-26 22:21:27.481652000 +0100
++++ Calculate-42/activity/activity.info	2013-06-21 04:17:34.000000000 +0200
+@@ -4,7 +4,7 @@
+ bundle_id = org.laptop.Calculate
+ icon = calculate
+ exec = sugar-activity calculate.Calculate -s
+-activity_version = 41
++activity_version = 42
+ host_version = 1
+ show_launcher = yes
+ license = GPLv2+
+diff -Naur Calculate/astparser.py Calculate-42/astparser.py
+--- Calculate/astparser.py	2014-11-26 22:21:27.481652000 +0100
++++ Calculate-42/astparser.py	2013-06-21 01:39:24.000000000 +0200
+@@ -1,6 +1,7 @@
+ # -*- coding: UTF-8 -*-
+ # astparser.py, equation parser based on python Abstract Syntax Trees (ast)
+ # Reinier Heeres <reinier@heeres.eu>
++# Copyright (C) 2012 Aneesh Dogra <lionaneesh@gmail.com>
+ #
+ # This program is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+@@ -43,8 +44,9 @@
+ class ParserError(Exception):
+     """Parent class for exceptions raised by the parser."""
+ 
+-    def __init__(self, msg, start, end=None):
++    def __init__(self, msg, start, eqn, end=None):
+         self._msg = msg
++        self.eqn = eqn
+         self.set_range(start, end)
+ 
+     def get_range(self):
+@@ -64,23 +66,43 @@
+ class ParseError(ParserError):
+     """Class for error during parsing."""
+ 
+-    def __init__(self, msg, start, end=None):
+-        ParserError.__init__(self, msg, start, end)
++    def __init__(self, msg, start, eqn, end=None):
++        ParserError.__init__(self, msg, start, eqn, end)
+ 
+     def __str__(self):
+-        msg = _("Error at %d") % (self._range[0] + 1)
++        msg = _("Error at '%s', position: %d") % \
++              (self.eqn[self._range[0] - 1 : self._range[1] - 1],
++               self._range[0])
+         if self._msg is not None and len(self._msg) > 0:
+             msg += ": %s" % (self._msg)
+         return msg
+ 
++class WrongSyntaxError(ParserError):
++    """Class for reporting syntax errors."""
++
++    def __init__(self, module=None, helper=None, start=0, end=0):
++        ParserError.__init__(self,_("Syntax Error."), start, end)
++        if module != None and helper != None:
++            self.help_text = helper.get_help(module)
++        else:
++            self.help_text = None
++
++    def __str__(self):
++        msg = _("Syntax Error!")
++        if self.help_text is not None and len(self.help_text) > 0:
++            msg += "\n" + self.help_text
++        return msg
++
+ class RuntimeError(ParserError):
+     """Class for error during executing."""
+ 
+-    def __init__(self, msg, start, end=None):
++    def __init__(self, msg, start, eqn, end=None):
+         ParserError.__init__(self, msg, start, end)
+ 
+     def __str__(self):
+-        msg = _("Error at %d") % (self._range[0] + 1)
++        msg = _("Error at '%s', position: %d") % \
++              (self.eqn[self._range[0] - 1 : self._range[1] - 1],
++               self._range[0])
+         if self._msg is not None and len(self._msg) > 0:
+             msg += ": %s" % (self._msg)
+         return msg
+@@ -203,7 +225,7 @@
+         ast.RShift: 'shift_right',
+         ast.Sub: 'sub',
+     }
+-    
++
+     CMPOP_MAP = {
+         ast.Gt: lambda x, y: x > y,
+         ast.GtE: lambda x, y: x >= y,
+@@ -593,8 +615,16 @@
+         try:
+             tree = compile(eqn, '<string>', 'exec', ast.PyCF_ONLY_AST)
+         except SyntaxError, e:
+-            msg = _('Parse error')
+-            raise ParseError(msg, e.offset - 1)
++            # if we don't have an offset, its a SyntaxError
++            if e.offset == None:
++                if eqn.startswith('plot'):
++                    raise WrongSyntaxError('plot', self._helper, len(eqn),
++                                           len(eqn) + len("Syntax Error!"))
++                else:
++                    raise WrongSyntaxError()
++            else:
++                msg = _('Parse error')
++                raise ParseError(msg, e.offset - 1, eqn)
+ 
+         if isinstance(tree, ast.Module):
+             if len(tree.body) != 1:
+@@ -697,4 +727,3 @@
+     eqn = 'a * 5'
+     ret = p.evaluate(eqn)
+     print 'Eqn: %s, ret: %s' % (eqn, ret)
+-
+diff -Naur Calculate/AUTHORS Calculate-42/AUTHORS
+--- Calculate/AUTHORS	2014-11-26 22:21:27.481652000 +0100
++++ Calculate-42/AUTHORS	2013-06-21 04:18:30.000000000 +0200
+@@ -1,2 +1,3 @@
+ Reinier Heeres <reinier@heeres.eu>
+ Gary C. Martin <gary@garycmartin.com>
++Aneesh Dogra <aneesh@sugarlabs.org>
+diff -Naur Calculate/calculate.py Calculate-42/calculate.py
+--- Calculate/calculate.py	2014-11-26 23:34:50.526070000 +0100
++++ Calculate-42/calculate.py	2013-06-21 01:39:24.000000000 +0200
+@@ -416,7 +416,6 @@
+             tree: the parsed tree, this will be used to set the label variable
+             so that the equation can be used symbolicaly.
+             """
+-
+         if eq.equation is not None and len(eq.equation) > 0:
+             if prepend:
+                 self.old_eqs.insert(0, eq)
+@@ -733,12 +732,16 @@
+         self.select_reason = self.SELECT_SELECT
+ 
+     def text_copy(self):
+-        str = self.text_entry.get_text()
+-        sel = self.text_entry.get_selection_bounds()
++        if self.layout.graph_selected is not None:
++            self.clipboard.set_image(self.layout.graph_selected.child.get_pixbuf())
++            self.layout.toggle_select_graph(self.layout.graph_selected)
++        else:
++            str = self.text_entry.get_text()
++            sel = self.text_entry.get_selection_bounds()
+  #       _logger.info('text_copy, sel: %r, str: %s', sel, str)
+-        if len(sel) == 2:
+-            (start, end) = sel
+-            self.clipboard.set_text(str[start:end])
++            if len(sel) == 2:
++                (start, end) = sel
++                self.clipboard.set_text(str[start:end])
+ 
+     def get_clipboard_text(self):
+         text = self.clipboard.wait_for_text()
+diff -Naur Calculate/layout.py Calculate-42/layout.py
+--- Calculate/layout.py	2014-11-26 23:34:50.526070000 +0100
++++ Calculate-42/layout.py	2013-06-21 01:39:24.000000000 +0200
+@@ -1,4 +1,5 @@
+ # layout.py, see calculate.py for info
++# Copyright (C) 2012 Aneesh Dogra <lionaneesh@gmail.com>
+ 
+ from gettext import gettext as _
+ import pygtk
+@@ -37,6 +38,7 @@
+         self._showing_history = True
+         self._showing_all_history = True
+         self._var_textviews = {}
++        self.graph_selected = None
+ 
+         self.create_dialog()
+ 
+@@ -89,17 +91,17 @@
+ 
+ # Toolbar
+         try:
+-            toolbar_box = ToolbarBox()
++            self._toolbar_box = ToolbarBox()
+ 
+             activity_button = ActivityToolbarButton(self._parent)
+-            toolbar_box.toolbar.insert(activity_button, 0)
++            self._toolbar_box.toolbar.insert(activity_button, 0)
+             
+             def append(icon_name, label, page, position):
+                 toolbar_button = ToolbarButton()
+                 toolbar_button.props.page = page
+                 toolbar_button.props.icon_name = icon_name
+                 toolbar_button.props.label = label
+-                toolbar_box.toolbar.insert(toolbar_button, position)
++                self._toolbar_box.toolbar.insert(toolbar_button, position)
+ 
+             append('toolbar-edit',
+                    _('Edit'),
+@@ -121,22 +123,26 @@
+                    BooleanToolbar(self._parent),
+                    -1)
+ 
++            self._misc_toolbar = MiscToolbar(
++                self._parent,
++                target_toolbar=self._toolbar_box.toolbar)
++
+             append('toolbar-constants',
+                    _('Miscellaneous'),
+-                   MiscToolbar(self._parent, target_toolbar=toolbar_box.toolbar),
++                   self._misc_toolbar,
+                    5)
+             
+-            separator = gtk.SeparatorToolItem()
+-            separator.props.draw = False
+-            separator.set_expand(True)
+-            separator.show()
+-            toolbar_box.toolbar.insert(separator, -1)
++            self._stop_separator = gtk.SeparatorToolItem()
++            self._stop_separator.props.draw = False
++            self._stop_separator.set_expand(True)
++            self._stop_separator.show()
++            self._toolbar_box.toolbar.insert(self._stop_separator, -1)
+ 
+-            stop = StopButton(self._parent)
+-            toolbar_box.toolbar.insert(stop, -1)
++            self._stop = StopButton(self._parent)
++            self._toolbar_box.toolbar.insert(self._stop, -1)
+ 
+-            toolbar_box.show_all()
+-            self._parent.set_toolbar_box(toolbar_box)
++            self._toolbar_box.show_all()
++            self._parent.set_toolbar_box(self._toolbar_box)
+ 
+         except NameError:
+             # Use old toolbar design
+@@ -277,6 +283,17 @@
+         scrolled_window.add_with_viewport(vbox)
+         self.grid.attach(scrolled_window, 7, 11, 7, 26)
+ 
++        gtk.gdk.screen_get_default().connect('size-changed',
++                                             self._configure_cb)
++
++    def _configure_cb(self, event):
++        # Maybe redo layout 
++        self._toolbar_box.toolbar.remove(self._stop)
++        self._toolbar_box.toolbar.remove(self._stop_separator)
++        self._misc_toolbar.update_layout()
++        self._toolbar_box.toolbar.insert(self._stop_separator, -1)
++        self._toolbar_box.toolbar.insert(self._stop, -1)
++
+     def show_it(self):
+         """Show the dialog."""
+         self._parent.set_canvas(self.grid)
+@@ -295,34 +312,79 @@
+         self.variable_vbox.hide()
+         self.history_vbox.show()
+ 
++    def toggle_select_graph(self, widget, host=None):
++        # if we have a graph already selected, we must deselect it first
++        if self.graph_selected and self.graph_selected != widget:
++            self.toggle_select_graph(self.graph_selected)
++
++        if not self.graph_selected:
++            widget.set_visible_window(True)
++            widget.set_above_child(True)
++            self.graph_selected = widget
++            white = gtk.gdk.color_parse('white')
++            widget.modify_bg(gtk.STATE_NORMAL, white)
++        else:
++            widget.set_visible_window(False)
++            self.graph_selected = False
++
+     def add_equation(self, textview, own, prepend=False):
+         """Add a gtk.TextView of an equation to the history_vbox."""
+ 
++        GraphEventBox = None
++        if isinstance(textview, gtk.Image):
++            # Add the image inside the eventBox
++            GraphEventBox = gtk.EventBox()
++            GraphEventBox.add(textview)
++            GraphEventBox.set_visible_window(False)
++            GraphEventBox.connect('button_press_event', self.toggle_select_graph)
++            GraphEventBox.show()
++
+         if prepend:
+-            self.history_vbox.pack_start(textview, False, True)
+-            self.history_vbox.reorder_child(textview, 0)
++            if GraphEventBox:
++                self.history_vbox.pack_start(GraphEventBox, False, True)
++                self.history_vbox.reorder_child(GraphEventBox, 0)
++            else:
++                self.history_vbox.pack_start(textview, False, True)
++                self.history_vbox.reorder_child(textview, 0)
+         else:
+-            self.history_vbox.pack_end(textview, False, True)
++            if GraphEventBox:
++                self.history_vbox.pack_end(GraphEventBox, False, True)
++            else:
++                self.history_vbox.pack_end(textview, False, True)
+ 
+         if own:
+-            self._own_equations.append(textview)
+-            textview.show()
++            if GraphEventBox:
++                self._own_equations.append(GraphEventBox)
++                GraphEventBox.child.show()
++            else:
++                self._own_equations.append(textview)
++                textview.show()
+         else:
+-            self._other_equations.append(textview)
+             if self._showing_all_history:
+-                textview.show()
++                if GraphEventBox:
++                    self._other_equations.append(GraphEventBox)
++                    GraphEventBox.child.show()
++                else:
++                    self._other_equations.append(textview)
++                    textview.show()
+ 
+     def show_all_history(self):
+         """Show both owned and other equations."""
+         self._showing_all_history = True
+         for key in self._other_equations:
+-            key.show()
++            if isinstance(key, gtk.EventBox):
++                key.child.show()
++            else:
++                key.show()
+ 
+     def show_own_history(self):
+         """Show only owned equations."""
+         self._showing_all_history = False
+         for key in self._other_equations:
+-            key.hide()
++            if isinstance(key, gtk.EventBox):
++                key.child.hide()
++            else:
++                key.hide()
+ 
+     def add_variable(self, varname, textview):
+         """Add a gtk.TextView of a variable to the variable_vbox."""
+diff -Naur Calculate/mathlib.py Calculate-42/mathlib.py
+--- Calculate/mathlib.py	2014-11-26 22:21:27.488319000 +0100
++++ Calculate-42/mathlib.py	2013-06-21 01:39:24.000000000 +0200
+@@ -157,6 +157,10 @@
+         if len(digits) > self.digit_limit:
+             exp += len(digits) - self.digit_limit
+             digits = digits[:self.digit_limit]
++        if len(digits) < self.digit_limit:
++            exp -= self.digit_limit - len(digits)
++            digits += (0,) * (self.digit_limit - len(digits))
++            print exp, digits
+         if sign:
+             res = "-"
+         else:
+diff -Naur Calculate/plotlib.py Calculate-42/plotlib.py
+--- Calculate/plotlib.py	2014-11-26 23:08:33.488539000 +0100
++++ Calculate-42/plotlib.py	2013-06-21 01:39:24.000000000 +0200
+@@ -86,6 +86,10 @@
+ 
+         _logger.debug('plot(): %r, %r', eqn, kwargs)
+ 
++        if len(kwargs) == 0:
++            _logger.error('No variables specified.')
++            return None
++
+         points = kwargs.pop('points', 100)
+         if len(kwargs) > 1:
+             _logger.error('Too many variables specified')
+diff -Naur Calculate/toolbars.py Calculate-42/toolbars.py
+--- Calculate/toolbars.py	2014-11-26 23:34:50.536071000 +0100
++++ Calculate-42/toolbars.py	2013-06-21 01:39:24.000000000 +0200
+@@ -1,4 +1,4 @@
+-# -*- coding: UTF-8 -*-
++# -*- coding: utf-8 -*-
+ # toolbars.py, see CalcActivity.py for info
+ 
+ import pygtk
+@@ -10,6 +10,7 @@
+ from sugar.graphics.menuitem import MenuItem
+ from sugar.graphics.toolbutton import ToolButton
+ from sugar.graphics.toggletoolbutton import ToggleToolButton
++from sugar.graphics.style import GRID_CELL_SIZE
+ 
+ import logging
+ _logger = logging.getLogger('calc-activity')
+@@ -257,6 +258,8 @@
+ 
+ class MiscToolbar(gtk.Toolbar):
+     def __init__(self, calc, target_toolbar=None):
++        self._target_toolbar = target_toolbar
++
+         gtk.Toolbar.__init__(self)
+ 
+         self.insert(IconToolButton('constants-pi', _('Pi'),
+@@ -272,32 +275,31 @@
+         self.insert(IconToolButton('constants-goldenratio', _('φ'),
+             lambda x: calc.button_pressed(calc.TYPE_TEXT, '1.618033988749895')), -1)
+ 
+-        if target_toolbar is None:
+-            target_toolbar = self
+-            target_toolbar.insert(LineSeparator(), -1)
++        self._line_separator1 = LineSeparator()
++        self._line_separator2 = LineSeparator()
+ 
+-        target_toolbar.insert(IconToolButton('plot', _('Plot'),
++        self._plot_button = IconToolButton('plot', _('Plot'),
+             lambda x: calc.button_pressed(calc.TYPE_FUNCTION, 'plot'),
+-            lambda x: calc.button_pressed(calc.TYPE_TEXT, 'help(plot)')), -1)
+-
+-        target_toolbar.insert(LineSeparator(), -1)
++            lambda x: calc.button_pressed(calc.TYPE_TEXT, 'help(plot)'))
+ 
+         el = [
+             {'icon': 'format-deg', 'desc': _('Degrees'), 'html': 'deg'},
+             {'icon': 'format-rad', 'desc': _('Radians'), 'html': 'rad'},
+         ]
+-        target_toolbar.insert(IconToggleToolButton(el, 
+-                    lambda x: self.update_angle_type(x, calc),
+-                    _('Degrees / Radians')), -1)
++        self._angle_button = IconToggleToolButton(
++            el, 
++            lambda x: self.update_angle_type(x, calc),
++            _('Degrees / Radians'))
+         self.update_angle_type('deg', calc)
+ 
+         el = [
+             {'icon': 'format-sci', 'html': 'sci'},
+             {'icon': 'format-exp', 'html': 'exp'},
+         ]
+-        target_toolbar.insert(IconToggleToolButton(el,
+-                    lambda x: self.update_format_type(x, calc),
+-                    _('Exponent / Scientific notation')), -1)
++        self._format_button = IconToggleToolButton(
++            el,
++            lambda x: self.update_format_type(x, calc),
++            _('Exponent / Scientific notation'))
+ 
+         el = [
+             {'icon': 'digits-9', 'html': '9'},
+@@ -305,9 +307,10 @@
+             {'icon': 'digits-15', 'html': '15'},
+             {'icon': 'digits-6', 'html': '6'},
+         ]
+-        target_toolbar.insert(IconToggleToolButton(el,
+-                    lambda x: self.update_digits(x, calc),
+-                    _('Number of shown digits')), -1)
++        self._digits_button = IconToggleToolButton(
++                el,
++                lambda x: self.update_digits(x, calc),
++                _('Number of shown digits'))
+ 
+         el = [
+             {'icon': 'base-10', 'html': '10'},
+@@ -315,12 +318,44 @@
+             {'icon': 'base-16', 'html': '16'},
+             {'icon': 'base-8', 'html': '8'}
+         ]
+-        target_toolbar.insert(IconToggleToolButton(el,
+-                    lambda x: self.update_int_base(x, calc),
+-                    _('Integer formatting base')), -1)
+-                    
++         
++        self._base_button = IconToggleToolButton(
++            el,
++            lambda x: self.update_int_base(x, calc),
++            _('Integer formatting base'))
++
++        self.update_layout()
++
+         self.show_all()
+ 
++    def update_layout(self):
++        if gtk.gdk.screen_width() < 14 * GRID_CELL_SIZE or \
++                self._target_toolbar is None:
++            target_toolbar = self
++            if self._target_toolbar is not None:
++                self._remove_buttons(self._target_toolbar)
++        else:
++            target_toolbar = self._target_toolbar
++            self._remove_buttons(self)
++
++        target_toolbar.insert(self._line_separator1, -1)
++
++        target_toolbar.insert(self._plot_button, -1)
++
++        target_toolbar.insert(self._line_separator2, -1)
++
++        target_toolbar.insert(self._angle_button, -1)
++        target_toolbar.insert(self._format_button, -1)
++        target_toolbar.insert(self._digits_button, -1)
++        target_toolbar.insert(self._base_button, -1)
++
++    def _remove_buttons(self, toolbar):
++        for item in [self._plot_button, self._line_separator1,
++                     self._line_separator2, self._angle_button,
++                     self._format_button, self._digits_button,
++                     self._base_button]:
++            toolbar.remove(item)
++
+     def update_angle_type(self, text, calc):
+         var = calc.parser.get_var('angle_scaling')
+         if var is None:

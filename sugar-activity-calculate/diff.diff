@@ -1,0 +1,873 @@
+--- gtk3.patch.old	2014-11-26 12:16:29.820099366 +0100
++++ diff.patch	2014-11-26 23:20:45.602055704 +0100
+@@ -1,7 +1,12 @@
+-diff -Naur Calculate-42.orig/calculate.py Calculate-42/calculate.py
+---- Calculate-42.orig/calculate.py	2013-06-21 01:39:24.000000000 +0200
+-+++ Calculate-42/calculate.py	2014-11-26 12:00:00.869763196 +0100
+-@@ -27,17 +27,16 @@
++diff --git a/calculate.py b/calculate.py
++index 79f362f..0c9e861 100644
++--- a/calculate.py
+++++ b/calculate.py
++@@ -24,20 +24,21 @@ import types
++ import os
++ from gettext import gettext as _
++ import string
+++import base64
+  import logging
+  _logger = logging.getLogger('Calculate')
+  
+@@ -10,11 +15,13 @@
+ -pygtk.require('2.0')
+ -import gtk
+ -import pango
+-+from gi.repository import GObject
+-+from gi.repository import Gdk
++-import base64
+++#import gobject
+++#import pygtk
+++#pygtk.require('2.0')
+ +from gi.repository import Gtk
+-+from gi.repository import Pango
+- import base64
+++from gi.repository import Gdk
+++#import pango
+  
+ -from sugar.activity import activity
+ -import sugar.profile
+@@ -27,18 +34,18 @@
+  
+  from shareable_activity import ShareableActivity
+  from layout import CalcLayout
+-@@ -67,8 +66,8 @@
++@@ -67,8 +68,8 @@ def findchar(text, chars, ofs=0):
+  
+  def _textview_realize_cb(widget):
+      '''Change textview properties once window is created.'''
+ -    win = widget.get_window(gtk.TEXT_WINDOW_TEXT)
+ -    win.set_cursor(gtk.gdk.Cursor(gtk.gdk.HAND1))
+ +    win = widget.get_window(Gtk.TextWindowType.TEXT)
+-+    win.set_cursor(Gdk.Cursor.new(Gdk.CursorType.HAND1))
+++    win.set_cursor(Gdk.Cursor(Gdk.CursorType.HAND1))
+      return False
+  
+  class Equation:
+-@@ -131,7 +130,7 @@
++@@ -131,7 +132,7 @@ class Equation:
+          return size
+  
+      def append_with_superscript_tags(self, buf, text, *tags):
+@@ -47,7 +54,7 @@
+  
+          fontsize = self.determine_font_size(*tags)
+          _logger.debug('font-size: %d', fontsize)
+-@@ -157,16 +156,16 @@
++@@ -157,16 +158,16 @@ class Equation:
+  
+      def create_lasteq_textbuf(self):
+          '''
+@@ -68,7 +75,7 @@
+          tagred = buf.create_tag(foreground='#FF0000')
+  
+          # Add label and equation
+-@@ -203,35 +202,35 @@
++@@ -203,35 +204,34 @@ class Equation:
+          """
+          Create a history object for this equation.
+          In case of an SVG result this will be the image, otherwise it will
+@@ -102,11 +109,11 @@
+          tagsmallnarrow = buf.create_tag(font=CalcLayout.FONT_SMALL_NARROW)
+          tagbig = buf.create_tag(font=CalcLayout.FONT_BIG,
+ -            justification=gtk.JUSTIFY_RIGHT)
+-+            justification=Gtk.Justification.RIGHT)
+-         # TODO Fix for old Sugar 0.82 builds, red_float not available
++-        # TODO Fix for old Sugar 0.82 builds, red_float not available
+ -        bright = (gtk.gdk.color_parse(self.color.get_fill_color()).red_float +
+ -                  gtk.gdk.color_parse(self.color.get_fill_color()).green_float +
+ -                  gtk.gdk.color_parse(self.color.get_fill_color()).blue_float) / 3.0
+++            justification=Gtk.Justification.RIGHT)
+ +        bright = (Gdk.color_parse(self.color.get_fill_color()).red_float +
+ +                  Gdk.color_parse(self.color.get_fill_color()).green_float +
+ +                  Gdk.color_parse(self.color.get_fill_color()).blue_float) / 3.0
+@@ -119,16 +126,16 @@
+          tagcolor = buf.create_tag(foreground=col)
+  
+          # Add label, equation and result
+-@@ -332,7 +331,7 @@
++@@ -332,7 +332,7 @@ class Calculate(ShareableActivity):
+          self.KEYMAP['divide'] = self.ml.div_sym
+          self.KEYMAP['equal'] = self.ml.equ_sym
+  
+ -        self.clipboard = gtk.Clipboard()
+-+        self.clipboard = Gtk.Clipboard()
+++        self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+          self.select_reason = self.SELECT_SELECT
+          self.buffer = u""
+          self.showing_version = 0
+-@@ -342,7 +341,7 @@
++@@ -342,7 +342,7 @@ class Calculate(ShareableActivity):
+  
+          self.connect("key_press_event", self.keypress_cb)
+          self.connect("destroy", self.cleanup_cb)
+@@ -137,7 +144,7 @@
+  
+          self.layout = CalcLayout(self)
+          self.label_entry = self.layout.label_entry
+-@@ -517,30 +516,30 @@
++@@ -518,30 +518,29 @@ class Calculate(ShareableActivity):
+          return res is not None
+  
+      def create_var_textview(self, name, value):
+@@ -166,7 +173,7 @@
+          w.connect('realize', _textview_realize_cb)
+          buf = w.get_buffer()
+  
+-         # TODO Fix for old Sugar 0.82 builds, red_float not available
++-        # TODO Fix for old Sugar 0.82 builds, red_float not available
+ -        bright = (gtk.gdk.color_parse(self.color.get_fill_color()).red_float +
+ -                  gtk.gdk.color_parse(self.color.get_fill_color()).green_float +
+ -                  gtk.gdk.color_parse(self.color.get_fill_color()).blue_float) / 3.0
+@@ -182,16 +189,7 @@
+  
+          tag = buf.create_tag(font=CalcLayout.FONT_SMALL_NARROW,
+                  foreground=col)
+-@@ -733,7 +732,7 @@
+- 
+-     def text_copy(self):
+-         if self.layout.graph_selected is not None:
+--            self.clipboard.set_image(self.layout.graph_selected.child.get_pixbuf())
+-+            self.clipboard.set_image(self.layout.graph_selected.get_child().get_pixbuf())
+-             self.layout.toggle_select_graph(self.layout.graph_selected)
+-         else:
+-             str = self.text_entry.get_text()
+-@@ -761,19 +760,19 @@
++@@ -758,19 +757,19 @@ class Calculate(ShareableActivity):
+          if not self.text_entry.is_focus():
+              return
+  
+@@ -199,23 +197,23 @@
+ +        key = Gdk.keyval_name(event.keyval)
+          if event.hardware_keycode == 219:
+ -            if (event.state & gtk.gdk.SHIFT_MASK):
+-+            if (event.get_state() & Gdk.ModifierType.SHIFT_MASK):
+++            if (event.state & Gdk.SHIFT_MASK):
+                  key = 'divide'
+              else:
+                  key = 'multiply'
+          _logger.debug('Key: %s (%r, %r)', key, event.keyval, event.hardware_keycode)
+  
+ -        if event.state & gtk.gdk.CONTROL_MASK:
+-+        if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
+++        if event.state & Gdk.ModifierType.CONTROL_MASK:
+              if self.CTRL_KEYMAP.has_key(key):
+                  f = self.CTRL_KEYMAP[key]
+                  return f(self)
+ -        elif (event.state & gtk.gdk.SHIFT_MASK) and self.SHIFT_KEYMAP.has_key(key):
+-+        elif (event.get_state() & Gdk.ModifierType.SHIFT_MASK) and self.SHIFT_KEYMAP.has_key(key):
+++        elif (event.state & Gdk.ModifierType.SHIFT_MASK) and self.SHIFT_KEYMAP.has_key(key):
+              f = self.SHIFT_KEYMAP[key]
+              return f(self)
+          elif unicode(key) in self.IDENTIFIER_CHARS:
+-@@ -902,9 +901,9 @@
++@@ -899,9 +898,9 @@ class Calculate(ShareableActivity):
+              return ''
+  
+  def main():
+@@ -227,11 +225,12 @@
+      return 0
+  
+  if __name__ == "__main__":
+-diff -Naur Calculate-42.orig/layout.py Calculate-42/layout.py
+---- Calculate-42.orig/layout.py	2013-06-21 01:39:24.000000000 +0200
+-+++ Calculate-42/layout.py	2014-11-26 11:56:29.257944507 +0100
+-@@ -2,20 +2,19 @@
+- # Copyright (C) 2012 Aneesh Dogra <lionaneesh@gmail.com>
++diff --git a/layout.py b/layout.py
++index 5a77357..ec25ffb 100644
++--- a/layout.py
+++++ b/layout.py
++@@ -1,22 +1,22 @@
++ # layout.py, see calculate.py for info
+  
+  from gettext import gettext as _
+ -import pygtk
+@@ -242,26 +241,33 @@
+ -import sugar.profile
+ -from sugar.graphics.roundbox import CanvasRoundBox
+ -from sugar.graphics.combobox import ComboBox
+-+import gi
+-+gi.require_version('Gtk', '3.0')
++-from toolbars import *
++ 
++-try:
++-    from sugar.graphics.toolbarbox import ToolbarButton, ToolbarBox
++-    from sugar.activity.widgets import ActivityToolbarButton
++-    from sugar.activity.widgets import StopButton
++-except ImportError:
++-    pass
+++#import pygtk
+++#pygtk.require('2.0')
+ +from gi.repository import Gtk
+++from gi.repository import Gdk
+ +from gi.repository import Pango
+++
+ +from sugar3.activity import activity
+ +import sugar3.profile
+++#from sugar3.graphics.roundbox import CanvasRoundBox
+ +from sugar3.graphics.combobox import ComboBox
+- from toolbars import *
+++from sugar3.graphics.toolbarbox import ToolbarButton, ToolbarBox
+++from sugar3.activity.widgets import ActivityToolbarButton
+++from sugar3.activity.widgets import StopButton
+++
+++from toolbars import *
+  
+- try:
+--    from sugar.graphics.toolbarbox import ToolbarButton, ToolbarBox
+--    from sugar.activity.widgets import ActivityToolbarButton
+--    from sugar.activity.widgets import StopButton
+-+    from sugar3.graphics.toolbarbox import ToolbarButton, ToolbarBox
+-+    from sugar3.activity.widgets import ActivityToolbarButton
+-+    from sugar3.activity.widgets import StopButton
+- except ImportError:
+-     pass
++ class CalcLayout:
+  
+-@@ -43,7 +42,7 @@
++@@ -41,7 +41,7 @@ class CalcLayout:
+          self.create_dialog()
+  
+      def create_color(self, rf, gf, bf):
+@@ -270,25 +276,25 @@
+  
+      def create_button_data(self):
+          """Create a list with button information. We need to do that here
+-@@ -90,74 +89,62 @@
++@@ -88,70 +88,58 @@ class CalcLayout:
+          """Setup most of the dialog."""
+  
+  # Toolbar
+ -        try:
+--            self._toolbar_box = ToolbarBox()
+-+        self._toolbar_box = ToolbarBox()
++-            toolbar_box = ToolbarBox()
+++        toolbar_box = ToolbarBox()
+  
+ -            activity_button = ActivityToolbarButton(self._parent)
+--            self._toolbar_box.toolbar.insert(activity_button, 0)
++-            toolbar_box.toolbar.insert(activity_button, 0)
+ +        activity_button = ActivityToolbarButton(self._parent)
+-+        self._toolbar_box.toolbar.insert(activity_button, 0)
+++        toolbar_box.toolbar.insert(activity_button, 0)
+              
+ -            def append(icon_name, label, page, position):
+ -                toolbar_button = ToolbarButton()
+ -                toolbar_button.props.page = page
+ -                toolbar_button.props.icon_name = icon_name
+ -                toolbar_button.props.label = label
+--                self._toolbar_box.toolbar.insert(toolbar_button, position)
++-                toolbar_box.toolbar.insert(toolbar_button, position)
+ -
+ -            append('toolbar-edit',
+ -                   _('Edit'),
+@@ -299,7 +305,7 @@
+ +            toolbar_button.props.page = page
+ +            toolbar_button.props.icon_name = icon_name
+ +            toolbar_button.props.label = label
+-+            self._toolbar_box.toolbar.insert(toolbar_button, position)
+++            toolbar_box.toolbar.insert(toolbar_button, position)
+ +
+ +        append('toolbar-edit',
+ +               _('Edit'),
+@@ -310,7 +316,11 @@
+ -                   _('Algebra'),
+ -                   AlgebraToolbar(self._parent),
+ -                   -1)
+--            
+++        append('toolbar-algebra',
+++               _('Algebra'),
+++               AlgebraToolbar(self._parent),
+++               -1)
++             
+ -            append('toolbar-trigonometry',
+ -                   _('Trigonometry'),
+ -                   TrigonometryToolbar(self._parent),
+@@ -321,42 +331,10 @@
+ -                   BooleanToolbar(self._parent),
+ -                   -1)
+ -
+--            self._misc_toolbar = MiscToolbar(
+--                self._parent,
+--                target_toolbar=self._toolbar_box.toolbar)
+--
+ -            append('toolbar-constants',
+ -                   _('Miscellaneous'),
+--                   self._misc_toolbar,
++-                   MiscToolbar(self._parent, target_toolbar=toolbar_box.toolbar),
+ -                   5)
+--            
+--            self._stop_separator = gtk.SeparatorToolItem()
+--            self._stop_separator.props.draw = False
+--            self._stop_separator.set_expand(True)
+--            self._stop_separator.show()
+--            self._toolbar_box.toolbar.insert(self._stop_separator, -1)
+--
+--            self._stop = StopButton(self._parent)
+--            self._toolbar_box.toolbar.insert(self._stop, -1)
+--
+--            self._toolbar_box.show_all()
+--            self._parent.set_toolbar_box(self._toolbar_box)
+--
+--        except NameError:
+--            # Use old toolbar design
+--            toolbox = activity.ActivityToolbox(self._parent)
+--            self._parent.set_toolbox(toolbox)
+--            toolbox.add_toolbar(_('Edit'), EditToolbar(self._parent))
+--            toolbox.add_toolbar(_('Algebra'), AlgebraToolbar(self._parent))
+--            toolbox.add_toolbar(_('Trigonometry'), TrigonometryToolbar(self._parent))
+--            toolbox.add_toolbar(_('Boolean'), BooleanToolbar(self._parent))
+--            toolbox.add_toolbar(_('Miscellaneous'), MiscToolbar(self._parent))
+--            toolbox.show_all()
+-+        append('toolbar-algebra',
+-+               _('Algebra'),
+-+               AlgebraToolbar(self._parent),
+-+               -1)
+-+        
+ +        append('toolbar-trigonometry',
+ +               _('Trigonometry'),
+ +               TrigonometryToolbar(self._parent),
+@@ -367,36 +345,54 @@
+ +               BooleanToolbar(self._parent),
+ +               -1)
+ +
+-+        self._misc_toolbar = MiscToolbar(
+-+            self._parent,
+-+            target_toolbar=self._toolbar_box.toolbar)
+-+
+ +        append('toolbar-constants',
+ +               _('Miscellaneous'),
+-+               self._misc_toolbar,
+++               MiscToolbar(self._parent, target_toolbar=toolbar_box.toolbar),
+ +               5)
+-+        
+-+        self._stop_separator = Gtk.SeparatorToolItem()
+-+        self._stop_separator.props.draw = False
+-+        self._stop_separator.set_expand(True)
+-+        self._stop_separator.show()
+-+        self._toolbar_box.toolbar.insert(self._stop_separator, -1)
++             
++-            separator = gtk.SeparatorToolItem()
++-            separator.props.draw = False
++-            separator.set_expand(True)
++-            separator.show()
++-            toolbar_box.toolbar.insert(separator, -1)
++-
++-            stop = StopButton(self._parent)
++-            toolbar_box.toolbar.insert(stop, -1)
++-
++-            toolbar_box.show_all()
++-            self._parent.set_toolbar_box(toolbar_box)
++-
++-        except NameError:
++-            # Use old toolbar design
++-            toolbox = activity.ActivityToolbox(self._parent)
++-            self._parent.set_toolbox(toolbox)
++-            toolbox.add_toolbar(_('Edit'), EditToolbar(self._parent))
++-            toolbox.add_toolbar(_('Algebra'), AlgebraToolbar(self._parent))
++-            toolbox.add_toolbar(_('Trigonometry'), TrigonometryToolbar(self._parent))
++-            toolbox.add_toolbar(_('Boolean'), BooleanToolbar(self._parent))
++-            toolbox.add_toolbar(_('Miscellaneous'), MiscToolbar(self._parent))
++-            toolbox.show_all()
+++        separator = Gtk.SeparatorToolItem()
+++        separator.props.draw = False
+++        separator.set_expand(True)
+++        separator.show()
+++        toolbar_box.toolbar.insert(separator, -1)
+ +
+-+        self._stop = StopButton(self._parent)
+-+        self._toolbar_box.toolbar.insert(self._stop, -1)
+++        stop = StopButton(self._parent)
+++        toolbar_box.toolbar.insert(stop, -1)
+ +
+-+        self._toolbar_box.show_all()
+-+        self._parent.set_toolbar_box(self._toolbar_box)
+++        toolbar_box.show_all()
+++        self._parent.set_toolbar_box(toolbar_box)
+  
+  # Some layout constants
+ -        self.input_font = pango.FontDescription(str='sans bold 12')
+ -        self.button_font = pango.FontDescription(str='sans bold 16')
+-+        self.input_font = Pango.font_description_from_string('sans bold 12')
+-+        self.button_font = Pango.font_description_from_string('sans bold 16')
+++        self.input_font = Pango.FontDescription('sans bold 12')
+++        self.button_font = Pango.FontDescription('sans bold 16')
+          self.col_white = self.create_color(1.00, 1.00, 1.00)
+          self.col_gray1 = self.create_color(0.76, 0.76, 0.76)
+          self.col_gray2 = self.create_color(0.50, 0.50, 0.50)
+-@@ -166,31 +153,31 @@
++@@ -160,51 +148,48 @@ class CalcLayout:
+          self.col_red = self.create_color(1.00, 0.00, 0.00)
+  
+  # Big - Table, 16 rows, 10 columns, homogeneously divided
+@@ -424,7 +420,7 @@
+ -        label1 = gtk.Label(_('Label:'))
+ -        label1.modify_fg(gtk.STATE_NORMAL, self.col_white)
+ +        eb2.modify_bg(Gtk.StateType.NORMAL, self.col_black)
+-+        label1 = Gtk.Label(label=_('Label:'))
+++        label1 = Gtk.Label(_('Label:'))
+ +        label1.modify_fg(Gtk.StateType.NORMAL, self.col_white)
+          label1.set_alignment(1, 0.5)
+          hc1.pack_start(label1, expand=False, fill=False, padding=10)
+@@ -434,14 +430,15 @@
+ +        self.label_entry.modify_bg(Gtk.StateType.INSENSITIVE, self.col_black)
+          hc1.pack_start(self.label_entry, expand=True, fill=True, padding=0)
+ -        vc1.pack_start(eb2, expand=False)
+-+        vc1.pack_start(eb2, False, True, 0)
+++        vc1.pack_start(eb2, expand=False, fill=True, padding=0)
+          
+ -        self.text_entry = gtk.Entry()
++-        try:
++-            self.text_entry.props.im_module = 'gtk-im-context-simple'
++-        except AttributeError:
++-            pass
+ +        self.text_entry = Gtk.Entry()
+-         try:
+-             self.text_entry.props.im_module = 'gtk-im-context-simple'
+-         except AttributeError:
+-@@ -198,19 +185,19 @@
+++        self.text_entry.props.im_module = 'gtk-im-context-simple'
+          self.text_entry.set_size_request(-1, 75)
+          self.text_entry.connect('key_press_event', self._parent.ignore_key_cb)
+          self.text_entry.modify_font(self.input_font)
+@@ -467,7 +464,7 @@
+          self.pad.set_row_spacings(12)
+          self.pad.set_col_spacings(12)
+          self.pad.set_border_width(12)
+-@@ -221,69 +208,69 @@
++@@ -215,65 +200,64 @@ class CalcLayout:
+              self.buttons[cap] = button
+              self.pad.attach(button, x, x + w, y, y + h)
+  
+@@ -488,7 +485,7 @@
+          combo.set_active(0)
+          combo.connect('changed', self._history_filter_cb)
+ -        hc2.pack_start(combo) 
+-+        hc2.pack_start(combo, True, True, 0) 
+++        hc2.pack_start(combo, expand=True, fill=True, padding=0) 
+          hc2.set_border_width(6)
+          self.grid.attach(hc2, 7, 11, 0, 2)
+          
+@@ -507,6 +504,11 @@
+ -        self.last_eq.set_border_window_size(gtk.TEXT_WINDOW_RIGHT, 4)
+ -        self.last_eq.set_border_window_size(gtk.TEXT_WINDOW_TOP, 4)
+ -        self.last_eq.set_border_window_size(gtk.TEXT_WINDOW_BOTTOM, 4)
++-
++-        # TODO Fix for old Sugar 0.82 builds, red_float not available
++-        bright = (gtk.gdk.color_parse(sugar.profile.get_color().get_fill_color()).red_float +
++-                  gtk.gdk.color_parse(sugar.profile.get_color().get_fill_color()).green_float +
++-                  gtk.gdk.color_parse(sugar.profile.get_color().get_fill_color()).blue_float) / 3.0
+ +        self.last_eq.modify_base(Gtk.StateType.NORMAL, Gdk.color_parse(
+ +                                 sugar3.profile.get_color().get_fill_color()))
+ +        self.last_eq.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse(
+@@ -515,11 +517,7 @@
+ +        self.last_eq.set_border_window_size(Gtk.TextWindowType.RIGHT, 4)
+ +        self.last_eq.set_border_window_size(Gtk.TextWindowType.TOP, 4)
+ +        self.last_eq.set_border_window_size(Gtk.TextWindowType.BOTTOM, 4)
+- 
+-         # TODO Fix for old Sugar 0.82 builds, red_float not available
+--        bright = (gtk.gdk.color_parse(sugar.profile.get_color().get_fill_color()).red_float +
+--                  gtk.gdk.color_parse(sugar.profile.get_color().get_fill_color()).green_float +
+--                  gtk.gdk.color_parse(sugar.profile.get_color().get_fill_color()).blue_float) / 3.0
+++
+ +        bright = (Gdk.color_parse(sugar3.profile.get_color().get_fill_color()).red_float +
+ +                  Gdk.color_parse(sugar3.profile.get_color().get_fill_color()).green_float +
+ +                  Gdk.color_parse(sugar3.profile.get_color().get_fill_color()).blue_float) / 3.0
+@@ -554,93 +552,30 @@
+ -        vbox.pack_start(self.history_vbox)
+ -        vbox.pack_start(self.variable_vbox)
+ +        vbox = Gtk.VBox()
+-+        vbox.pack_start(self.history_vbox, True, True, 0)
+-+        vbox.pack_start(self.variable_vbox, True, True, 0)
+++        vbox.pack_start(self.history_vbox, expand=True, fill=True, padding=0)
+++        vbox.pack_start(self.variable_vbox, expand=True, fill=True, padding=0)
+          scrolled_window.add_with_viewport(vbox)
+          self.grid.attach(scrolled_window, 7, 11, 7, 26)
+  
+--        gtk.gdk.screen_get_default().connect('size-changed',
+-+        Gdk.Screen.get_default().connect('size-changed',
+-                                              self._configure_cb)
+- 
+-     def _configure_cb(self, event):
+-@@ -321,19 +308,19 @@
+-             widget.set_visible_window(True)
+-             widget.set_above_child(True)
+-             self.graph_selected = widget
+--            white = gtk.gdk.color_parse('white')
+--            widget.modify_bg(gtk.STATE_NORMAL, white)
+-+            white = Gdk.color_parse('white')
+-+            widget.modify_bg(Gtk.StateType.NORMAL, white)
+-         else:
+-             widget.set_visible_window(False)
+-             self.graph_selected = False
++@@ -296,13 +280,13 @@ class CalcLayout:
++         self.history_vbox.show()
+  
+      def add_equation(self, textview, own, prepend=False):
+ -        """Add a gtk.TextView of an equation to the history_vbox."""
+ +        """Add a Gtk.TextView of an equation to the history_vbox."""
+  
+-         GraphEventBox = None
+--        if isinstance(textview, gtk.Image):
+-+        if isinstance(textview, Gtk.Image):
+-             # Add the image inside the eventBox
+--            GraphEventBox = gtk.EventBox()
+-+            GraphEventBox = Gtk.EventBox()
+-             GraphEventBox.add(textview)
+-             GraphEventBox.set_visible_window(False)
+-             GraphEventBox.connect('button_press_event', self.toggle_select_graph)
+-@@ -341,10 +328,10 @@
+- 
+          if prepend:
+-             if GraphEventBox:
+--                self.history_vbox.pack_start(GraphEventBox, False, True)
+-+                self.history_vbox.pack_start(GraphEventBox, False, True, 0)
+-                 self.history_vbox.reorder_child(GraphEventBox, 0)
+-             else:
+--                self.history_vbox.pack_start(textview, False, True)
+-+                self.history_vbox.pack_start(textview, False, True, 0)
+-                 self.history_vbox.reorder_child(textview, 0)
++-            self.history_vbox.pack_start(textview, False, True)
+++            self.history_vbox.pack_start(textview, False, True, 0)
++             self.history_vbox.reorder_child(textview, 0)
+          else:
+-             if GraphEventBox:
+-@@ -355,7 +342,7 @@
+-         if own:
+-             if GraphEventBox:
+-                 self._own_equations.append(GraphEventBox)
+--                GraphEventBox.child.show()
+-+                GraphEventBox.get_child().show()
+-             else:
+-                 self._own_equations.append(textview)
+-                 textview.show()
+-@@ -363,7 +350,7 @@
+-             if self._showing_all_history:
+-                 if GraphEventBox:
+-                     self._other_equations.append(GraphEventBox)
+--                    GraphEventBox.child.show()
+-+                    GraphEventBox.get_child().show()
+-                 else:
+-                     self._other_equations.append(textview)
+-                     textview.show()
+-@@ -372,8 +359,8 @@
+-         """Show both owned and other equations."""
+-         self._showing_all_history = True
+-         for key in self._other_equations:
+--            if isinstance(key, gtk.EventBox):
+--                key.child.show()
+-+            if isinstance(key, Gtk.EventBox):
+-+                key.get_child().show()
+-             else:
+-                 key.show()
++-            self.history_vbox.pack_end(textview, False, True)
+++            self.history_vbox.pack_end(textview, False, True,0 )
+  
+-@@ -381,20 +368,20 @@
+-         """Show only owned equations."""
+-         self._showing_all_history = False
+-         for key in self._other_equations:
+--            if isinstance(key, gtk.EventBox):
+--                key.child.hide()
+-+            if isinstance(key, Gtk.EventBox):
+-+                key.get_child().hide()
+-             else:
+-                 key.hide()
++         if own:
++             self._own_equations.append(textview)
++@@ -325,14 +309,14 @@ class CalcLayout:
++             key.hide()
+  
+      def add_variable(self, varname, textview):
+ -        """Add a gtk.TextView of a variable to the variable_vbox."""
+@@ -656,7 +591,7 @@
+  
+          # Reorder textviews for a sorted list
+          names = self._var_textviews.keys()
+-@@ -412,7 +399,7 @@
++@@ -350,7 +334,7 @@ class CalcLayout:
+  
+      def create_button(self, cap, cb, fgcol, bgcol, width, height):
+          """Create a button that is set up properly."""
+@@ -665,7 +600,7 @@
+          self.modify_button_appearance(button, fgcol, bgcol, width, height)
+          button.connect("clicked", cb)
+          button.connect("key_press_event", self._parent.ignore_key_cb)
+-@@ -424,9 +411,9 @@
++@@ -362,9 +346,9 @@ class CalcLayout:
+          height = 50 * height
+          button.get_child().set_size_request(width, height)
+          button.get_child().modify_font(self.button_font)
+@@ -678,28 +613,30 @@
+  
+      def _history_filter_cb(self, combo):
+          selection = combo.get_active()
+-@@ -441,7 +428,7 @@
++@@ -379,7 +363,7 @@ class CalcLayout:
+  
+      def _textview_realize_cb(self, widget):
+          '''Change textview properties once window is created.'''
+ -        win = widget.get_window(gtk.TEXT_WINDOW_TEXT)
+ -        win.set_cursor(gtk.gdk.Cursor(gtk.gdk.HAND1))
+ +        win = widget.get_window(Gtk.TextWindowType.TEXT)
+-+        win.set_cursor(Gdk.Cursor.new(Gdk.CursorType.HAND1))
+++        win.set_cursor(Gdk.Cursor(Gdk.CursorType.HAND1))
+          return False
+  
+-diff -Naur Calculate-42.orig/setup.py Calculate-42/setup.py
+---- Calculate-42.orig/setup.py	2014-11-26 04:23:23.310130000 +0100
+-+++ Calculate-42/setup.py	2014-11-26 10:29:00.732515185 +0100
++diff --git a/setup.py b/setup.py
++index ec0f64e..9a141b3 100755
++--- a/setup.py
+++++ b/setup.py
+ @@ -1,3 +1,3 @@
+- #!/usr/bin/python2
++ #!/usr/bin/env python
+ -from sugar.activity import bundlebuilder
+ +from sugar3.activity import bundlebuilder
+  bundlebuilder.start()
+-diff -Naur Calculate-42.orig/shareable_activity.py Calculate-42/shareable_activity.py
+---- Calculate-42.orig/shareable_activity.py	2013-06-21 01:24:58.000000000 +0200
+-+++ Calculate-42/shareable_activity.py	2014-11-26 10:29:00.772515943 +0100
+-@@ -3,9 +3,9 @@
++diff --git a/shareable_activity.py b/shareable_activity.py
++index c418666..b749765 100644
++--- a/shareable_activity.py
+++++ b/shareable_activity.py
++@@ -3,9 +3,9 @@ from dbus import Interface
+  from dbus.service import method, signal
+  import telepathy
+  
+@@ -712,18 +649,10 @@
+  
+  import logging
+  _logger = logging.getLogger('ShareableActivity')
+-@@ -253,7 +253,7 @@
+-             return
+- 
+-         self._syncreq_buddy = 0
+--        self._sync_hid = gobject.timeout_add(2000, self._request_sync_cb)
+-+        self._sync_hid = GObject.timeout_add(2000, self._request_sync_cb)
+-         self._request_sync_cb()
+- 
+-     def _request_sync_cb(self):
+-diff -Naur Calculate-42.orig/svgimage.py Calculate-42/svgimage.py
+---- Calculate-42.orig/svgimage.py	2013-06-21 01:24:58.000000000 +0200
+-+++ Calculate-42/svgimage.py	2014-11-26 10:48:25.302153895 +0100
++diff --git a/svgimage.py b/svgimage.py
++index 5469107..ca297e8 100644
++--- a/svgimage.py
+++++ b/svgimage.py
+ @@ -20,8 +20,8 @@
+  import logging
+  _logger = logging.getLogger('SVGImage')
+@@ -735,7 +664,7 @@
+  
+  class SVGImage:
+  
+-@@ -38,9 +38,9 @@
++@@ -38,9 +38,9 @@ class SVGImage:
+          return self._svg_data
+  
+      def render_svg(self):
+@@ -747,35 +676,35 @@
+          self._image.set_from_pixbuf(self._pixbuf)
+          self._image.set_alignment(0.5, 0)
+          return self._image
+-diff -Naur Calculate-42.orig/toolbars.py Calculate-42/toolbars.py
+---- Calculate-42.orig/toolbars.py	2013-06-21 01:39:24.000000000 +0200
+-+++ Calculate-42/toolbars.py	2014-11-26 11:44:33.793825030 +0100
+-@@ -1,16 +1,16 @@
+- # -*- coding: utf-8 -*-
++diff --git a/toolbars.py b/toolbars.py
++index 9240395..4fed000 100644
++--- a/toolbars.py
+++++ b/toolbars.py
++@@ -1,15 +1,16 @@
++ # -*- coding: UTF-8 -*-
+  # toolbars.py, see CalcActivity.py for info
+  
+ -import pygtk
+ -pygtk.require('2.0')
+ -import gtk
+-+from gi.repository import GObject
+-+from gi.repository import Gdk
+++#import pygtk
+++#pygtk.require('2.0')
+ +from gi.repository import Gtk
+++
+  from mathlib import MathLib
+  
+ -from sugar.graphics.palette import Palette
+ -from sugar.graphics.menuitem import MenuItem
+ -from sugar.graphics.toolbutton import ToolButton
+ -from sugar.graphics.toggletoolbutton import ToggleToolButton
+--from sugar.graphics.style import GRID_CELL_SIZE
+ +from sugar3.graphics.palette import Palette
+ +from sugar3.graphics.menuitem import MenuItem
+ +from sugar3.graphics.toolbutton import ToolButton
+ +from sugar3.graphics.toggletoolbutton import ToggleToolButton
+-+from sugar3.graphics.style import GRID_CELL_SIZE
+  
+  import logging
+  _logger = logging.getLogger('calc-activity')
+-@@ -21,7 +21,7 @@
++@@ -20,7 +21,7 @@ def _icon_exists(name):
+      if name == '':
+          return False
+  
+@@ -784,12 +713,13 @@
+      info = theme.lookup_icon(name, 0, 0)
+      if info:
+          return True
+-@@ -33,12 +33,12 @@
++@@ -32,12 +33,13 @@ class IconToolButton(ToolButton):
+          ToolButton.__init__(self)
+  
+          if _icon_exists(icon_name):
+ -            self.set_icon(icon_name)
+-+            self.set_icon_name(icon_name)
+++            #self.set_icon(icon_name)
+++            self.props.icon_name = icon_name
+          else:
+              if alt_html == '':
+                  alt_html = icon_name
+@@ -799,16 +729,27 @@
+              label.set_markup(alt_html)
+              label.show()
+              self.set_label_widget(label)
+-@@ -64,7 +64,7 @@
++@@ -63,7 +65,8 @@ class IconToggleToolButton(ToggleToolButton):
+          ToggleToolButton.__init__(self)
+          self.items = items
+          if 'icon' in items[0] and _icon_exists(items[0]['icon']):
+ -            self.set_named_icon(items[0]['icon'])
+-+            self.set_icon_name(items[0]['icon'])
+++            #self.set_named_icon(items[0]['icon'])
+++            self.props.icon_name = items[0]['icon']
+          elif 'html' in items[0]:
+              self.set_label(items[0]['html'])
+  #        self.set_tooltip(items[0][1])
+-@@ -88,9 +88,9 @@
++@@ -76,7 +79,8 @@ class IconToggleToolButton(ToggleToolButton):
++         self.selected = (self.selected + 1) % len(self.items)
++         but = self.items[self.selected]
++         if 'icon' in but and _icon_exists(but['icon']):
++-            self.set_named_icon(but['icon'])
+++            #self.set_named_icon(but['icon'])
+++            self.props.icon_name = but['icon']
++         elif 'html' in but:
++             _logger.info('Setting html: %s', but['html'])
++             self.set_label(but['html'])
++@@ -87,9 +91,9 @@ class IconToggleToolButton(ToggleToolButton):
+              else:
+                  self.callback(but)
+  
+@@ -816,11 +757,11 @@
+ +class TextToggleToolButton(Gtk.ToggleToolButton):
+      def __init__(self, items, cb, desc, index=False):
+ -        gtk.ToggleToolButton.__init__(self)
+-+        GObject.GObject.__init__(self)
+++        Gtk.ToggleToolButton.__init__(self)
+          self.items = items
+          self.set_label(items[0])
+          self.selected = 0
+-@@ -109,14 +109,14 @@
++@@ -108,14 +112,14 @@ class TextToggleToolButton(gtk.ToggleToolButton):
+              else:
+                  self.callback(but)
+  
+@@ -828,18 +769,18 @@
+ +class LineSeparator(Gtk.SeparatorToolItem):
+      def __init__(self):
+ -        gtk.SeparatorToolItem.__init__(self)
+-+        GObject.GObject.__init__(self)
+++        Gtk.SeparatorToolItem.__init__(self)
+          self.set_draw(True)
+  
+ -class EditToolbar(gtk.Toolbar):
+ +class EditToolbar(Gtk.Toolbar):
+      def __init__(self, calc):
+ -        gtk.Toolbar.__init__(self)
+-+        GObject.GObject.__init__(self)
+++        Gtk.Toolbar.__init__(self)
+  
+          copy_tool = ToolButton('edit-copy')
+          copy_tool.set_tooltip(_('Copy'))
+-@@ -141,9 +141,9 @@
++@@ -140,9 +144,9 @@ class EditToolbar(gtk.Toolbar):
+                          
+          self.show_all()
+  
+@@ -847,11 +788,11 @@
+ +class AlgebraToolbar(Gtk.Toolbar):
+      def __init__(self, calc):
+ -        gtk.Toolbar.__init__(self)
+-+        GObject.GObject.__init__(self)
+++        Gtk.Toolbar.__init__(self)
+  
+          self.insert(IconToolButton('algebra-square', _('Square'),
+              lambda x: calc.button_pressed(calc.TYPE_OP_POST, '**2'),
+-@@ -184,9 +184,9 @@
++@@ -183,9 +187,9 @@ class AlgebraToolbar(gtk.Toolbar):
+              
+          self.show_all()
+  
+@@ -859,11 +800,11 @@
+ +class TrigonometryToolbar(Gtk.Toolbar):
+      def __init__(self, calc):
+ -        gtk.Toolbar.__init__(self)
+-+        GObject.GObject.__init__(self)
+++        Gtk.Toolbar.__init__(self)
+  
+          self.insert(IconToolButton('trigonometry-sin', _('Sine'),
+              lambda x: calc.button_pressed(calc.TYPE_FUNCTION, 'sin'),
+-@@ -230,9 +230,9 @@
++@@ -229,9 +233,9 @@ class TrigonometryToolbar(gtk.Toolbar):
+              
+          self.show_all()
+  
+@@ -871,30 +812,19 @@
+ +class BooleanToolbar(Gtk.Toolbar):
+      def __init__(self, calc):
+ -        gtk.Toolbar.__init__(self)
+-+        GObject.GObject.__init__(self)
+++        Gtk.Toolbar.__init__(self)
+  
+          self.insert(IconToolButton('boolean-and', _('Logical and'),
+              lambda x: calc.button_pressed(calc.TYPE_OP_POST, '&'),
+-@@ -256,11 +256,11 @@
++@@ -255,9 +259,9 @@ class BooleanToolbar(gtk.Toolbar):
+              
+          self.show_all()
+  
+ -class MiscToolbar(gtk.Toolbar):
+ +class MiscToolbar(Gtk.Toolbar):
+      def __init__(self, calc, target_toolbar=None):
+-         self._target_toolbar = target_toolbar
+- 
+ -        gtk.Toolbar.__init__(self)
+-+        GObject.GObject.__init__(self)
+++        Gtk.Toolbar.__init__(self)
+  
+          self.insert(IconToolButton('constants-pi', _('Pi'),
+              lambda x: calc.button_pressed(calc.TYPE_TEXT, 'pi'),
+-@@ -329,7 +329,7 @@
+-         self.show_all()
+- 
+-     def update_layout(self):
+--        if gtk.gdk.screen_width() < 14 * GRID_CELL_SIZE or \
+-+        if Gdk.Screen.width() < 14 * GRID_CELL_SIZE or \
+-                 self._target_toolbar is None:
+-             target_toolbar = self
+-             if self._target_toolbar is not None:

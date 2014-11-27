@@ -1,0 +1,95 @@
+diff --git a/calculate.py b/calculate.py
+index 6b79e90..91d8b9f 100644
+--- a/calculate.py
++++ b/calculate.py
+@@ -154,7 +154,12 @@ class Equation:
+             ofs = nextofs2
+ 
+         if ofs < len(text):
+-            buf.insert_with_tags(buf.get_end_iter(), text[ofs:], *tags)
++            ### to display equation
++            if text[-1]=='\n':
++                buf.insert_with_tags(buf.get_end_iter(), text[ofs:-1], *tags)
++            ### to display result
++            else:
++                buf.insert_with_tags(buf.get_end_iter(), text[ofs:], *tags)
+ 
+     def create_lasteq_textbuf(self):
+         '''
+@@ -167,36 +172,44 @@ class Equation:
+         tagsmallnarrow = buf.create_tag(font=CalcLayout.FONT_SMALL_NARROW)
+         tagbignarrow = buf.create_tag(font=CalcLayout.FONT_BIG_NARROW)
+         tagbigger = buf.create_tag(font=CalcLayout.FONT_BIGGER)
++        tagbold = buf.create_tag(font=CalcLayout.FONT_BOLD)
++        tagbig = buf.create_tag(font=CalcLayout.FONT_BIG,
++                justification=Gtk.Justification.RIGHT)
+         tagjustright = buf.create_tag(justification=Gtk.Justification.RIGHT)
+         tagred = buf.create_tag(foreground='#FF0000')
+ 
+         # Add label and equation
+         if len(self.label) > 0:
+             labelstr = '%s:' % self.label
+-            buf.insert_with_tags(buf.get_end_iter(), labelstr, tagbignarrow)
+         eqnoffset = buf.get_end_iter().get_offset()
+         eqnstr = '%s\n' % str(self.equation)
+         if is_error:
+-            buf.insert_with_tags(buf.get_end_iter(), eqnstr, tagbignarrow)
++            buf.insert_with_tags(buf.get_end_iter(), labelstr, tagsmallnarrow)
++            if eqnstr[-1]=='\n':
++                buf.insert_with_tags(buf.get_end_iter(), eqnstr[:-1],
++                tagsmallnarrow)
++            else:
++                buf.insert_with_tags(buf.get_end_iter(), eqnstr,
++                tagsmallnarrow)
+         else:
+-            self.append_with_superscript_tags(buf, eqnstr, tagbignarrow)
++            self.append_with_superscript_tags(buf, eqnstr, tagsmallnarrow)
+ 
+         # Add result
+         if type(self.result) in (types.StringType, types.UnicodeType):
+             resstr = str(self.result)
+-            buf.insert_with_tags(buf.get_end_iter(), resstr,
+-                    tagsmallnarrow, tagjustright)
++            buf.insert_with_tags(buf.get_end_iter(), resstr, tagsmallnarrow,
++                    tagsmallbold)
+         elif is_error:
+             resstr = str(self.result)
+-            buf.insert_with_tags(buf.get_end_iter(), resstr, tagsmallnarrow)
++            buf.insert_with_tags(buf.get_end_iter(), resstr, tagbold)
+             range = self.result.get_range()
+             eqnstart = buf.get_iter_at_offset(eqnoffset + range[0])
+             eqnend = buf.get_iter_at_offset(eqnoffset + range[1])
+             buf.apply_tag(tagred, eqnstart, eqnend)
+         elif not isinstance(self.result, SVGImage):
+             resstr = self.ml.format_number(self.result)
+-            self.append_with_superscript_tags(buf, resstr, tagbigger,
+-                    tagjustright)
++            self.append_with_superscript_tags(buf, 8*"\t"+resstr,
++                    tagsmallnarrow, tagbold)
+ 
+         return buf
+ 
+@@ -239,7 +249,7 @@ class Equation:
+             restag = tagsmall
+         else:
+             restag = tagbig
+-        self.append_with_superscript_tags(buf, resstr, restag)
++        self.append_with_superscript_tags(buf, "\n"+resstr, restag)
+ 
+         buf.apply_tag(tagcolor, buf.get_start_iter(), buf.get_end_iter())
+ 
+diff --git a/layout.py b/layout.py
+index c967527..ee43732 100644
+--- a/layout.py
++++ b/layout.py
+@@ -28,6 +28,7 @@ class CalcLayout:
+     FONT_BIG_NARROW = "sans italic 14"
+     FONT_BIGGER_POINTS = 18
+     FONT_BIGGER = "sans bold %d" % FONT_BIGGER_POINTS
++    FONT_BOLD = "sans bold"
+ 
+     def __init__(self, parent):
+         self._parent = parent
+-- 
+1.7.9.5
+

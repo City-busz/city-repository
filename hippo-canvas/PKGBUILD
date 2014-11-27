@@ -9,14 +9,14 @@ arch=('i686' 'x86_64')
 url="https://wiki.gnome.org/Projects/HippoCanvas"
 license=('LGPL')
 depends=('gtk2' 'librsvg')
-makedepends=('pygtk')
+makedepends=('gobject-introspection' 'pygtk')
 optdepends=('pygtk: python2 bindings')
 source=(http://ftp.gnome.org/pub/GNOME/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 sha256sums=('aaed1ad31f905750c57cacbfeb0e3af4d62e45b881ebeabeeedd864b56f9ed95')
 
 build() {
   cd $pkgname-$pkgver
-  ./configure --prefix=/usr
+  ./configure --prefix=/usr LDFLAGS="$LDFLAGS -lgmodule-2.0"
   make
 }
 

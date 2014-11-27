@@ -3,7 +3,7 @@
 
 pkgname=sugar-activity-write
 _pkgname=Write
-pkgver=95
+pkgver=96
 pkgrel=1
 pkgdesc="Sugar activity to edit texts"
 arch=('any')
@@ -12,7 +12,7 @@ license=('GPL')
 groups=('sugar-activities')
 depends=('sugar' 'abiword' 'python2-speechd')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
-md5sums=('b0971df540e54f8fe756335ffb849ddf')
+md5sums=('4702709c72ee3790380bfa33e47cb6fb')
 
 prepare() {
   cd $_pkgname-$pkgver

@@ -9,7 +9,7 @@ pkgdesc="Sugar activity to learn and develop in Python programming language"
 arch=('any')
 url="http://wiki.sugarlabs.org/go/Activities/Pippy"
 license=('GPL')
-groups=('sugar-activities')
+groups=('sugar-fructose')
 depends=('sugar' 'python2-pygame' 'vte3')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
         vte-291.patch)

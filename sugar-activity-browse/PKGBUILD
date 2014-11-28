@@ -9,7 +9,7 @@ pkgdesc="Sugar activity to browse the internet"
 arch=('any')
 url="http://wiki.sugarlabs.org/go/Activities/Browse"
 license=('GPL')
-groups=('sugar-activities')
+groups=('sugar-fructose')
 depends=('sugar' 'evince')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
         fix-download.patch)

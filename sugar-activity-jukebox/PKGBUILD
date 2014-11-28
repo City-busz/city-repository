@@ -9,7 +9,7 @@ pkgdesc="Media player for Sugar"
 arch=('any')
 url="http://sugarlabs.org/"
 license=('GPL')
-groups=('sugar-activities')
+groups=('sugar-fructose')
 depends=('sugar' 'gst-plugins-base')
 optdepends=('gst-plugins-good: Extra media codecs'
             'gst-plugins-bad: Extra media codecs'            

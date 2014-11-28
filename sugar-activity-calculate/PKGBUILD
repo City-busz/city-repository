@@ -13,9 +13,11 @@ groups=('sugar-activities')
 depends=('sugar')
 optdepends=('python2-matplotlib: alternative plotting backend')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
-        gtk3.patch)
+        gtk3.patch
+        fix-menuitems.patch)
 md5sums=('2248559d5c9c30d5469ed51972fdb60a'
-         'd488a81e89e567a09b3d0daf5db724a2')
+         'd488a81e89e567a09b3d0daf5db724a2'
+         '4490e88c125049b43deccd4e52a2cb2e')
 
 prepare() {
   cd $_pkgname-$pkgver
@@ -25,6 +27,7 @@ prepare() {
 
   # GTK+ 3 port
   patch -Np1 -i ../gtk3.patch
+  patch -Np1 -i ../fix-menuitems.patch
 }
 
 package() {

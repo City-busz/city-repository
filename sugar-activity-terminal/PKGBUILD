@@ -9,7 +9,7 @@ pkgdesc="Terminal emulator for Sugar"
 arch=('any')
 url="http://wiki.sugarlabs.org/go/Activities/Terminal"
 license=('GPL')
-groups=('sugar-activities')
+groups=('sugar-fructose')
 depends=('sugar' 'vte3')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
         json.patch

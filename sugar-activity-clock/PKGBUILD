@@ -1,0 +1,31 @@
+# $Id$
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+
+pkgname=sugar-activity-clock
+_pkgname=Clock
+pkgver=15
+pkgrel=1
+pkgdesc="Clock for Sugar"
+arch=('any')
+url="http://wiki.sugarlabs.org/go/Activities/Clock"
+license=('GPL')
+depends=('sugar')
+source=(http://download.sugarlabs.org/sources/honey/$_pkgname/$_pkgname-$pkgver.tar.bz2
+        gtk3.patch)
+md5sums=('a8a3387360e1046b40685e16be1396f1'
+         'de7cc03f7bf131c3b4c4bbe15ecec9c0')
+
+prepare() {
+  cd $_pkgname-$pkgver
+
+  # Python2 fix
+  find . -type f | xargs sed -i 's@^#!.*python$@#!/usr/bin/python2@'
+
+  # GTK+ 3 port
+  patch -Np1 -i ../gtk3.patch
+}
+
+package() {
+  cd $_pkgname-$pkgver
+  python2 setup.py install --prefix "$pkgdir/usr"
+}

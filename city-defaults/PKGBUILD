@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=7
+pkgrel=8
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -15,7 +15,7 @@ source=(city.gschema.override
         metacity-theme-2.xml)
 md5sums=('8e4df67c2c168492b68cfb3f88f48dc8'
          '466b3f2217a2f2c2b3782486728f7bc2'
-         '9ccbe1cdcc2fe0c3a8532a97f76b2355'
+         'a0e1d1d650bfc0588aa365a684fdfd10'
          '7d54375173f2c8271bfd98463a83e841')
 
 package() {

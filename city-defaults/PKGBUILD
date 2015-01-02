@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=7
+pkgrel=9
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -12,15 +12,18 @@ install=$pkgname.install
 source=(city.gschema.override
         defaults.list
         nautilus-mate.desktop
+        gnome-screensaver.desktop
         metacity-theme-2.xml)
 md5sums=('8e4df67c2c168492b68cfb3f88f48dc8'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '9ccbe1cdcc2fe0c3a8532a97f76b2355'
+         '546c3cf9de18a3ccf945f6945d8729c6'
          '7d54375173f2c8271bfd98463a83e841')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
   install -Dm644 defaults.list "$pkgdir/usr/share/applications/defaults.list"
   install -Dm644 nautilus-mate.desktop "$pkgdir/usr/share/applications/nautilus-mate.desktop"
+  install -Dm644 gnome-screensaver.desktop "$pkgdir/etc/xdg/autostart/gnome-screensaver.desktop"
   install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
 }

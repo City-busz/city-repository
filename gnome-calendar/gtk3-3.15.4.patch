@@ -1,0 +1,38 @@
+From 5c5d5f62f8cef4f04525753ae72ab442cda7949c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Erick=20P=C3=A9rez=20Castellanos?= <erick.red@gmail.com>
+Date: Thu, 22 Jan 2015 15:55:15 -0500
+Subject: month-view: fixed draw clip bug
+
+Updated Gtk+ version requirement to 3.15.4 where the bug is fixed.
+
+diff --git a/configure.ac b/configure.ac
+index 1ab2a2b..c6ff1be 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -82,7 +82,7 @@ MAINTAINER_COMPILER_FLAGS=${MAINTAINER_COMPILER_FLAGS#*  }
+ AC_SUBST(MAINTAINER_COMPILER_FLAGS)
+ 
+ GLIB_MIN_VERSION=2.43.2
+-GTK_MIN_VERSION=3.14.0
++GTK_MIN_VERSION=3.15.4
+ ECAL_REQUIRED=3.5.3
+ EDATASERVER_REQUIRED=3.5.3
+ EDATASERVERUI_REQUIRED=3.5.3
+diff --git a/src/gcal-month-view.c b/src/gcal-month-view.c
+index 7a4c372..df73d10 100644
+--- a/src/gcal-month-view.c
++++ b/src/gcal-month-view.c
+@@ -1040,10 +1040,6 @@ gcal_month_view_size_allocate (GtkWidget     *widget,
+         }
+     }
+ 
+-  /* FIXME: remove on Gtk+ 3.15.4 release */
+-  if (g_hash_table_size (ppriv->overflow_cells) != 0)
+-    gtk_widget_queue_draw_area (widget, allocation->x, allocation->y, allocation->width, allocation->height);
+-
+   ppriv->children_changed = FALSE;
+ }
+ 
+-- 
+cgit v0.10.2
+

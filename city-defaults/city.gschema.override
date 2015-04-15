@@ -33,7 +33,7 @@ button-layout=":minimize,maximize,close"
 alt-tab-thumbnails=true
 
 [org.gnome.nautilus.icon-view]
-default-zoom-level=0
+default-zoom-level='small'
 
 [org.gnome.nautilus.preferences]
 sort-directories-first=true

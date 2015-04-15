@@ -14,7 +14,7 @@ source=(city.gschema.override
         nautilus-mate.desktop
         gnome-screensaver.desktop
         metacity-theme-2.xml)
-md5sums=('ff4da885aa8831deecad472a251a2cee'
+md5sums=('4d7b42df41ce28ca622ff897e77b5d6e'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '9ccbe1cdcc2fe0c3a8532a97f76b2355'
          '546c3cf9de18a3ccf945f6945d8729c6'

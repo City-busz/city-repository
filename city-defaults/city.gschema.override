@@ -29,6 +29,12 @@ show-desktop=['<Super>D']
 [org.gnome.desktop.wm.preferences]
 button-layout=":minimize,maximize,close"
 
+[org.gnome.metacity]
+alt-tab-thumbnails=true
+
+[org.gnome.nautilus.icon-view]
+default-zoom-level=0
+
 [org.gnome.nautilus.preferences]
 sort-directories-first=true
 

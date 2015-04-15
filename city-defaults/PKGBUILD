@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=9
+pkgrel=10
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -14,7 +14,7 @@ source=(city.gschema.override
         nautilus-mate.desktop
         gnome-screensaver.desktop
         metacity-theme-2.xml)
-md5sums=('8e4df67c2c168492b68cfb3f88f48dc8'
+md5sums=('ff4da885aa8831deecad472a251a2cee'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '9ccbe1cdcc2fe0c3a8532a97f76b2355'
          '546c3cf9de18a3ccf945f6945d8729c6'

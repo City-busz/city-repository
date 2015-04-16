@@ -5,7 +5,7 @@
 
 pkgname=nvidia-173xx-dkms
 pkgver=173.14.39
-pkgrel=3
+pkgrel=4
 pkgdesc="NVIDIA kernel module sources (DKMS), 173xx branch"
 arch=('i686' 'x86_64')
 [ "$CARCH" = "i686"   ] && _arch=x86

@@ -6,5 +6,8 @@
 *.zip
 *.7z
 *.run
+*.png
+*.gif
+*.jpg
 *~
 src

@@ -179,9 +179,26 @@ case "$cmd" in
 		;;
 esac
 
-# check if all local source files are under version control
-if [[ -z $(git rev-parse --git-dir 2> /dev/null) ]]; then
-	die "Not a git repository"
+# find files which should be under source control
+needsversioning=()
+for s in "${source[@]}"; do
+	[[ $s != *://* ]] && needsversioning+=("$s")
+done
+for i in 'changelog' 'install'; do
+	while read -r file; do
+		# evaluate any bash variables used
+		eval file=\"$(sed 's/^\(['\''"]\)\(.*\)\1$/\2/' <<< "$file")\"
+		needsversioning+=("$file")
+	done < <(sed -n "s/^[[:space:]]*$i=//p" PKGBUILD)
+done
+
+# assert that they really are controlled by GIT
+if (( ${#needsversioning[*]} )); then
+	# svn status's output is only two columns when the status is unknown
+	while read -r status filename; do
+		[[ $status = '?' ]] && unversioned+=("$filename")
+	done < <(git ls-files --error-unmatch "${needsversioning[@]}" > /dev/null 2>&1)
+	(( ${#unversioned[*]} )) && die "%s is not under version control" "${unversioned[@]}"
 fi
 
 rsyncopts=(-e ssh -p --chmod=ug=rw,o=r -c -h -L --progress --partial -y)
@@ -215,6 +232,9 @@ for _arch in ${arch[@]}; do
 	done
 done
 
+msg "Create source info..."
+mksrcinfo
+
 if [[ -z $server ]]; then
 	case "$repo" in
 		city|ayatana)
@@ -228,10 +248,9 @@ fi
 if [[ -n $(git status -s .) ]]; then
 	msgtemplate="upgpkg: $pkgbase $(get_full_version)"$'\n\n'
 	if [[ -n $1 ]]; then
-		stat_busy 'Committing changes to trunk'
-		git add .
-		git commit -q -m "${msgtemplate}${1}" || die
-		stat_done
+		msg 'Commit changes to master'
+		git add .SRCINFO || die
+		git commit -a -q -m "${msgtemplate}${1}" || die
 	else
 		msgfile="$(mktemp)"
 		echo "$msgtemplate" > "$msgfile"
@@ -245,16 +264,18 @@ if [[ -n $(git status -s .) ]]; then
 			nano "$msgfile"
 		fi
 		[[ -s $msgfile ]] || die
-		stat_busy 'Committing changes to trunk'
-		git commit -q -F "$msgfile" || die
+		msg 'Committing changes to master'
+		git add .SRCINFO || die
+		git commit -a -q -F "$msgfile" || die
 		unlink "$msgfile"
-		stat_done
 	fi
+	stat_busy 'Updating remote repository'
 	git push
+	stat_done
 fi
 
-# Create sourceball
-mkaurball -f
+msg "Create source package..."
+makepkg -f
 
 declare -a uploads
 declare -a commit_arches
@@ -289,7 +310,7 @@ for _arch in ${arch[@]}; do
 			if [[ -n $GPGKEY ]]; then
 				SIGNWITHKEY="-u ${GPGKEY}"
 			fi
-			gpg --detach-sign --use-agent ${SIGNWITHKEY} "${pkgfile}" || die
+			gpg --detach-sign --use-agent --no-armor ${SIGNWITHKEY} "${pkgfile}" || die
 		fi
 		if ! gpg --verify "$sigfile" >/dev/null 2>&1; then
 			die "Signature ${pkgfile}.sig is incorrect!"

@@ -245,12 +245,12 @@ if [[ -z $server ]]; then
 	esac
 fi
 
-if [[ -n $(git status -s .) ]]; then
+if [[ -z $(git diff -s --exit-code) ]]; then
 	msgtemplate="upgpkg: $pkgbase $(get_full_version)"$'\n\n'
 	if [[ -n $1 ]]; then
 		msg 'Commit changes to master'
 		git add .SRCINFO || die
-		git commit -a -q -m "${msgtemplate}${1}" > /dev/null 2>&1 || die
+		git commit -a -q -m "${msgtemplate}${1}" || die
 	else
 		msgfile="$(mktemp)"
 		echo "$msgtemplate" > "$msgfile"
@@ -266,7 +266,7 @@ if [[ -n $(git status -s .) ]]; then
 		[[ -s $msgfile ]] || die
 		msg 'Committing changes to master'
 		git add .SRCINFO || die
-		git commit -a -q -F "$msgfile" > /dev/null 2>&1 || die
+		git commit -a -q -F "$msgfile" || die
 		unlink "$msgfile"
 	fi
 	stat_busy 'Updating remote repository\n'

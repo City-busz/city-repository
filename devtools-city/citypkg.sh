@@ -245,7 +245,7 @@ if [[ -z $server ]]; then
 	esac
 fi
 
-if [[ -z $(git diff -s --exit-code) ]]; then
+if [[ -n $(git diff) ]]; then
 	msgtemplate="upgpkg: $pkgbase $(get_full_version)"$'\n\n'
 	if [[ -n $1 ]]; then
 		msg 'Commit changes to master'

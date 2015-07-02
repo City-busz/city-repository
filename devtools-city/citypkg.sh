@@ -269,9 +269,8 @@ if [[ -n $(git diff) ]]; then
 		git commit -a -q -F "$msgfile" || die
 		unlink "$msgfile"
 	fi
-	stat_busy 'Updating remote repository\n'
+	msg 'Updating remote repository'
 	git push
-	stat_done
 fi
 
 msg "Create source package..."

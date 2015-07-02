@@ -46,6 +46,10 @@ sort-directories-first=true
 sleep-inactive-ac-timeout=1800
 sleep-inactive-battery-timeout=1800
 
+[org.gtk.Settings.FileChooser]
+sort-directories-first=true
+startup-mode="cwd"
+
 [org.mate.applications-terminal]
 exec='gnome-terminal'
 

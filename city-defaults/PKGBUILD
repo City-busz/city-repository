@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=10
+pkgrel=11
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -13,12 +13,16 @@ source=(city.gschema.override
         defaults.list
         nautilus-mate.desktop
         gnome-screensaver.desktop
-        metacity-theme-2.xml)
-md5sums=('0b30b94246b2455b8fdee81d2063965e'
+        metacity-theme-2.xml
+        Trolltech.conf
+        10-disable-system-update.rules)
+md5sums=('9b6f2ccb3ac6b90f2e1a1dd8c8cfda7d'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '9ccbe1cdcc2fe0c3a8532a97f76b2355'
          '546c3cf9de18a3ccf945f6945d8729c6'
-         '7d54375173f2c8271bfd98463a83e841')
+         '7d54375173f2c8271bfd98463a83e841'
+         '25bbb16d327336515d3a3cdaeb7033db'
+         '085499eb782c83726a621c1ffd6e11c7')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
@@ -26,4 +30,7 @@ package() {
   install -Dm644 nautilus-mate.desktop "$pkgdir/usr/share/applications/nautilus-mate.desktop"
   install -Dm644 gnome-screensaver.desktop "$pkgdir/etc/xdg/autostart/gnome-screensaver.desktop"
   install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
+  install -Dm644 Trolltech.conf "$pkgdir/etc/xdg/Trolltech.conf"
+  install -dm700 "$pkgdir/etc/polkit-1/rules.d/"
+  install -Dm644 10-disable-system-update.rules "$pkgdir/etc/polkit-1/rules.d/10-disable-system-update.rules"
 }

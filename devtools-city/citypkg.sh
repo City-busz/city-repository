@@ -250,7 +250,7 @@ if [[ -n $(git status -s .) ]]; then
 	if [[ -n $1 ]]; then
 		msg 'Commit changes to master'
 		git add .SRCINFO || die
-		git commit -a -q -m "${msgtemplate}${1}" >/dev/null || die
+		git commit -a -q -m "${msgtemplate}${1}" > /dev/null 2>&1 || die
 	else
 		msgfile="$(mktemp)"
 		echo "$msgtemplate" > "$msgfile"
@@ -266,7 +266,7 @@ if [[ -n $(git status -s .) ]]; then
 		[[ -s $msgfile ]] || die
 		msg 'Committing changes to master'
 		git add .SRCINFO || die
-		git commit -a -q -F "$msgfile" >/dev/null || die
+		git commit -a -q -F "$msgfile" > /dev/null 2>&1 || die
 		unlink "$msgfile"
 	fi
 	stat_busy 'Updating remote repository\n'

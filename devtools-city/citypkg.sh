@@ -250,7 +250,7 @@ if [[ -n $(git status -s .) ]]; then
 	if [[ -n $1 ]]; then
 		msg 'Commit changes to master'
 		git add .SRCINFO || die
-		git commit -a -q -m "${msgtemplate}${1}" || die
+		git commit -a -q -m "${msgtemplate}${1}" >/dev/null || die
 	else
 		msgfile="$(mktemp)"
 		echo "$msgtemplate" > "$msgfile"
@@ -266,16 +266,16 @@ if [[ -n $(git status -s .) ]]; then
 		[[ -s $msgfile ]] || die
 		msg 'Committing changes to master'
 		git add .SRCINFO || die
-		git commit -a -q -F "$msgfile" || die
+		git commit -a -q -F "$msgfile" >/dev/null || die
 		unlink "$msgfile"
 	fi
-	stat_busy 'Updating remote repository'
+	stat_busy 'Updating remote repository\n'
 	git push
 	stat_done
 fi
 
 msg "Create source package..."
-makepkg -f
+makepkg --source -f
 
 declare -a uploads
 declare -a commit_arches

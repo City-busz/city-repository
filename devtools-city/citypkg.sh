@@ -234,10 +234,12 @@ for _arch in ${arch[@]}; do
 	done
 done
 
+msg "Create source package..."
+makepkg --source -f || die
 msg "Create source info..."
-mksrcinfo
+mksrcinfo || die
 msg "Add source files to repository..."
-git add PKGBUILD .SRCINFO ${needsversioning[@]}
+git add PKGBUILD .SRCINFO ${needsversioning[@]} || die
 
 if [[ -z $server ]]; then
 	case "$repo" in
@@ -274,9 +276,6 @@ if [[ -n $(git diff --staged) ]]; then
 	msg 'Updating remote repository'
 	git push
 fi
-
-msg "Create source package..."
-makepkg --source -f
 
 declare -a uploads
 declare -a commit_arches

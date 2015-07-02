@@ -13,11 +13,13 @@ pkgbase = devtools-city
 	source = pacman-city.conf
 	source = pacman-ayatana.conf
 	source = citypkg.sh
+	source = aurco.sh
 	md5sums = dba48cb20004259876d680a8ebaf6dc7
 	md5sums = 34f935dc7c3577911970581e6d49a883
 	md5sums = 189cf7eec19372a452789afadf6a33e0
 	md5sums = 31a74880863ce044060859a1217c291b
-	md5sums = d22b9c08d060e1196cca72b88c021a88
+	md5sums = 804f1ef7e884f345ce976d2841c1c904
+	md5sums = bccb46797dbc2c7a4994f0270330ee8d
 
 pkgname = devtools-city
 

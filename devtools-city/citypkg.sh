@@ -193,13 +193,15 @@ for i in 'changelog' 'install'; do
 done
 
 # assert that they really are controlled by GIT
-if (( ${#needsversioning[*]} )); then
-	# svn status's output is only two columns when the status is unknown
-	while read -r status filename; do
-		[[ $status = '?' ]] && unversioned+=("$filename")
-	done < <(git ls-files --error-unmatch "${needsversioning[@]}" > /dev/null 2>&1)
-	(( ${#unversioned[*]} )) && die "%s is not under version control" "${unversioned[@]}"
-fi
+#if (( ${#needsversioning[*]} )); then
+#	for _needsversioning in "${needsversioning[@]}"; do
+#		echo ${_needsversioning};
+#		if ! git ls-files --error-unmatch "${_needsversioning}">/dev/null 2>&1; then
+#			unversioned+=("${_needsversioning}")
+#		fi
+#	done
+#	(( ${#unversioned[*]} )) && die "${unversioned[@]} is not under version control"
+#fi
 
 rsyncopts=(-e ssh -p --chmod=ug=rw,o=r -c -h -L --progress --partial -y)
 archreleaseopts=()
@@ -234,6 +236,8 @@ done
 
 msg "Create source info..."
 mksrcinfo
+msg "Add source files to repository..."
+git add PKGBUILD .SRCINFO ${needsversioning[@]}
 
 if [[ -z $server ]]; then
 	case "$repo" in
@@ -245,11 +249,10 @@ if [[ -z $server ]]; then
 	esac
 fi
 
-if [[ -n $(git diff) ]]; then
+if [[ -n $(git diff --staged) ]]; then
 	msgtemplate="upgpkg: $pkgbase $(get_full_version)"$'\n\n'
 	if [[ -n $1 ]]; then
 		msg 'Commit changes to master'
-		git add .SRCINFO || die
 		git commit -a -q -m "${msgtemplate}${1}" || die
 	else
 		msgfile="$(mktemp)"
@@ -265,7 +268,6 @@ if [[ -n $(git diff) ]]; then
 		fi
 		[[ -s $msgfile ]] || die
 		msg 'Committing changes to master'
-		git add .SRCINFO || die
 		git commit -a -q -F "$msgfile" || die
 		unlink "$msgfile"
 	fi

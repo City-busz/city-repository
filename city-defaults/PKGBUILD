@@ -18,7 +18,7 @@ source=(city.gschema.override
         metacity-theme-2.xml
         Trolltech.conf
         10-disable-system-update.rules)
-md5sums=('d4b885e6187147b49b78bf5f04d0351e'
+md5sums=('d195dbe8a3ac43a9ce44143377346c00'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '546c3cf9de18a3ccf945f6945d8729c6'
          '6a4d42434ef721e8d0359219428ad6a4'
@@ -35,7 +35,7 @@ package() {
   install -Dm644 nautilus-cinnamon.desktop "$pkgdir/etc/xdg/autostart/nautilus-cinnamon.desktop"
   install -Dm644 nautilus-mate.desktop "$pkgdir/usr/share/applications/nautilus-mate.desktop"
   install -Dm644 notification-daemon-mate.desktop "$pkgdir/etc/xdg/autostart/notification-daemon-mate.desktop"
-#  install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
+  install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
   install -Dm644 Trolltech.conf "$pkgdir/etc/xdg/Trolltech.conf"
   install -dm700 "$pkgdir/etc/polkit-1/rules.d/"
   install -Dm644 10-disable-system-update.rules "$pkgdir/etc/polkit-1/rules.d/10-disable-system-update.rules"

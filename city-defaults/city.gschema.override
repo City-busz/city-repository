@@ -85,7 +85,7 @@ tap-to-click=true
 [org.mate.Marco.general]
 button-layout=":minimize,maximize,close"
 compositing-manager=true
-#theme='Adwaita'
+theme='Adwaita'
 titlebar-font='Cantarell Bold 11'
 
 [org.mate.Marco.global-keybindings]

@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=11
+pkgrel=12
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -11,25 +11,31 @@ license=('GPL')
 install=$pkgname.install
 source=(city.gschema.override
         defaults.list
-        nautilus-mate.desktop
         gnome-screensaver.desktop
+        nautilus-cinnamon.desktop
+        nautilus-mate.desktop
+        notification-daemon-mate.desktop
         metacity-theme-2.xml
         Trolltech.conf
         10-disable-system-update.rules)
-md5sums=('9b6f2ccb3ac6b90f2e1a1dd8c8cfda7d'
+md5sums=('d4b885e6187147b49b78bf5f04d0351e'
          '466b3f2217a2f2c2b3782486728f7bc2'
-         '9ccbe1cdcc2fe0c3a8532a97f76b2355'
          '546c3cf9de18a3ccf945f6945d8729c6'
-         '7d54375173f2c8271bfd98463a83e841'
+         '6a4d42434ef721e8d0359219428ad6a4'
+         '9ccbe1cdcc2fe0c3a8532a97f76b2355'
+         'b524ec74dc85c984266dbee1c7c61062'
+         '53abb9eeb3cae8f9058840079d3e144d'
          '25bbb16d327336515d3a3cdaeb7033db'
          '085499eb782c83726a621c1ffd6e11c7')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
   install -Dm644 defaults.list "$pkgdir/usr/share/applications/defaults.list"
-  install -Dm644 nautilus-mate.desktop "$pkgdir/usr/share/applications/nautilus-mate.desktop"
   install -Dm644 gnome-screensaver.desktop "$pkgdir/etc/xdg/autostart/gnome-screensaver.desktop"
-  install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
+  install -Dm644 nautilus-cinnamon.desktop "$pkgdir/etc/xdg/autostart/nautilus-cinnamon.desktop"
+  install -Dm644 nautilus-mate.desktop "$pkgdir/usr/share/applications/nautilus-mate.desktop"
+  install -Dm644 notification-daemon-mate.desktop "$pkgdir/etc/xdg/autostart/notification-daemon-mate.desktop"
+#  install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
   install -Dm644 Trolltech.conf "$pkgdir/etc/xdg/Trolltech.conf"
   install -dm700 "$pkgdir/etc/polkit-1/rules.d/"
   install -Dm644 10-disable-system-update.rules "$pkgdir/etc/polkit-1/rules.d/10-disable-system-update.rules"

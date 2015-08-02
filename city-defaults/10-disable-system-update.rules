@@ -1,0 +1,8 @@
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.packagekit.system-update" ||
+        action.id == "org.freedesktop.packagekit.trigger-offline-update" ||
+        action.id == "org.freedesktop.packagekit.clear-offline-update")
+    {
+        return polkit.Result.AUTH_ADMIN_KEEP;
+    }
+});

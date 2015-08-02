@@ -1,3 +1,8 @@
+[org.cinnamon]
+desktop-effects-map-effect='fade'
+desktop-effects-minimize-effect='traditional'
+favorite-apps=['epiphany.desktop', 'evolution.desktop', 'rhythmbox.desktop', 'shotwell.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']
+
 [org.cinnamon.desktop.interface]
 font-name='Cantarell 11'
 
@@ -17,8 +22,8 @@ sleep-inactive-battery-timeout=1800
 antialiasing='grayscale'
 hinting='medium'
 
-[org.gnome.desktop.background]
-show-desktop-icons=true
+[org.gnome.desktop.datetime]
+automatic-timezone=true
 
 [org.gnome.desktop.interface]
 clock-show-date=true
@@ -31,7 +36,7 @@ tap-to-click=true
 show-desktop=['<Super>D']
 
 [org.gnome.desktop.wm.preferences]
-button-layout=":minimize,maximize,close"
+button-layout='appmenu:minimize,maximize,close'
 
 [org.gnome.metacity]
 alt-tab-thumbnails=true
@@ -45,6 +50,9 @@ sort-directories-first=true
 [org.gnome.settings-daemon.plugins.power]
 sleep-inactive-ac-timeout=1800
 sleep-inactive-battery-timeout=1800
+
+[org.gnome.shell.calendar]
+show-weekdate=true
 
 [org.gtk.Settings.FileChooser]
 sort-directories-first=true
@@ -75,9 +83,9 @@ scroll-method=2
 tap-to-click=true
 
 [org.mate.Marco.general]
+button-layout=":minimize,maximize,close"
 compositing-manager=true
-side-by-side-tiling=true
-theme='Adwaita'
+#theme='Adwaita'
 titlebar-font='Cantarell Bold 11'
 
 [org.mate.Marco.global-keybindings]
@@ -100,6 +108,10 @@ sleep-display-ups=300
 
 [org.mate.session.required-components]
 filemanager='nautilus-mate'
+windowmanager='metacity'
 
 [org.mate.sound]
 event-sounds=true
+
+[org.nemo.desktop]
+show-desktop-icons=false

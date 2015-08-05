@@ -1,0 +1,27 @@
+pkgbase = gnome-flashback
+	pkgdesc = GNOME Flashback session
+	pkgver = 3.16.1
+	pkgrel = 1
+	url = https://wiki.gnome.org/Projects/GnomeFlashback
+	install = gnome-flashback.install
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = intltool
+	makedepends = gnome-common
+	depends = gnome-panel
+	depends = gnome-session
+	depends = gnome-settings-daemon
+	depends = metacity
+	depends = polkit-gnome
+	optdepends = gnome-background: default background
+	optdepends = gnome-screensaver: lock srceen
+	optdepends = network-manager-applet: network management
+	optdepends = notification-daemon: desktop notifications
+	source = http://ftp.gnome.org/pub/GNOME/sources/gnome-flashback/3.16/gnome-flashback-3.16.1.tar.xz
+	source = 0001-Add-autostart-file-for-nm-applet.patch
+	sha256sums = b5424a28b2de694ae9bd170b73dfc6da62358c0e3527631b92be9dc400b52f90
+	sha256sums = a7911a273dd2ace9c2fe85fe03f8d7f9ae0e9f9658a9bdbbfa944aa4c3c40afb
+
+pkgname = gnome-flashback
+

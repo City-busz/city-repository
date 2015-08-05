@@ -3,7 +3,7 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 pkgname=gnome-panel
-pkgver=3.14.0
+pkgver=3.16.1
 pkgrel=1
 pkgdesc="Panel of GNOME Flashback"
 arch=('i686' 'x86_64')
@@ -13,7 +13,7 @@ depends=('gnome-desktop' 'gnome-menus' 'libwnck3' 'evolution-data-server' 'librs
 makedepends=('intltool' 'itstool' 'gobject-introspection')
 install=$pkgname.install
 source=(http://ftp.gnome.org/pub/GNOME/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
-sha256sums=('636984ba24a0c7dcae9048ed8523d4fde83bb3d148e557f1cadef1300457a5a3')
+sha256sums=('b51997a5db70773606cd72be735902923ae73bd3f2c762ade65695751d4bd162')
 
 build() {
   cd $pkgname-$pkgver

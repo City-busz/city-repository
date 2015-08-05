@@ -54,6 +54,9 @@ sleep-inactive-battery-timeout=1800
 [org.gnome.shell.calendar]
 show-weekdate=true
 
+[org.gnome.software]
+download-updates=false
+
 [org.gtk.Settings.FileChooser]
 sort-directories-first=true
 startup-mode="cwd"

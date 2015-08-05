@@ -3,27 +3,22 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 pkgname=gnome-applets
-pkgver=3.14.0
+pkgver=3.16.1
 pkgrel=1
 pkgdesc="Small applications for the GNOME Flashback panel"
 arch=('i686' 'x86_64')
 url="https://wiki.gnome.org/Projects/GnomeApplets"
 license=('GPL')
 depends=('gnome-panel' 'libgtop' 'gucharmap' 'python-gobject' 'cpupower' 'upower')
-makedepends=('intltool' 'itstool' 'gnome-settings-daemon' 'gnome-icon-theme')
+makedepends=('intltool' 'itstool' 'gnome-settings-daemon')
 install=$pkgname.install
 source=(http://ftp.gnome.org/pub/GNOME/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
-sha256sums=('0c035749936f5fdd12652c88f688ce723cb4f2228737dbf1fcd20c8f0d516423')
-
-prepare() {
-  cd $pkgname-$pkgver
-  sed -i 's/LIBCPUFREQ_LIBS=-lcpufreq/LIBCPUFREQ_LIBS=-lcpupower/' configure{,.ac}
-}
+sha256sums=('c656ecfc0a3af898e80f9c6971400f25e6cc8fe743fa0fd2b6a1a77a40005206')
 
 build() {
   cd $pkgname-$pkgver
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/$pkgname \
-              --disable-schemas-compile
+              --disable-schemas-compile --with-cpufreq-lib=cpupower
   make
 }
 

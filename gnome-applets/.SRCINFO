@@ -1,0 +1,23 @@
+pkgbase = gnome-applets
+	pkgdesc = Small applications for the GNOME Flashback panel
+	pkgver = 3.16.1
+	pkgrel = 1
+	url = https://wiki.gnome.org/Projects/GnomeApplets
+	install = gnome-applets.install
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = intltool
+	makedepends = itstool
+	makedepends = gnome-settings-daemon
+	depends = gnome-panel
+	depends = libgtop
+	depends = gucharmap
+	depends = python-gobject
+	depends = cpupower
+	depends = upower
+	source = http://ftp.gnome.org/pub/GNOME/sources/gnome-applets/3.16/gnome-applets-3.16.1.tar.xz
+	sha256sums = c656ecfc0a3af898e80f9c6971400f25e6cc8fe743fa0fd2b6a1a77a40005206
+
+pkgname = gnome-applets
+

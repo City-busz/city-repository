@@ -1,7 +1,7 @@
 pkgbase = city-defaults
 	pkgdesc = City-busz's default configuration
 	pkgver = 1
-	pkgrel = 12
+	pkgrel = 13
 	url = http://pkgbuild.com/~bgyorgy/city.html
 	install = city-defaults.install
 	arch = any
@@ -15,7 +15,7 @@ pkgbase = city-defaults
 	source = metacity-theme-2.xml
 	source = Trolltech.conf
 	source = 10-disable-system-update.rules
-	md5sums = d195dbe8a3ac43a9ce44143377346c00
+	md5sums = 54483e3613cb635682ff417f5f454e29
 	md5sums = 466b3f2217a2f2c2b3782486728f7bc2
 	md5sums = 546c3cf9de18a3ccf945f6945d8729c6
 	md5sums = 6a4d42434ef721e8d0359219428ad6a4

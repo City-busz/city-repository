@@ -1,0 +1,45 @@
+From c6253ed3cc5bebd233cb0a5ba23663dd62de9591 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ball=C3=B3=20Gy=C3=B6rgy?= <ballogyor@gmail.com>
+Date: Wed, 5 Aug 2015 07:28:08 +0200
+Subject: [PATCH] Set default panel size to 27px
+
+---
+ data/org.gnome.gnome-panel.toplevel.gschema.xml.in.in | 2 +-
+ data/panel-default-layout.layout                      | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/data/org.gnome.gnome-panel.toplevel.gschema.xml.in.in b/data/org.gnome.gnome-panel.toplevel.gschema.xml.in.in
+index 187f696..5c893db 100644
+--- a/data/org.gnome.gnome-panel.toplevel.gschema.xml.in.in
++++ b/data/org.gnome.gnome-panel.toplevel.gschema.xml.in.in
+@@ -21,7 +21,7 @@
+       <_description>The orientation of the panel. Possible values are "top", "bottom", "left", "right". In expanded mode the key specifies which screen edge the panel is on. In un-expanded mode the difference between "top" and "bottom" is less important - both indicate that this is a horizontal panel - but still give a useful hint as to how some panel objects should behave. For example, on a "top" panel a menu button will pop up its menu below the panel, whereas on a "bottom" panel the menu will be popped up above the panel.</_description>
+     </key>
+     <key name="size" type="i">
+-      <default>24</default>
++      <default>27</default>
+       <_summary>Panel size</_summary>
+       <_description>The height (width for a vertical panel) of the panel. The panel will determine at runtime a minimum size based on the font size and other indicators. The maximum size is fixed at one quarter of the screen height (or width).</_description>
+     </key>
+diff --git a/data/panel-default-layout.layout b/data/panel-default-layout.layout
+index 079c00d..a522033 100644
+--- a/data/panel-default-layout.layout
++++ b/data/panel-default-layout.layout
+@@ -1,12 +1,12 @@
+ [Toplevel top-panel]
+ expand=true
+ orientation=top
+-size=24
++size=27
+ 
+ [Toplevel bottom-panel]
+ expand=true
+ orientation=bottom
+-size=24
++size=27
+ y-bottom=0
+ 
+ [Object menu-bar]
+-- 
+2.5.0
+

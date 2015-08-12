@@ -16,7 +16,9 @@ pkgbase = gnome-panel
 	depends = evolution-data-server
 	depends = librsvg
 	source = http://ftp.gnome.org/pub/GNOME/sources/gnome-panel/3.16/gnome-panel-3.16.1.tar.xz
+	source = 0001-Set-default-panel-size-to-27px.patch
 	sha256sums = b51997a5db70773606cd72be735902923ae73bd3f2c762ade65695751d4bd162
+	sha256sums = d2ac20bc89935c045473744b77894d03121367cfdb76bed29e693b59a8f54873
 
 pkgname = gnome-panel
 

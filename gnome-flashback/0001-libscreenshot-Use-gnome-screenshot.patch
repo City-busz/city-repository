@@ -1,0 +1,103 @@
+From 831154feb0757219a7560a8cd8c0752c86ff98de Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ball=C3=B3=20Gy=C3=B6rgy?= <ballogyor@gmail.com>
+Date: Wed, 12 Aug 2015 11:48:05 +0200
+Subject: [PATCH] libscreenshot: Use gnome-screenshot
+
+This makes it functional.
+---
+ .../libscreenshot/flashback-screenshot.c           | 53 ++++++++++++++++++----
+ 1 file changed, 45 insertions(+), 8 deletions(-)
+
+diff --git a/gnome-flashback/libscreenshot/flashback-screenshot.c b/gnome-flashback/libscreenshot/flashback-screenshot.c
+index 61395ae..459a18f 100644
+--- a/gnome-flashback/libscreenshot/flashback-screenshot.c
++++ b/gnome-flashback/libscreenshot/flashback-screenshot.c
+@@ -33,6 +33,31 @@ struct _FlashbackScreenshot
+ 
+ G_DEFINE_TYPE (FlashbackScreenshot, flashback_screenshot, G_TYPE_OBJECT)
+ 
++static gchar *
++get_real_path (const gchar *filename)
++{
++  const gchar *path;
++  gchar *real_filename, *real_path;
++
++  if (g_path_is_absolute (filename))
++    real_path = g_strdup (filename);
++  else
++    {
++      if (g_str_has_suffix (filename, ".png"))
++        real_filename = g_strdup (filename);
++      else
++        real_filename = g_strconcat (filename, ".png", NULL);
++
++      path = g_get_user_special_dir (G_USER_DIRECTORY_PICTURES);
++      if (!g_file_test (path, G_FILE_TEST_EXISTS))
++        path = g_get_home_dir ();
++      real_path = g_build_filename (path, real_filename, NULL);
++      g_free (real_filename);
++    }
++
++  return real_path;
++}
++
+ static gboolean
+ handle_screenshot (FlashbackDBusScreenshot *dbus_screenshot,
+                    GDBusMethodInvocation   *invocation,
+@@ -41,9 +66,13 @@ handle_screenshot (FlashbackDBusScreenshot *dbus_screenshot,
+                    const gchar             *filename,
+                    gpointer                 user_data)
+ {
+-  g_warning ("screenshot: screenshot");
++  g_debug ("screenshot: screenshot");
++  gchar *real_path = get_real_path (filename);
++  const gchar *argv[] = { "gnome-screenshot", "-f", real_path, include_cursor ? "-p" : NULL, NULL };
++  g_spawn_sync (NULL, (gchar**) argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL, NULL, NULL);
+   flashback_dbus_screenshot_complete_screenshot (dbus_screenshot, invocation,
+-                                                 FALSE, "");
++                                                 TRUE, real_path);
++  g_free (real_path);
+ 
+   return TRUE;
+ }
+@@ -57,9 +86,13 @@ handle_screenshot_window (FlashbackDBusScreenshot *dbus_screenshot,
+                           const gchar             *filename,
+                           gpointer                 user_data)
+ {
+-  g_warning ("screenshot: screenshot-window");
++  g_debug ("screenshot: screenshot-window");
++  gchar *real_path = get_real_path (filename);
++  const gchar *argv[] = { "gnome-screenshot", "--window", "-f", real_path, include_cursor ? "-p" : NULL, NULL };
++  g_spawn_sync (NULL, (gchar**) argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL, NULL, NULL);
+   flashback_dbus_screenshot_complete_screenshot_window (dbus_screenshot, invocation,
+-                                                        FALSE, "");
++                                                        TRUE, real_path);
++  g_free (real_path);
+ 
+   return TRUE;
+ }
+@@ -71,13 +104,17 @@ handle_screenshot_area (FlashbackDBusScreenshot *dbus_screenshot,
+                         gint                     y,
+                         gint                     width,
+                         gint                     height,
+-                        const gchar             *file_template,
+-                        GVariant                *options,
++                        gboolean                 flash,
++                        const gchar             *filename,
+                         gpointer                 user_data)
+ {
+-  g_warning ("screenshot: screenshot-area");
++  g_debug ("screenshot: screenshot-area");
++  gchar *real_path = get_real_path (filename);
++  const gchar *argv[] = { "gnome-screenshot", "--area", "-f", real_path, NULL };
++  g_spawn_sync (NULL, (gchar**) argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL, NULL, NULL);
+   flashback_dbus_screenshot_complete_screenshot_area (dbus_screenshot, invocation,
+-                                                      FALSE, "");
++                                                      TRUE, real_path);
++  g_free (real_path);
+ 
+   return TRUE;
+ }
+-- 
+2.5.0
+

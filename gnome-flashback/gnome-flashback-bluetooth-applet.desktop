@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Bluetooth (GNOME Flashback)
+Comment=Manage your Bluetooth devices
+Icon=bluetooth-active
+Exec=/usr/share/gnome-flashback/bluetooth.js
+Terminal=false
+Type=Application
+NoDisplay=true
+OnlyShowIn=GNOME-Flashback;

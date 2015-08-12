@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Power (GNOME Flashback)
+Comment=Monitor your battery status
+Icon=battery
+Exec=/usr/share/gnome-flashback/power.js
+Terminal=false
+Type=Application
+NoDisplay=true
+OnlyShowIn=GNOME-Flashback;

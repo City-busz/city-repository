@@ -14,17 +14,15 @@ source=(city.gschema.override
         gnome-screensaver.desktop
         nautilus-cinnamon.desktop
         nautilus-mate.desktop
-        notification-daemon-mate.desktop
         metacity-theme-2.xml
         Trolltech.conf
         10-disable-system-update.rules
         50-synaptics.conf)
-md5sums=('e8114481784f12273510d79c9f220e2a'
+md5sums=('281dc5fb65f56185faca0a87f3cae8ff'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '546c3cf9de18a3ccf945f6945d8729c6'
          '6a4d42434ef721e8d0359219428ad6a4'
          '9ccbe1cdcc2fe0c3a8532a97f76b2355'
-         'b524ec74dc85c984266dbee1c7c61062'
          '53abb9eeb3cae8f9058840079d3e144d'
          '25bbb16d327336515d3a3cdaeb7033db'
          '085499eb782c83726a621c1ffd6e11c7'
@@ -36,7 +34,6 @@ package() {
   install -Dm644 gnome-screensaver.desktop "$pkgdir/etc/xdg/autostart/gnome-screensaver.desktop"
   install -Dm644 nautilus-cinnamon.desktop "$pkgdir/etc/xdg/autostart/nautilus-cinnamon.desktop"
   install -Dm644 nautilus-mate.desktop "$pkgdir/usr/share/applications/nautilus-mate.desktop"
-  install -Dm644 notification-daemon-mate.desktop "$pkgdir/etc/xdg/autostart/notification-daemon-mate.desktop"
   install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
   install -Dm644 Trolltech.conf "$pkgdir/etc/xdg/Trolltech.conf"
   install -dm700 "$pkgdir/etc/polkit-1/rules.d/"

@@ -28,7 +28,7 @@ md5sums=('e8114481784f12273510d79c9f220e2a'
          '53abb9eeb3cae8f9058840079d3e144d'
          '25bbb16d327336515d3a3cdaeb7033db'
          '085499eb782c83726a621c1ffd6e11c7'
-         'd2912f27135db520e473e9397f1e817c')
+         '394459937aa2dccf31fde0c516f2e5ae')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"

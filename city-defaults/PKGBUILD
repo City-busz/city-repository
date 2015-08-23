@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=13
+pkgrel=14
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -17,8 +17,9 @@ source=(city.gschema.override
         notification-daemon-mate.desktop
         metacity-theme-2.xml
         Trolltech.conf
-        10-disable-system-update.rules)
-md5sums=('54483e3613cb635682ff417f5f454e29'
+        10-disable-system-update.rules
+        50-synaptics.conf)
+md5sums=('e8114481784f12273510d79c9f220e2a'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '546c3cf9de18a3ccf945f6945d8729c6'
          '6a4d42434ef721e8d0359219428ad6a4'
@@ -26,7 +27,8 @@ md5sums=('54483e3613cb635682ff417f5f454e29'
          'b524ec74dc85c984266dbee1c7c61062'
          '53abb9eeb3cae8f9058840079d3e144d'
          '25bbb16d327336515d3a3cdaeb7033db'
-         '085499eb782c83726a621c1ffd6e11c7')
+         '085499eb782c83726a621c1ffd6e11c7'
+         'd2912f27135db520e473e9397f1e817c')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
@@ -39,4 +41,5 @@ package() {
   install -Dm644 Trolltech.conf "$pkgdir/etc/xdg/Trolltech.conf"
   install -dm700 "$pkgdir/etc/polkit-1/rules.d/"
   install -Dm644 10-disable-system-update.rules "$pkgdir/etc/polkit-1/rules.d/10-disable-system-update.rules"
+  install -Dm644 50-synaptics.conf "$pkgdir/etc/X11/xorg.conf.d/50-synaptics.conf"
 }

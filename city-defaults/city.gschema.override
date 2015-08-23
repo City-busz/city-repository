@@ -35,9 +35,6 @@ tap-to-click=true
 [org.gnome.desktop.wm.keybindings]
 show-desktop=['<Super>D']
 
-[org.gnome.desktop.wm.preferences]
-button-layout='appmenu:minimize,maximize,close'
-
 [org.gnome.metacity]
 alt-tab-thumbnails=true
 
@@ -46,6 +43,13 @@ default-zoom-level='small'
 
 [org.gnome.nautilus.preferences]
 sort-directories-first=true
+
+[org.gnome.gnome-panel.applet.clock]
+cities=[('Budapest-Ferihegy Airport', 'LHBP', (47.5, 19.083332061767578))]
+expand-locations=true
+
+[org.gnome.settings-daemon.plugins.mouse]
+active=false
 
 [org.gnome.settings-daemon.plugins.power]
 sleep-inactive-ac-timeout=1800
@@ -98,6 +102,10 @@ show-desktop='<Super>D'
 command-screenshot='gnome-screenshot'
 command-window-screenshot='gnome-screenshot --window'
 
+[org.mate.panel.applet.clock]
+cities=['<location name="" city="Budapest" timezone="Europe/Budapest" latitude="47.433334" longitude="19.266666" code="LHBP" current="true"/>']
+expand-locations=true
+
 [org.mate.panel.applet.multiload]
 system-monitor='gnome-system-monitor.desktop'
 
@@ -111,7 +119,6 @@ sleep-display-ups=300
 
 [org.mate.session.required-components]
 filemanager='nautilus-mate'
-windowmanager='metacity'
 
 [org.mate.sound]
 event-sounds=true

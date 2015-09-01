@@ -226,6 +226,6 @@ Type=Application
 NoDisplay=true
 OnlyShowIn=MATE;
 X-MATE-Autostart-Phase=Applications
-X-MATE-Autostart-Delay=5
+X-MATE-Autostart-Delay=30
 X-MATE-Autostart-Notify=true
 X-MATE-AutoRestart=true

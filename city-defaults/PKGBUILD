@@ -11,6 +11,7 @@ license=('GPL')
 install=$pkgname.install
 source=(city.gschema.override
         defaults.list
+        caja-autorun.desktop
         gnome-screensaver.desktop
         nautilus-cinnamon.desktop
         nautilus-mate.desktop
@@ -20,6 +21,7 @@ source=(city.gschema.override
         50-synaptics.conf)
 md5sums=('281dc5fb65f56185faca0a87f3cae8ff'
          '466b3f2217a2f2c2b3782486728f7bc2'
+         '3fd987efe5902756e81680dd2a0d572b'
          '546c3cf9de18a3ccf945f6945d8729c6'
          '6a4d42434ef721e8d0359219428ad6a4'
          '9ccbe1cdcc2fe0c3a8532a97f76b2355'
@@ -31,6 +33,7 @@ md5sums=('281dc5fb65f56185faca0a87f3cae8ff'
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
   install -Dm644 defaults.list "$pkgdir/usr/share/applications/defaults.list"
+  install -Dm644 caja-autorun.desktop "$pkgdir/etc/xdg/autostart/caja-autorun.desktop"
   install -Dm644 gnome-screensaver.desktop "$pkgdir/etc/xdg/autostart/gnome-screensaver.desktop"
   install -Dm644 nautilus-cinnamon.desktop "$pkgdir/etc/xdg/autostart/nautilus-cinnamon.desktop"
   install -Dm644 nautilus-mate.desktop "$pkgdir/usr/share/applications/nautilus-mate.desktop"

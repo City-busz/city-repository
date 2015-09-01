@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=14
+pkgrel=15
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -26,7 +26,7 @@ md5sums=('281dc5fb65f56185faca0a87f3cae8ff'
          '53abb9eeb3cae8f9058840079d3e144d'
          '25bbb16d327336515d3a3cdaeb7033db'
          '085499eb782c83726a621c1ffd6e11c7'
-         '48a5d38eb6afaa4b650bfe6b75330e35')
+         '5d1eae40c8fcd195a9be23575c306ee1')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"

@@ -19,7 +19,7 @@ source=(city.gschema.override
         Trolltech.conf
         10-disable-system-update.rules
         50-synaptics.conf)
-md5sums=('90a1aae087ffb155445d66d3df478366'
+md5sums=('fb91adfec06c465797bff8cd85dc2d25'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '8a9227255d586e22f03fed1b7449a8e7'
          '546c3cf9de18a3ccf945f6945d8729c6'

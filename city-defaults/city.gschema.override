@@ -113,7 +113,7 @@ expand-locations=true
 system-monitor='gnome-system-monitor.desktop'
 
 [org.mate.power-manager]
-action-sleep-type-battery=suspend
+action-sleep-type-battery='suspend'
 sleep-computer-ac=1800
 sleep-computer-battery=1800
 sleep-computer-ups=1800

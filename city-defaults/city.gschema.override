@@ -103,7 +103,7 @@ command-screenshot='gnome-screenshot'
 command-window-screenshot='gnome-screenshot --window'
 
 [org.mate.NotificationDaemon]
-theme='slider'
+theme='standard'
 
 [org.mate.panel.applet.clock]
 cities=['<location name="" city="Budapest" timezone="Europe/Budapest" latitude="47.433334" longitude="19.266666" code="LHBP" current="true"/>']

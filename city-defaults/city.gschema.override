@@ -86,6 +86,7 @@ cursor-theme='Adwaita'
 
 [org.mate.peripherals-touchpad]
 horiz-scroll-enabled=true
+natural-scroll=true
 scroll-method=2
 tap-to-click=true
 

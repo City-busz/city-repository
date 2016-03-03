@@ -1,0 +1,80 @@
+# $Id: PKGBUILD 255690 2015-12-10 05:11:58Z foutrelis $
+# Maintainer : Ionut Biru <ibiru@archlinux.org>
+# Contributor: Alexander Baldeck <alexander@archlinux.org>
+# Contributor: Dale Blount <dale@archlinux.org>
+# Contributor: Anders Bostrom <anders.bostrom@home.se>
+
+_pkgname=thunderbird
+pkgname=$_pkgname-beta
+pkgver=42.0b2
+pkgrel=1
+pkgdesc="Standalone Mail/News reader"
+arch=('i686' 'x86_64')
+license=('MPL' 'GPL')
+url="http://www.mozilla.org/thunderbird/"
+depends=('gtk3' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types'
+         'dbus-glib' 'alsa-lib' 'desktop-file-utils' 'hicolor-icon-theme'
+         'libvpx' 'icu' 'libevent' 'nss' 'hunspell' 'sqlite')
+makedepends=('gtk2' 'gconf' 'unzip' 'zip' 'python2' 'wireless_tools' 'yasm' 'mesa' 'libpulse')
+optdepends=('gtk2: GTK+ 2 plugin support'
+            'libcanberra: for sound support')
+conflicts=($_pkgname)
+provides=($_pkgname=$pkgver)
+install=thunderbird.install
+source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.xz
+        mozconfig
+        thunderbird.desktop
+        thunderbird-install-dir.patch
+        vendor.js)
+options=('!emptydirs' '!makeflags')
+sha256sums=('371a211a2fb98124299f6cdc0a973d0f03612172e589c53cc43b7f9eb9aba3cd'
+            '16f9aae9ff16523b0a771f31f2b46a50b1667f0716903c9c2f1917dcd1446ae0'
+            '3fba13d88aeb003ab0811ef739463858172ce0662a1c7d62835df3d83ddbb8fb'
+            '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
+            'e4ea8e6788163d9f8db8f1f40023db3ea0a1358f9a4510169f2d4c4fe6a887ed')
+
+prepare() {
+  cd $_pkgname-$pkgver
+  patch -Np1 -i ../thunderbird-install-dir.patch
+
+  cp "$srcdir/mozconfig" .mozconfig
+
+  # configure script misdetects the preprocessor without an optimization level
+  # https://bugs.archlinux.org/task/34644
+  sed -i '/ac_cpp=/s/$CPPFLAGS/& -O2/' mozilla/configure
+}
+
+build() {
+  cd $_pkgname-$pkgver
+
+  export PYTHON="/usr/bin/python2"
+
+  make -f client.mk build
+}
+
+package() {
+  cd $_pkgname-$pkgver
+  make -f client.mk DESTDIR="$pkgdir" install
+
+  install -Dm644 ../vendor.js "$pkgdir/usr/lib/thunderbird/defaults/preferences/vendor.js"
+
+  for i in 16 22 24 32 48 256; do
+      install -Dm644 other-licenses/branding/thunderbird/mailicon$i.png \
+          "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/thunderbird.png"
+  done
+
+  install -Dm644 ../thunderbird.desktop \
+      "$pkgdir/usr/share/applications/thunderbird.desktop"
+
+  # Use system-provided dictionaries
+  rm -rf "$pkgdir"/usr/lib/thunderbird/{dictionaries,hyphenation}
+  ln -sf /usr/share/hunspell "$pkgdir/usr/lib/thunderbird/dictionaries"
+  ln -sf /usr/share/hyphen "$pkgdir/usr/lib/thunderbird/hyphenation"
+
+  # Replace duplicate binary with symlink
+  # https://bugzilla.mozilla.org/show_bug.cgi?id=658850
+  ln -sf thunderbird "$pkgdir/usr/lib/thunderbird/thunderbird-bin"
+
+  # Remove development stuff
+  rm -r "$pkgdir"/usr/{include,lib/thunderbird-devel-*,share/idl}
+}

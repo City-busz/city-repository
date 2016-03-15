@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=19
+pkgrel=20
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -13,7 +13,11 @@ source=(city.gschema.override
         defaults.list
         caja-autorun.desktop
         gnome-screensaver.desktop
+        mate-power-manager-lxde.desktop
+        mate-screensaver-lxde.desktop
+        mate-volume-control-applet-lxde.desktop
         nautilus-desktop.desktop
+        xcompmgr.desktop
         metacity-theme-2.xml
         Trolltech.conf
         10-disable-system-update.rules
@@ -22,7 +26,11 @@ md5sums=('e15d5aa64086f7441a43a55e8aa31eb9'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '8a9227255d586e22f03fed1b7449a8e7'
          '546c3cf9de18a3ccf945f6945d8729c6'
+         '41398917e2bc5b5d70b6a2a4f044ae5d'
+         'e4c9701af882cd0c2d91ef9ba3757a95'
+         '4069ea04b2ff534c5aedfe04441cb24d'
          '126ff93eb1068b9356ee0486eed013ed'
+         'c63b19b391165f0a071ac6dfc231bdec'
          '53abb9eeb3cae8f9058840079d3e144d'
          '25bbb16d327336515d3a3cdaeb7033db'
          '085499eb782c83726a621c1ffd6e11c7'
@@ -33,7 +41,11 @@ package() {
   install -Dm644 defaults.list "$pkgdir/usr/share/applications/defaults.list"
   install -Dm644 caja-autorun.desktop "$pkgdir/etc/xdg/autostart/caja-autorun.desktop"
   install -Dm644 gnome-screensaver.desktop "$pkgdir/etc/xdg/autostart/gnome-screensaver.desktop"
+  install -Dm644 mate-power-manager-lxde.desktop "$pkgdir/etc/xdg/autostart/mate-power-manager-lxde.desktop"
+  install -Dm644 mate-screensaver-lxde.desktop "$pkgdir/etc/xdg/autostart/mate-screensaver-lxde.desktop"
+  install -Dm644 mate-volume-control-applet-lxde.desktop "$pkgdir/etc/xdg/autostart/mate-volume-control-applet-lxde.desktop"
   install -Dm644 nautilus-desktop.desktop "$pkgdir/etc/xdg/autostart/nautilus-desktop.desktop"
+  install -Dm644 xcompmgr.desktop "$pkgdir/etc/xdg/autostart/xcompmgr.desktop"
   install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
   install -Dm644 Trolltech.conf "$pkgdir/etc/xdg/Trolltech.conf"
   install -dm700 "$pkgdir/etc/polkit-1/rules.d/"

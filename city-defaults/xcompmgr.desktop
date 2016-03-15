@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Xcompmgr
+Comment=Compositing manager
+Exec=xcompmgr
+OnlyShowIn=LXDE;

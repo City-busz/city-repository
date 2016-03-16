@@ -15,6 +15,7 @@ natural-scroll=true
 scroll-method='two-finger-scrolling'
 
 [org.cinnamon.settings-daemon.plugins.power]
+lock-on-suspend=true
 sleep-inactive-ac-timeout=1800
 sleep-inactive-battery-timeout=1800
 

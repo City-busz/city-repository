@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=20
+pkgrel=21
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -22,7 +22,7 @@ source=(city.gschema.override
         Trolltech.conf
         10-disable-system-update.rules
         50-synaptics.conf)
-md5sums=('e15d5aa64086f7441a43a55e8aa31eb9'
+md5sums=('8979f0b9d868e647aa5c4b9489b886d4'
          '466b3f2217a2f2c2b3782486728f7bc2'
          '8a9227255d586e22f03fed1b7449a8e7'
          '546c3cf9de18a3ccf945f6945d8729c6'

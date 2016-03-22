@@ -8,7 +8,7 @@ pkgdesc="Sugar GTK shell"
 arch=('any')
 url="http://sugarlabs.org/"
 license=('GPL')
-depends=('gconf' 'gst-plugins-espeak' 'libwnck3' 'libxklavier' 'metacity'
+depends=('gconf' 'gst-plugins-espeak' 'gtksourceview3' 'libwnck3' 'libxklavier' 'metacity'
          'mobile-broadband-provider-info' 'networkmanager' 'openssh' 'python2-gwebsockets'
          'sugar-artwork' 'sugar-datastore' 'sugar-toolkit-gtk3' 'telepathy-gabble'
          'telepathy-mission-control' 'telepathy-salut' 'upower' 'xdg-user-dirs')

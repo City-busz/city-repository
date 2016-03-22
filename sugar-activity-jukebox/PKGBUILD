@@ -16,7 +16,7 @@ optdepends=('gst-plugins-good: Extra media codecs'
             'gst-plugins-ugly: Extra media codecs'
             'gst-libav: Extra media codecs')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
-md5sums=('8aa4d5d82a4d3ec3e75612aba9df14c4')
+sha256sums=('6bb493b40195cbea20750bd391d1d88f3bdb3689bb0d0019b1c83406168004e3')
 
 prepare() {
   cd $_pkgname-$pkgver

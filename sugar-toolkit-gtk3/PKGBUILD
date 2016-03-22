@@ -2,18 +2,18 @@
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=sugar-toolkit-gtk3
-pkgver=0.102.0
+pkgver=0.108.1
 pkgrel=1
 pkgdesc="Sugar GTK library"
 arch=('i686' 'x86_64')
 url="http://sugarlabs.org/"
 license=('LGPL')
 depends=('alsa-lib' 'gtk3' 'librsvg' 'libsm' 'python2-cairo' 'python2-dateutil' 'python2-dbus'
-         'python2-decorator' 'python2-gobject' 'python2-telepathy' 'shared-mime-info' 'unzip')
-makedepends=('intltool')
-optdepends=('webkit2gtk: for sugar-activity-web')
+         'python2-decorator' 'python2-gobject' 'python2-telepathy' 'shared-mime-info' 'unzip'
+         'webkit2gtk')
+makedepends=('intltool' 'gobject-introspection')
 source=(http://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)
-md5sums=('328ee59ea98e2a1091a9afe4faf7e8c5')
+sha256sums=('4f23e452f1b1e0b8ddfb49c4524bb2603b6347ea8b15f4f16234c34cfa1ec957')
 
 build() {
   cd $pkgname-$pkgver

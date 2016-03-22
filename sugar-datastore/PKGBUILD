@@ -2,7 +2,7 @@
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=sugar-datastore
-pkgver=0.102.0
+pkgver=0.108.1
 pkgrel=1
 pkgdesc="Sugar datastore service"
 arch=('i686' 'x86_64')
@@ -10,7 +10,7 @@ url="http://sugarlabs.org/"
 license=('GPL')
 depends=('sugar-toolkit-gtk3' 'python2-xapian')
 source=(http://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)
-md5sums=('a4babf1250b4cc14c95e1380c013faf5')
+sha256sums=('239cc612c1cf2dd0ee9080fd1eb80c7a1b15643425ebe9b43442a416f142ad2d')
 
 prepare() {
   cd $pkgname-$pkgver

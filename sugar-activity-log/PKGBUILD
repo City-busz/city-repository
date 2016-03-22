@@ -12,7 +12,7 @@ license=('GPL')
 groups=('sugar-fructose')
 depends=('sugar')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
-md5sums=('8ef6eaecdfb151395ee7a6e9dbe9a9e4')
+sha256sums=('553f3e2cf1d2afc1105fa147713a0d7213aeb4c4901d735757811e3af4bc8311')
 
 prepare() {
   cd $_pkgname-$pkgver

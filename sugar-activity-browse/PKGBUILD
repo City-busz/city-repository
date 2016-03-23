@@ -11,11 +11,17 @@ url="http://wiki.sugarlabs.org/go/Activities/Browse"
 license=('GPL')
 groups=('sugar-fructose')
 depends=('sugar' 'evince')
-source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
-sha256sums=('65c788d44ed3c77fc29e820e889ef345708a8611bcab59522183dc57d05c1b4c')
+source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
+        fix-download.patch)
+sha256sums=('65c788d44ed3c77fc29e820e889ef345708a8611bcab59522183dc57d05c1b4c'
+            '77d41ab6cc32043249e61c86045186303197319068060821d0c14c147aea9b6a')
 
 prepare() {
   cd $_pkgname-$pkgver
+
+  # Fix downloading files
+  # https://github.com/sugarlabs/browse-activity/pull/28
+  patch -Np1 -i ../fix-download.patch
 
   # Python2 fix
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' setup.py

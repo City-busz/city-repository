@@ -3,7 +3,7 @@
 
 pkgname=sugar-activity-imageviewer
 _pkgname=ImageViewer
-pkgver=59
+pkgver=62
 pkgrel=1
 pkgdesc="Image viewer for Sugar"
 arch=('any')
@@ -12,7 +12,7 @@ license=('GPL')
 groups=('sugar-fructose')
 depends=('sugar')
 source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
-md5sums=('d967cdb4e9ecebf2d634431c2beb629a')
+sha256sums=('cc226b4489d5b1355c1e95cdb558b57b7816f51a1ad2675e872b90cdbe69114f')
 
 prepare() {
   cd $_pkgname-$pkgver

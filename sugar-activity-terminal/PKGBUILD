@@ -3,7 +3,7 @@
 
 pkgname=sugar-activity-terminal
 _pkgname=Terminal
-pkgver=42
+pkgver=44
 pkgrel=1
 pkgdesc="Terminal emulator for Sugar"
 arch=('any')
@@ -11,24 +11,14 @@ url="http://wiki.sugarlabs.org/go/Activities/Terminal"
 license=('GPL')
 groups=('sugar-fructose')
 depends=('sugar' 'vte3')
-source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
-        json.patch
-        vte-291.patch)
-md5sums=('7b50f3521ec1c4e39a3a4fada984e19e'
-         '1648baac66b42e846e567f468b9175dd'
-         'c3bae5305552e3523f6c241550c4e713')
+source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
+sha256sums=('3110d3ecbab12b661235916bce28b73c43ff2b728cd679f5213d8ee723af34e3')
 
 prepare() {
   cd $_pkgname-$pkgver
 
   # Python2 fix
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' helpbutton.py setup.py
-
-  # Use python's internal JSON library
-  patch -Np1 -i ../json.patch
-
-  # Port to vte 2.91
-  patch -Np1 -i ../vte-291.patch
 }
 
 package() {

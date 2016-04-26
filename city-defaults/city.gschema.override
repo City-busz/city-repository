@@ -10,9 +10,9 @@ font-name='Cantarell 11'
 titlebar-font='Cantarell Bold 11'
 
 [org.cinnamon.settings-daemon.peripherals.touchpad]
-horiz-scroll-enabled=true
+horizontal-two-finger-scrolling=true
 natural-scroll=true
-scroll-method='two-finger-scrolling'
+vertical-edge-scrolling=false
 
 [org.cinnamon.settings-daemon.plugins.power]
 lock-on-suspend=true
@@ -21,7 +21,6 @@ sleep-inactive-battery-timeout=1800
 
 [org.cinnamon.settings-daemon.plugins.xsettings]
 antialiasing='grayscale'
-hinting='medium'
 
 [org.gnome.desktop.datetime]
 automatic-timezone=true

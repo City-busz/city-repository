@@ -3,7 +3,7 @@
 
 pkgname=sugar-activity-pippy
 _pkgname=Pippy
-pkgver=62
+pkgver=66
 pkgrel=1
 pkgdesc="Sugar activity to learn and develop in Python programming language"
 arch=('any')

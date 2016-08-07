@@ -85,10 +85,10 @@ monospace-font-name='Monospace 11'
 cursor-theme='Adwaita'
 
 [org.mate.peripherals-touchpad]
-horiz-scroll-enabled=true
+horizontal-two-finger-scrolling=true
 natural-scroll=true
-scroll-method=2
 tap-to-click=true
+vertical-edge-scrolling=false
 
 [org.mate.Marco.general]
 button-layout=":minimize,maximize,close"

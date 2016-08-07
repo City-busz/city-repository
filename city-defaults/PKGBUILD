@@ -3,12 +3,11 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=23
+pkgrel=24
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
 license=('GPL')
-install=$pkgname.install
 source=(city.gschema.override
         defaults.list
         caja-autorun.desktop
@@ -22,7 +21,7 @@ source=(city.gschema.override
         Trolltech.conf
         10-disable-system-update.rules
         50-synaptics.conf)
-sha256sums=('0c32879764eada614ced0ac84b82bf0dfc985a4211e1b803a8bd082ad7b1140a'
+sha256sums=('e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757'
             '0b89ca7b83039698f9891be7b3d628e9741d01e3552580112853399e4415cbf9'
             '78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8'
             '09c3801fcc89d7a5eba5bc80e849a8baa60b5d266e25ea2f77d0c7c3bc28c523'

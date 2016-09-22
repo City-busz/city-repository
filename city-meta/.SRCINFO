@@ -100,6 +100,7 @@ pkgname = base-services-meta
 	depends = dosfstools
 	depends = ethtool
 	depends = gdb
+	depends = gpsd
 	depends = grub
 	depends = intel-ucode
 	depends = lm_sensors

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=vncconfig
+Comment=Clipboard support for VNC server
+Exec=vncconfig -nowin
+Terminal=false
+Type=Application

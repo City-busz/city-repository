@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=24
+pkgrel=25
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -16,6 +16,7 @@ source=(city.gschema.override
         mate-screensaver-lxde.desktop
         mate-volume-control-applet-lxde.desktop
         nautilus-desktop.desktop
+        vncconfig.desktop
         xcompmgr.desktop
         metacity-theme-2.xml
         Trolltech.conf
@@ -29,6 +30,7 @@ sha256sums=('e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757'
             'cec651f0200c16af6e19e4c0f053f01ec2ef6f590591eacb869ef127885bf51d'
             'd08a4510d3705c23867127241688ce99f238931d12e0baa56ab696acf66e10de'
             '198cc90a253f1696d8ed5f71f40968e90278020f10e2c7bb9eb4c3d70c7c6916'
+            'f84e1e21daa713d6bad840bb9ab8acbc68360667608ab90554060dfe62d92d74'
             'a25b667408103b53690a61b8f5f082e31f1a3f0b9b3289ce9685bdad5032586b'
             'a037585f85107a8845b6ae7479373f09a552120af9e2d3faf9118be462c5cda2'
             '9b0d4235f54aea86d6666d4c72afd1b9935a4d0b3ab306e3e04f0d85ab109ddf'
@@ -44,6 +46,7 @@ package() {
   install -Dm644 mate-screensaver-lxde.desktop "$pkgdir/etc/xdg/autostart/mate-screensaver-lxde.desktop"
   install -Dm644 mate-volume-control-applet-lxde.desktop "$pkgdir/etc/xdg/autostart/mate-volume-control-applet-lxde.desktop"
   install -Dm644 nautilus-desktop.desktop "$pkgdir/etc/xdg/autostart/nautilus-desktop.desktop"
+  install -Dm644 vncconfig.desktop "$pkgdir/etc/xdg/autostart/vncconfig.desktop"
   install -Dm644 xcompmgr.desktop "$pkgdir/etc/xdg/autostart/xcompmgr.desktop"
   install -Dm644 metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"
   install -Dm644 Trolltech.conf "$pkgdir/etc/xdg/Trolltech.conf"

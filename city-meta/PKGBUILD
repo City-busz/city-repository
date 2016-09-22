@@ -1,0 +1,89 @@
+# $Id$
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+
+pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta)
+pkgbase=city-meta
+pkgver=1
+pkgrel=1
+pkgdesc="Metapackages for Arch Linux"
+arch=(any)
+url="http://pkgbuild.com/~bgyorgy/city.html"
+license=('GPL')
+
+package_base-meta() {
+	pkgdesc="Base metapackage"
+	groups=(city-meta)
+	depends=(bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip inetutils iproute2 iputils jfsutils less licenses linux logrotate lvm2 man-db man-pages mdadm nano netctl pacman pciutils pcmciautils perl procps-ng psmisc reiserfsprogs s-nail sed shadow sysfsutils systemd-sysvcompat tar texinfo usbutils util-linux vi which xfsprogs)
+}
+
+package_base-devel-meta() {
+	pkgdesc="Base development metapackage"
+	groups=(city-meta)
+	depends=(autoconf automake binutils bison fakeroot file findutils flex gawk gcc gettext grep groff gzip libtool m4 make pacman patch pkg-config sed sudo texinfo util-linux which)
+}
+
+package_base-services-meta() {
+	pkgdesc="Base services metapackage"
+	groups=(city-meta)
+	depends=(alsa-tools alsa-utils avahi bluez cups dosfstools ethtool gdb grub intel-ucode lm_sensors mesa-demos modemmanager networkmanager nfs-utils nss-mdns ntfs-3g openssh os-prober pkgstats pulseaudio-alsa smartmontools sudo tigervnc usb_modeswitch virtualgl xorg-xhost xorg-server)
+}
+
+package_base-data-meta() {
+	pkgdesc="Base codecs and data metapackage"
+	groups=(city-meta)
+	depends=(aspell-en aspell-hu gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-rakia telepathy-salut ttf-dejavu ttf-freefont ttf-liberation ttf-symbola)
+}
+
+package_gnome-core-shell-meta() {
+	pkgdesc="GNOME core shell metapackage"
+	groups=(city-meta)
+	depends=(gdm glib2-docs gnome-backgrounds gnome-color-manager gnome-control-center gnome-getting-started-docs gnome-keyring gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-themes-standard gnome-user-docs gnome-user-share gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb mousetweaks mutter nautilus network-manager-applet orca rygel tracker vino)
+}
+
+package_gnome-core-utilities-meta() {
+	pkgdesc="GNOME core utilities metapackage"
+	groups=(city-meta)
+	depends=(baobab cheese eog epiphany evince file-roller gedit gnome-boxes gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-contacts gnome-disk-utility gnome-documents gnome-font-viewer gnome-logs gnome-maps gnome-photos gnome-screenshot gnome-software gnome-system-monitor gnome-terminal gnome-weather grilo-plugins sushi totem yelp)
+}
+
+package_gnome-apps-meta() {
+	pkgdesc="GNOME applications metapackage"
+	groups=(city-meta)
+	depends=(accerciser bijiben dconf-editor devhelp empathy evolution evolution-bogofilter evolution-spamassassin ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-music gnome-nettool gnome-sound-recorder gnome-todo gnome-tweak-tool nautilus-sendto nemiver polari seahorse vinagre)
+}
+
+package_gnome-games-meta() {
+	pkgdesc="GNOME games metapackage"
+	groups=(city-meta)
+	depends=(five-or-more four-in-a-row gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-taquin gnome-tetravex gnuchess hitori iagno lightsoff quadrapassel swell-foop tali)
+}
+
+package_gnome-flashback-meta() {
+	pkgdesc="GNOME Flashback, Budgie and Cinnamon metapackage"
+	groups=(city-meta)
+	depends=(blueberry budgie-desktop cinnamon gnome-applets gnome-flashback gnome-panel gnome-screensaver lightdm-gtk-greeter metacity sensors-applet system-config-printer xdg-user-dirs-gtk zeitgeist)
+}
+
+package_mate-core-meta() {
+	pkgdesc="MATE core metapackage"
+	groups=(city-meta)
+	depends=(caja-gtk3 marco-gtk3 mate-applets-gtk3 mate-control-center-gtk3 mate-desktop-gtk3 mate-media-gtk3 mate-netbook-gtk3 mate-notification-daemon-gtk3 mate-panel-gtk3 mate-power-manager-gtk3 mate-polkit-gtk3 mate-screensaver-gtk3 mate-sensors-applet-gtk3 mate-session-manager-gtk3 mate-settings-daemon-gtk3 mate-user-guide mate-user-share-gtk3)
+}
+
+package_mate-apps-meta() {
+	pkgdesc="MATE applications metapackage"
+	groups=(city-meta)
+	depends=(atril-gtk3 caja-actions caja-image-converter-gtk3 caja-open-terminal-gtk3 caja-sendto-gtk3 caja-share-gtk3 caja-wallpaper-gtk3 engrampa-gtk3 eom-gtk3 galculator mate-applet-dock mate-applet-streamer mate-backgrounds mate-icon-theme mate-icon-theme-faenza mate-menu mate-system-monitor mate-terminal-gtk3 mate-themes mate-utils-gtk3 mozo pluma-gtk3)
+}
+
+package_lxde-core-meta() {
+	pkgdesc="LXDE core metapackage"
+	groups=(city-meta)
+	depends=(lxappearance-gtk3 lxappearance-obconf-gtk3 lxde-common lxinput-gtk3 lxpanel-gtk3 lxrandr-gtk3 lxsession-gtk3 mate-power-manager-gtk3 mate-screensaver-gtk3 mate-media-gtk3 mate-notification-daemon-gtk3 openbox pcmanfm-gtk3 xcompmgr)
+}
+
+package_lxde-apps-meta() {
+	pkgdesc="LXDE applications metapackage"
+	groups=(city-meta)
+	depends=(galculator l3afpad lxde-icon-theme lxdm-gtk3 lxmusic-gtk3 lxtask-gtk3 lxterminal-gtk3 xarchiver)
+}

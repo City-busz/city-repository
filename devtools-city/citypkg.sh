@@ -234,10 +234,10 @@ for _arch in ${arch[@]}; do
 	done
 done
 
+msg "Create source info..."
+makepkg --printsrcinfo > .SRCINFO || die
 msg "Create source package..."
 makepkg --source -f || die
-msg "Create source info..."
-mksrcinfo || die
 msg "Add source files to repository..."
 git add PKGBUILD .SRCINFO ${needsversioning[@]} || die
 

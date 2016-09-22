@@ -1,14 +1,14 @@
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 pkgname=devtools-city
 pkgver=1
-pkgrel=4
+pkgrel=5
 pkgdesc="Tools for György Balló package maintainer"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
 license=('GPL')
 depends=('devtools')
 optdepends=('mono: for find-monodeps'
-            'snakefood-hg: for find-pythondeps')
+            'snakefood: for find-pythondeps')
 source=(find-monodeps.sh
         find-pythondeps.sh
         pacman-city.conf
@@ -19,7 +19,7 @@ md5sums=('dba48cb20004259876d680a8ebaf6dc7'
          '34f935dc7c3577911970581e6d49a883'
          '189cf7eec19372a452789afadf6a33e0'
          '31a74880863ce044060859a1217c291b'
-         '50d74bdb8f2a68c0f9a3aee87c18529e'
+         'e74faa28717dd8032922d9313ca54247'
          'bccb46797dbc2c7a4994f0270330ee8d')
 
 package() {

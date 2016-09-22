@@ -118,6 +118,7 @@ pkgname = base-services-meta
 	depends = tigervnc
 	depends = usb_modeswitch
 	depends = virtualgl
+	depends = xf86-video-intel
 	depends = xorg-xhost
 	depends = xorg-server
 

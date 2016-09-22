@@ -25,7 +25,7 @@ package_base-devel-meta() {
 package_base-services-meta() {
 	pkgdesc="Base services metapackage"
 	groups=(city-meta)
-	depends=(alsa-tools alsa-utils avahi bluez cups dosfstools ethtool gdb grub intel-ucode lm_sensors mesa-demos modemmanager networkmanager nfs-utils nss-mdns ntfs-3g openssh os-prober pkgstats pulseaudio-alsa smartmontools sudo tigervnc usb_modeswitch virtualgl xorg-xhost xorg-server)
+	depends=(alsa-tools alsa-utils avahi bluez cups dosfstools ethtool gdb grub intel-ucode lm_sensors mesa-demos modemmanager networkmanager nfs-utils nss-mdns ntfs-3g openssh os-prober pkgstats pulseaudio-alsa smartmontools sudo tigervnc usb_modeswitch virtualgl xf86-video-intel xorg-xhost xorg-server)
 }
 
 package_base-data-meta() {

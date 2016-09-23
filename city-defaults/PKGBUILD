@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=25
+pkgrel=26
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -21,7 +21,13 @@ source=(city.gschema.override
         metacity-theme-2.xml
         Trolltech.conf
         10-disable-system-update.rules
-        50-synaptics.conf)
+        50-synaptics.conf
+        sftp-ssh.service
+        ssh.service
+        rfb.service
+        50-vnc.conf
+        50-gnome.conf
+        city.sh)
 sha256sums=('e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757'
             '0b89ca7b83039698f9891be7b3d628e9741d01e3552580112853399e4415cbf9'
             '78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8'
@@ -35,7 +41,13 @@ sha256sums=('e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757'
             'a037585f85107a8845b6ae7479373f09a552120af9e2d3faf9118be462c5cda2'
             '9b0d4235f54aea86d6666d4c72afd1b9935a4d0b3ab306e3e04f0d85ab109ddf'
             '40feeec32cc330e278543bfa5135f1a9ee029ff68095282bf3f4ad7d3a3ad98d'
-            '461ee8555d5e2aebbeafeb5a91857b4ddf69afa4006d36c9ccbe9711d7efb8ff')
+            '461ee8555d5e2aebbeafeb5a91857b4ddf69afa4006d36c9ccbe9711d7efb8ff'
+            'f83555155d7314e1dd72b1ef9d4e0a6aeca342879c2c574dfe7d605a43a74971'
+            'f6eba806fa06d1d978dafa9400cc2a0cb9948b7ef4b3bbf62c5eb9048378ac23'
+            '8b24bbe15567435bb8c5456f0feacef570f03d695d627d5f28354a4f1c567651'
+            'ca4ae88fbfd47f53a69b7d765571e5bf104581f4920f3eb56507684343d5aa0a'
+            '5cff3b91e788fd250266e8673d6f6457e656c031065c56a793881b043cd7f681'
+            'bcb99511821154bde201260de4c9436281fb21e1bb7b54567c733bcd81cfdb01')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
@@ -53,4 +65,10 @@ package() {
   install -dm700 "$pkgdir/etc/polkit-1/rules.d/"
   install -Dm644 10-disable-system-update.rules "$pkgdir/etc/polkit-1/rules.d/10-disable-system-update.rules"
   install -Dm644 50-synaptics.conf "$pkgdir/etc/X11/xorg.conf.d/50-synaptics.conf"
+  install -Dm644 rfb.service "$pkgdir/etc/avahi/services/rfb.service"
+  install -Dm644 sftp-ssh.service "$pkgdir/etc/avahi/services/sftp-ssh.service"
+  install -Dm644 ssh.service "$pkgdir/etc/avahi/services/ssh.service"
+  install -Dm644 50-vnc.conf "$pkgdir/etc/lightdm/lightdm.conf.d/50-vnc.conf"
+  install -Dm644 50-gnome.conf "$pkgdir/etc/lightdm/lightdm-gtk-greeter.conf.d/50-gnome.conf"
+  install -Dm644 city.sh "$pkgdir/etc/profile.d/city.sh"
 }

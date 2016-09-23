@@ -1,7 +1,7 @@
 pkgbase = city-defaults
 	pkgdesc = City-busz's default configuration
 	pkgver = 1
-	pkgrel = 25
+	pkgrel = 26
 	url = http://pkgbuild.com/~bgyorgy/city.html
 	arch = any
 	license = GPL
@@ -19,6 +19,12 @@ pkgbase = city-defaults
 	source = Trolltech.conf
 	source = 10-disable-system-update.rules
 	source = 50-synaptics.conf
+	source = sftp-ssh.service
+	source = ssh.service
+	source = rfb.service
+	source = 50-vnc.conf
+	source = 50-gnome.conf
+	source = city.sh
 	sha256sums = e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757
 	sha256sums = 0b89ca7b83039698f9891be7b3d628e9741d01e3552580112853399e4415cbf9
 	sha256sums = 78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8
@@ -33,6 +39,12 @@ pkgbase = city-defaults
 	sha256sums = 9b0d4235f54aea86d6666d4c72afd1b9935a4d0b3ab306e3e04f0d85ab109ddf
 	sha256sums = 40feeec32cc330e278543bfa5135f1a9ee029ff68095282bf3f4ad7d3a3ad98d
 	sha256sums = 461ee8555d5e2aebbeafeb5a91857b4ddf69afa4006d36c9ccbe9711d7efb8ff
+	sha256sums = f83555155d7314e1dd72b1ef9d4e0a6aeca342879c2c574dfe7d605a43a74971
+	sha256sums = f6eba806fa06d1d978dafa9400cc2a0cb9948b7ef4b3bbf62c5eb9048378ac23
+	sha256sums = 8b24bbe15567435bb8c5456f0feacef570f03d695d627d5f28354a4f1c567651
+	sha256sums = ca4ae88fbfd47f53a69b7d765571e5bf104581f4920f3eb56507684343d5aa0a
+	sha256sums = 5cff3b91e788fd250266e8673d6f6457e656c031065c56a793881b043cd7f681
+	sha256sums = bcb99511821154bde201260de4c9436281fb21e1bb7b54567c733bcd81cfdb01
 
 pkgname = city-defaults
 

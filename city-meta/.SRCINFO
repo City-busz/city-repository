@@ -98,7 +98,6 @@ pkgname = base-services-meta
 	depends = bluez
 	depends = cups
 	depends = dosfstools
-	depends = ethtool
 	depends = gdb
 	depends = gpsd
 	depends = grub
@@ -118,7 +117,6 @@ pkgname = base-services-meta
 	depends = sudo
 	depends = tigervnc
 	depends = usb_modeswitch
-	depends = xf86-video-intel
 	depends = xorg-server
 
 pkgname = base-data-meta

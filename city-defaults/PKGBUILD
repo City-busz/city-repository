@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=26
+pkgrel=27
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -26,8 +26,7 @@ source=(city.gschema.override
         ssh.service
         rfb.service
         50-vnc.conf
-        50-gnome.conf
-        city.sh)
+        50-gnome.conf)
 sha256sums=('e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757'
             '0b89ca7b83039698f9891be7b3d628e9741d01e3552580112853399e4415cbf9'
             '78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8'
@@ -46,8 +45,7 @@ sha256sums=('e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757'
             'f6eba806fa06d1d978dafa9400cc2a0cb9948b7ef4b3bbf62c5eb9048378ac23'
             '8b24bbe15567435bb8c5456f0feacef570f03d695d627d5f28354a4f1c567651'
             'ca4ae88fbfd47f53a69b7d765571e5bf104581f4920f3eb56507684343d5aa0a'
-            '5cff3b91e788fd250266e8673d6f6457e656c031065c56a793881b043cd7f681'
-            'bcb99511821154bde201260de4c9436281fb21e1bb7b54567c733bcd81cfdb01')
+            '5cff3b91e788fd250266e8673d6f6457e656c031065c56a793881b043cd7f681')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
@@ -70,5 +68,4 @@ package() {
   install -Dm644 ssh.service "$pkgdir/etc/avahi/services/ssh.service"
   install -Dm644 50-vnc.conf "$pkgdir/etc/lightdm/lightdm.conf.d/50-vnc.conf"
   install -Dm644 50-gnome.conf "$pkgdir/etc/lightdm/lightdm-gtk-greeter.conf.d/50-gnome.conf"
-  install -Dm644 city.sh "$pkgdir/etc/profile.d/city.sh"
 }

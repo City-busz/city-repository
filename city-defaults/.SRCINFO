@@ -1,7 +1,7 @@
 pkgbase = city-defaults
 	pkgdesc = City-busz's default configuration
 	pkgver = 1
-	pkgrel = 27
+	pkgrel = 28
 	url = http://pkgbuild.com/~bgyorgy/city.html
 	arch = any
 	license = GPL
@@ -24,6 +24,7 @@ pkgbase = city-defaults
 	source = rfb.service
 	source = 50-vnc.conf
 	source = 50-gnome.conf
+	source = 00-journal-size.conf
 	sha256sums = e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757
 	sha256sums = 0b89ca7b83039698f9891be7b3d628e9741d01e3552580112853399e4415cbf9
 	sha256sums = 78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8
@@ -43,6 +44,7 @@ pkgbase = city-defaults
 	sha256sums = 8b24bbe15567435bb8c5456f0feacef570f03d695d627d5f28354a4f1c567651
 	sha256sums = ca4ae88fbfd47f53a69b7d765571e5bf104581f4920f3eb56507684343d5aa0a
 	sha256sums = 5cff3b91e788fd250266e8673d6f6457e656c031065c56a793881b043cd7f681
+	sha256sums = d4f15249b3d58ff96223c3c9e33d8490a4d82f1a4277e5badcc26aa80fa86167
 
 pkgname = city-defaults
 

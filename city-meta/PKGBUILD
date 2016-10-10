@@ -4,7 +4,7 @@
 pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=1
+pkgrel=2
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -67,7 +67,7 @@ package_gnome-flashback-meta() {
 package_mate-core-meta() {
 	pkgdesc="MATE core metapackage"
 	groups=(city-meta)
-	depends=(caja-gtk3 marco-gtk3 mate-applets-gtk3 mate-control-center-gtk3 mate-desktop-gtk3 mate-media-gtk3 mate-netbook-gtk3 mate-notification-daemon-gtk3 mate-panel-gtk3 mate-power-manager-gtk3 mate-polkit-gtk3 mate-screensaver-gtk3 mate-sensors-applet-gtk3 mate-session-manager-gtk3 mate-settings-daemon-gtk3 mate-user-guide mate-user-share-gtk3)
+	depends=(caja-gtk3 marco-gtk3 mate-applets-gtk3 mate-control-center-gtk3 mate-desktop-gtk3 mate-media-gtk3 mate-netbook-gtk3 mate-notification-daemon mate-panel-gtk3 mate-power-manager-gtk3 mate-polkit mate-screensaver-gtk3 mate-sensors-applet-gtk3 mate-session-manager mate-settings-daemon-gtk3 mate-user-guide mate-user-share-gtk3)
 }
 
 package_mate-apps-meta() {
@@ -79,7 +79,7 @@ package_mate-apps-meta() {
 package_lxde-core-meta() {
 	pkgdesc="LXDE core metapackage"
 	groups=(city-meta)
-	depends=(lxappearance-gtk3 lxappearance-obconf-gtk3 lxde-common lxinput-gtk3 lxpanel-gtk3 lxrandr-gtk3 lxsession-gtk3 mate-power-manager-gtk3 mate-screensaver-gtk3 mate-media-gtk3 mate-notification-daemon-gtk3 openbox pcmanfm-gtk3 xcompmgr)
+	depends=(lxappearance-gtk3 lxappearance-obconf-gtk3 lxde-common lxinput-gtk3 lxpanel-gtk3 lxrandr-gtk3 lxsession-gtk3 mate-power-manager-gtk3 mate-screensaver-gtk3 mate-media-gtk3 mate-notification-daemon openbox pcmanfm-gtk3 xcompmgr)
 }
 
 package_lxde-apps-meta() {

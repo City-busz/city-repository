@@ -49,7 +49,7 @@ package_gnome-core-utilities-meta() {
 package_gnome-apps-meta() {
 	pkgdesc="GNOME applications metapackage"
 	groups=(city-meta)
-	depends=(accerciser bijiben dconf-editor devhelp empathy evolution evolution-bogofilter evolution-spamassassin ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-music gnome-nettool gnome-sound-recorder gnome-todo gnome-tweak-tool nautilus-sendto nemiver polari seahorse vinagre)
+	depends=(accerciser dconf-editor devhelp empathy evolution evolution-bogofilter evolution-spamassassin ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-music gnome-nettool gnome-sound-recorder gnome-todo gnome-tweak-tool nautilus-sendto nemiver polari seahorse vinagre)
 }
 
 package_gnome-games-meta() {
@@ -61,7 +61,7 @@ package_gnome-games-meta() {
 package_gnome-flashback-meta() {
 	pkgdesc="GNOME Flashback, Budgie and Cinnamon metapackage"
 	groups=(city-meta)
-	depends=(blueberry budgie-desktop cinnamon gnome-applets gnome-flashback gnome-panel gnome-screensaver lightdm-gtk-greeter metacity sensors-applet system-config-printer xdg-user-dirs-gtk zeitgeist)
+	depends=(blueberry budgie-desktop cinnamon gnome-applets gnome-flashback gnome-panel gnome-screensaver lightdm-gtk-greeter metacity sensors-applet system-config-printer xdg-user-dirs-gtk)
 }
 
 package_mate-core-meta() {

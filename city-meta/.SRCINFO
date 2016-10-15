@@ -1,7 +1,7 @@
 pkgbase = city-meta
 	pkgdesc = Metapackages for Arch Linux
 	pkgver = 1
-	pkgrel = 2
+	pkgrel = 3
 	url = http://pkgbuild.com/~bgyorgy/city.html
 	arch = any
 	license = GPL
@@ -216,7 +216,6 @@ pkgname = gnome-apps-meta
 	pkgdesc = GNOME applications metapackage
 	groups = city-meta
 	depends = accerciser
-	depends = bijiben
 	depends = dconf-editor
 	depends = devhelp
 	depends = empathy
@@ -278,7 +277,6 @@ pkgname = gnome-flashback-meta
 	depends = sensors-applet
 	depends = system-config-printer
 	depends = xdg-user-dirs-gtk
-	depends = zeitgeist
 
 pkgname = mate-core-meta
 	pkgdesc = MATE core metapackage

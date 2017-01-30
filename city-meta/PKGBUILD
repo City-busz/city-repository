@@ -1,10 +1,10 @@
 # $Id$
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 
-pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta)
+pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=3
+pkgrel=4
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -49,7 +49,7 @@ package_gnome-core-utilities-meta() {
 package_gnome-apps-meta() {
 	pkgdesc="GNOME applications metapackage"
 	groups=(city-meta)
-	depends=(accerciser dconf-editor devhelp empathy evolution evolution-bogofilter evolution-spamassassin ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-music gnome-nettool gnome-sound-recorder gnome-todo gnome-tweak-tool nautilus-sendto nemiver polari seahorse vinagre)
+	depends=(accerciser dconf-editor devhelp evolution ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-music gnome-nettool gnome-sound-recorder gnome-todo gnome-tweak-tool nautilus-sendto polari seahorse)
 }
 
 package_gnome-games-meta() {
@@ -86,4 +86,10 @@ package_lxde-apps-meta() {
 	pkgdesc="LXDE applications metapackage"
 	groups=(city-meta)
 	depends=(galculator l3afpad lxde-icon-theme lxdm-gtk3 lxmusic-gtk3 lxtask-gtk3 lxterminal-gtk3 xarchiver)
+}
+
+package_lxqt-core-meta() {
+	pkgdesc="LXQt core metapackage"
+	groups=(city-meta)
+	depends=(breeze-icons lxqt-about lxqt-admin lxqt-common lxqt-config lxqt-globalkeys lxqt-notificationd lxqt-openssh-askpass lxqt-panel lxqt-policykit lxqt-powermanagement lxqt-qtplugin lxqt-runner lxqt-session lxqt-sudo obconf-qt openbox pcmanfm-qt)
 }

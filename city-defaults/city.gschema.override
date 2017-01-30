@@ -41,9 +41,6 @@ alt-tab-thumbnails=true
 [org.gnome.nautilus.icon-view]
 default-zoom-level='small'
 
-[org.gnome.nautilus.preferences]
-sort-directories-first=true
-
 [org.gnome.gnome-panel.applet.clock]
 cities=[('Budapest-Ferihegy Airport', 'LHBP', (47.5, 19.083332061767578))]
 expand-locations=true

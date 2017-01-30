@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=29
+pkgrel=30
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -28,7 +28,7 @@ source=(city.gschema.override
         50-vnc.conf
         50-gnome.conf
         00-journal-size.conf)
-sha256sums=('e1b6991f76f492ab452cf8abbecbddb74ee01c30fc913f66ce161f2d66580757'
+sha256sums=('20232130dfa58e857dbd53ef09d0ba8118505e0cbea9e0e1b95d4b8aabbb8760'
             '0b89ca7b83039698f9891be7b3d628e9741d01e3552580112853399e4415cbf9'
             '78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8'
             '09c3801fcc89d7a5eba5bc80e849a8baa60b5d266e25ea2f77d0c7c3bc28c523'

@@ -45,9 +45,6 @@ default-zoom-level='small'
 cities=[('Budapest-Ferihegy Airport', 'LHBP', (47.5, 19.083332061767578))]
 expand-locations=true
 
-[org.gnome.settings-daemon.plugins.mouse]
-active=false
-
 [org.gnome.settings-daemon.plugins.power]
 sleep-inactive-ac-timeout=1800
 sleep-inactive-battery-timeout=1800

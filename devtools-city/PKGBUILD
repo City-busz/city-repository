@@ -8,7 +8,7 @@ url="http://pkgbuild.com/~bgyorgy/city.html"
 license=('GPL')
 depends=('devtools')
 optdepends=('mono: for find-monodeps'
-            'snakefood: for find-pythondeps')
+            'python2-snakefood: for find-pythondeps')
 source=(find-monodeps.sh
         find-pythondeps.sh
         pacman-city.conf

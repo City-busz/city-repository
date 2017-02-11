@@ -14,11 +14,6 @@ makedepends=('intltool' 'gobject-introspection')
 source=(https://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)
 sha256sums=('e4b626c4efb515a444eb7bc2d5897aca1affd710f328de95b426f9f13032373e')
 
-prepare() {
-  cd $pkgname-$pkgver
-  sed -i -e '/GConf/d' -e '/client.set_int/d' src/sugar3/speech.py
-}
-
 build() {
   cd $pkgname-$pkgver
   ./configure --prefix=/usr

@@ -6,12 +6,11 @@ pkgver=0.4.0
 pkgrel=1
 pkgdesc="Use espeak as a sound source for gstreamer"
 arch=('i686' 'x86_64')
-url="http://wiki.sugarlabs.org/go/Activity_Team/gst-plugins-espeak"
+url="https://wiki.sugarlabs.org/go/Activity_Team/gst-plugins-espeak"
 license=('LGPL')
 depends=('gst-plugins-base-libs' 'espeak')
-#makedepends=('intltool')
-source=(http://download.sugarlabs.org/sources/honey/$pkgname/$pkgname-$pkgver.tar.gz)
-md5sums=('d09e3584c6313a8bc7872bd6d3433a93')
+source=(https://download.sugarlabs.org/sources/honey/$pkgname/$pkgname-$pkgver.tar.gz)
+sha256sums=('a7be338a00bc831e69867bcaff99d11f8bff04e58484b9f4f48ccfc69fb9cf9c')
 
 build() {
   cd $pkgname-$pkgver

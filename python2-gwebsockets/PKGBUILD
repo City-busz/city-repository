@@ -11,8 +11,8 @@ url="https://github.com/dnarvaez/gwebsockets"
 license=('Apache')
 depends=('python2-gobject')
 makedepends=('python2-setuptools')
-source=("http://pypi.python.org/packages/source/g/$_pkgname/$_pkgname-$pkgver.tar.gz")
-md5sums=('a0d1bd9e6e1b2aae5754e35234e3b838')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/dnarvaez/$_pkgname/archive/v$pkgver.tar.gz")
+sha256sums=('001d42a7d3adf2613f29e072a6488048c93800af3e3288df1c24e3e69da7e7e9')
 
 build() {
   cd $_pkgname-$pkgver

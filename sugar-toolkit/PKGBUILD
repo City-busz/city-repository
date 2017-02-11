@@ -2,21 +2,27 @@
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=sugar-toolkit
-pkgver=0.98.1
+pkgver=0.110.0
 pkgrel=1
 pkgdesc="GTK2 based toolkit for Sugar (deprecated)"
 arch=('i686' 'x86_64')
-url="http://sugarlabs.org/"
+url="https://sugarlabs.org/"
 license=('LGPL')
 depends=('alsa-lib' 'hippo-canvas' 'libsm' 'python2-cairo' 'python2-dateutil' 'python2-dbus'
-         'python2-rsvg' 'python2-gconf' 'python2-telepathy' 'sugar-base')
+         'python2-gconf' 'python2-telepathy' 'sugar-base')
 makedepends=('intltool')
-source=(http://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.bz2)
-md5sums=('ff0e201eb0f404a6d2fa7297d5b723c1')
+source=(https://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.bz2)
+sha256sums=('14e76fac034f8801c2d63c9b562e6559817a31aac72b1853370bf0bc66779f25')
+
+prepare() {
+  cd $pkgname-$pkgver
+  sed -i -e '/import rsvg/d' -e 's/rsvg.Handle(data=icon)/gtk.gdk.pixbuf_new_from_file(icon)/' src/sugar/graphics/icon.py
+}
 
 build() {
   cd $pkgname-$pkgver
   ./configure --prefix=/usr
+  sed -i 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
   make
 }
 

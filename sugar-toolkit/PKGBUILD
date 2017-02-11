@@ -8,15 +8,17 @@ pkgdesc="GTK2 based toolkit for Sugar (deprecated)"
 arch=('i686' 'x86_64')
 url="https://sugarlabs.org/"
 license=('LGPL')
-depends=('alsa-lib' 'hippo-canvas' 'libsm' 'python2-cairo' 'python2-dateutil' 'python2-dbus'
-         'python2-gconf' 'python2-telepathy' 'sugar-base')
+depends=('alsa-lib' 'hippo-canvas' 'libsm' 'python2-dateutil' 'python2-dbus' 'python2-gconf'
+         'python2-telepathy' 'sugar-base')
 makedepends=('intltool')
 source=(https://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.bz2)
 sha256sums=('14e76fac034f8801c2d63c9b562e6559817a31aac72b1853370bf0bc66779f25')
 
 prepare() {
   cd $pkgname-$pkgver
-  sed -i -e '/import rsvg/d' -e 's/rsvg.Handle(data=icon)/gtk.gdk.pixbuf_new_from_file(icon)/' src/sugar/graphics/icon.py
+  sed -i '/import rsvg/d
+          s/rsvg.Handle(data=icon)/gtk.gdk.pixbuf_new_from_file(file_name)/' \
+    src/sugar/graphics/icon.py
 }
 
 build() {

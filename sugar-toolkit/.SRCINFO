@@ -1,0 +1,22 @@
+pkgbase = sugar-toolkit
+	pkgdesc = GTK2 based toolkit for Sugar (deprecated)
+	pkgver = 0.110.0
+	pkgrel = 1
+	url = https://sugarlabs.org/
+	arch = i686
+	arch = x86_64
+	license = LGPL
+	makedepends = intltool
+	depends = alsa-lib
+	depends = hippo-canvas
+	depends = libsm
+	depends = python2-dateutil
+	depends = python2-dbus
+	depends = python2-gconf
+	depends = python2-telepathy
+	depends = sugar-base
+	source = https://download.sugarlabs.org/sources/sucrose/glucose/sugar-toolkit/sugar-toolkit-0.110.0.tar.bz2
+	sha256sums = 14e76fac034f8801c2d63c9b562e6559817a31aac72b1853370bf0bc66779f25
+
+pkgname = sugar-toolkit
+

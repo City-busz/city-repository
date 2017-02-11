@@ -43,7 +43,7 @@ package_gnome-core-shell-meta() {
 package_gnome-core-utilities-meta() {
 	pkgdesc="GNOME core utilities metapackage"
 	groups=(city-meta)
-	depends=(baobab cheese eog epiphany evince file-roller gedit gnome-boxes gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-contacts gnome-disk-utility gnome-documents gnome-font-viewer gnome-logs gnome-maps gnome-photos gnome-screenshot gnome-software gnome-system-monitor gnome-terminal gnome-weather grilo-plugins sushi totem yelp)
+	depends=(baobab cheese eog epiphany evince file-roller gedit gnome-boxes gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-contacts gnome-disk-utility gnome-documents gnome-font-viewer gnome-logs gnome-maps gnome-photos gnome-screenshot gnome-software gnome-system-monitor gnome-terminal gnome-video-effects gnome-weather grilo-plugins sushi totem yelp)
 }
 
 package_gnome-apps-meta() {

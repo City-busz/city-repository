@@ -31,7 +31,8 @@ source=(city.gschema.override
         rfb.service
         50-vnc.conf
         50-gnome.conf
-        00-journal-size.conf)
+        00-journal-size.conf
+        gnome-classic-wayland.desktop)
 sha256sums=('ea0403d3f838024a60f60b6bf4ade6cc77410b68bd4e77059fd7c4c77c0c555f'
             '4fb837ddc57cb753ea3756265c33c19af174d2df5570858d8c3e55e70b330f34'
             '78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8'
@@ -83,4 +84,5 @@ package() {
   install -Dm644 50-vnc.conf "$pkgdir/etc/lightdm/lightdm.conf.d/50-vnc.conf"
   install -Dm644 50-gnome.conf "$pkgdir/etc/lightdm/lightdm-gtk-greeter.conf.d/50-gnome.conf"
   install -Dm644 00-journal-size.conf "$pkgdir/etc/systemd/journald.conf.d/00-journal-size.conf"
+  install -Dm644 gnome-classic-wayland.desktop "$pkgdir/usr/share/wayland-sessions/gnome-classic-wayland.desktop"
 }

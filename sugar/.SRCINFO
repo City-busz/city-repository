@@ -19,7 +19,6 @@ pkgbase = sugar
 	depends = python2-gwebsockets
 	depends = sugar-datastore
 	depends = telepathy-gabble
-	depends = telepathy-mission-control
 	depends = telepathy-salut
 	depends = upower
 	depends = webkit2gtk

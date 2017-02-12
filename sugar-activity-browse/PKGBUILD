@@ -17,7 +17,7 @@ sha256sums=('60c4d53a855f069279a38938f8b63a4c25108373cf97faf2c7e7e69017c46c73')
 prepare() {
   cd $_pkgname-$pkgver
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' setup.py
-  sed -i 's/backup_url == '':/not backup_url:/' webactivity.py
+  sed -i "s/backup_url == '':/not backup_url:/" webactivity.py
   sed -i 's/"Feladó"/"Feladó: %s"/' po/hu.po
 }
 

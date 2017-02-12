@@ -8,10 +8,10 @@ pkgdesc="Sugar GTK shell"
 arch=('any')
 url="https://sugarlabs.org/"
 license=('GPL')
-depends=('gconf' 'gst-plugins-espeak' 'gtksourceview3' 'gvfs' 'libwnck3' 'libxklavier' 'metacity'
-         'mobile-broadband-provider-info' 'openssh' 'python2-gwebsockets' 'sugar-artwork'
-         'sugar-datastore' 'sugar-toolkit-gtk3' 'telepathy-gabble' 'telepathy-mission-control'
-         'telepathy-salut' 'upower' 'xdg-user-dirs')
+depends=('gconf' 'gnome-keyring' 'gst-plugins-espeak' 'gtksourceview3' 'gvfs' 'libwnck3'
+         'libxklavier' 'metacity' 'mobile-broadband-provider-info' 'openssh' 'python2-gwebsockets'
+         'sugar-artwork' 'sugar-datastore' 'sugar-toolkit-gtk3' 'telepathy-gabble'
+         'telepathy-mission-control' 'telepathy-salut' 'upower' 'xdg-user-dirs')
 makedepends=('intltool')
 source=(https://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)
 sha256sums=('c5b662442a404f4dab7f67514aae5f887533262e4a98aa4b4c675e4f63b2203d')

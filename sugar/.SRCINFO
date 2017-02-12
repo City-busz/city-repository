@@ -7,6 +7,7 @@ pkgbase = sugar
 	license = GPL
 	makedepends = intltool
 	depends = gconf
+	depends = gnome-keyring
 	depends = gst-plugins-espeak
 	depends = gtksourceview3
 	depends = gvfs

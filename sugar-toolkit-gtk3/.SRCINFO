@@ -18,6 +18,7 @@ pkgbase = sugar-toolkit-gtk3
 	depends = python2-gobject
 	depends = python2-telepathy
 	depends = sugar-artwork
+	depends = telepathy-mission-control
 	depends = unzip
 	optdepends = webkit2gtk: run web activities
 	source = https://download.sugarlabs.org/sources/sucrose/glucose/sugar-toolkit-gtk3/sugar-toolkit-gtk3-0.110.0.tar.xz

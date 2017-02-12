@@ -3,30 +3,24 @@
 
 pkgname=sugar-activity-browse
 _pkgname=Browse
-pkgver=157.3
+pkgver=200
 pkgrel=1
 pkgdesc="Sugar activity to browse the internet"
 arch=('any')
-url="http://wiki.sugarlabs.org/go/Activities/Browse"
+url="https://wiki.sugarlabs.org/go/Activities/Browse"
 license=('GPL')
 groups=('sugar-fructose')
 depends=('sugar' 'evince')
-source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
-        hu.patch)
-sha256sums=('65c788d44ed3c77fc29e820e889ef345708a8611bcab59522183dc57d05c1b4c'
-            'e36a20a883e8e1215bb30a3fee2f69e5e212013e479f09ebcc2397ec7aa66458')
+source=(https://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
+sha256sums=('60c4d53a855f069279a38938f8b63a4c25108373cf97faf2c7e7e69017c46c73')
 
 prepare() {
   cd $_pkgname-$pkgver
-
-  # Add missing parameter to Hungarian translation
-  patch -Np1 -i ../hu.patch
-
-  # Python2 fix
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' setup.py
+  sed -i 's/"Feladó"/"Feladó: %s"/' po/hu.po
 }
 
 package() {
   cd $_pkgname-$pkgver
-  python2 setup.py install --prefix "$pkgdir/usr"
+  python2 setup.py install --prefix "$pkgdir/usr" --skip-install-desktop-file
 }

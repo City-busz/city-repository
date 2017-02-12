@@ -14,6 +14,7 @@ pkgbase = sugar-toolkit
 	depends = python2-dbus
 	depends = python2-gconf
 	depends = python2-telepathy
+	depends = sugar-artwork
 	depends = sugar-base
 	source = https://download.sugarlabs.org/sources/sucrose/glucose/sugar-toolkit/sugar-toolkit-0.110.0.tar.bz2
 	sha256sums = 14e76fac034f8801c2d63c9b562e6559817a31aac72b1853370bf0bc66779f25

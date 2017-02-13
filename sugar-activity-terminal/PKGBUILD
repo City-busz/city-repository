@@ -7,17 +7,15 @@ pkgver=44
 pkgrel=1
 pkgdesc="Terminal emulator for Sugar"
 arch=('any')
-url="http://wiki.sugarlabs.org/go/Activities/Terminal"
+url="https://wiki.sugarlabs.org/go/Activities/Terminal"
 license=('GPL')
 groups=('sugar-fructose')
-depends=('sugar' 'vte3')
-source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
+depends=('sugar-toolkit-gtk3' 'vte3')
+source=(https://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
 sha256sums=('3110d3ecbab12b661235916bce28b73c43ff2b728cd679f5213d8ee723af34e3')
 
 prepare() {
   cd $_pkgname-$pkgver
-
-  # Python2 fix
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' helpbutton.py setup.py
 }
 

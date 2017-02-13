@@ -3,31 +3,25 @@
 
 pkgname=sugar-activity-pippy
 _pkgname=Pippy
-pkgver=66
+pkgver=70
 pkgrel=1
 pkgdesc="Sugar activity to learn and develop in Python programming language"
 arch=('any')
-url="http://wiki.sugarlabs.org/go/Activities/Pippy"
+url="https://wiki.sugarlabs.org/go/Activities/Pippy"
 license=('GPL')
 groups=('sugar-fructose')
-depends=('sugar' 'python2-pygame' 'vte3')
-source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2
-        vte-291.patch)
-md5sums=('09a6cf444211c85be89c1e8bedf29024'
-         '3a490fcf174af4fdb76112df3a673889')
+depends=('python2-pygame' 'sugar-toolkit-gtk3' 'vte3')
+source=($pkgname-$pkgver.tar.bz::https://github.com/sugarlabs/$_pkgname/archive/v$pkgver.tar.gz)
+sha256sums=('7c7ca995661a4e1c0964e5788ad5dfce539beca7acaa46b278b7f71429ccf575')
 
 prepare() {
   cd $_pkgname-$pkgver
-
-  # Python2 fix
   find . -type f | xargs sed -i 's@^#!.*python$@#!/usr/bin/python2@'
   sed -i 's/python %s; sleep 1/python2 %s; sleep 1/' pippy_app.py
-
-  # Port to vte 2.91
-  patch -Np1 -i ../vte-291.patch
 }
 
 package() {
   cd $_pkgname-$pkgver
   python2 setup.py install --prefix "$pkgdir/usr"
+  rm -r "$pkgdir"/usr/share/applications
 }

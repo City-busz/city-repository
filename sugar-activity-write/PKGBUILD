@@ -3,25 +3,24 @@
 
 pkgname=sugar-activity-write
 _pkgname=Write
-pkgver=96
+pkgver=97
 pkgrel=1
 pkgdesc="Sugar activity to edit texts"
 arch=('any')
-url="http://wiki.sugarlabs.org/go/Activities/Write"
+url="https://wiki.sugarlabs.org/go/Activities/Write"
 license=('GPL')
 groups=('sugar-fructose')
-depends=('sugar' 'abiword' 'python2-speechd')
-source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
-md5sums=('4702709c72ee3790380bfa33e47cb6fb')
+depends=('abiword' 'gconf' 'sugar-toolkit-gtk3')
+source=(https://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
+sha256sums=('7b2ff1151edb99b7b45d4e2ae1a6eea2551254e96699a88f6fc2bebbd4774892')
 
 prepare() {
   cd $_pkgname-$pkgver
-
-  # Python2 fix
-  sed -i 's@^#!.*python$@#!/usr/bin/python2@' setup.py
+  sed -i 's@^#!.*python$@#!/usr/bin/python2@' gridcreate.py setup.py
 }
 
 package() {
   cd $_pkgname-$pkgver
   python2 setup.py install --prefix "$pkgdir/usr"
+  rm -r "$pkgdir"/usr/share/applications
 }

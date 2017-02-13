@@ -10,7 +10,7 @@ url="https://sugarlabs.org/"
 license=('GPL')
 depends=('gconf' 'gnome-keyring' 'gst-plugins-espeak' 'gtksourceview3' 'gvfs' 'libwnck3'
          'libxklavier' 'metacity' 'mobile-broadband-provider-info' 'openssh' 'python2-gwebsockets'
-         'sugar-datastore' 'telepathy-gabble' 'telepathy-salut' 'upower' 'webkit2gtk'
+         'sugar-toolkit-gtk3' 'telepathy-gabble' 'telepathy-salut' 'upower' 'webkit2gtk'
          'xdg-user-dirs')
 makedepends=('intltool')
 source=(https://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)

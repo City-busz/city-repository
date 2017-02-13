@@ -19,7 +19,7 @@ sha256sums=('c5b662442a404f4dab7f67514aae5f887533262e4a98aa4b4c675e4f63b2203d')
 prepare() {
   cd $pkgname-$pkgver
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' src/jarabe/model/update/aslo.py
-  sed -i "/gi.require_version('WebKit', '3.0')/d" src/jarabe/main.py
+  sed -i "s/gi.require_version('WebKit', '3.0')/gi.require_version('WebKit2', '4.0')/" src/jarabe/main.py
 }
 
 build() {

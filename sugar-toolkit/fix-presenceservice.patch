@@ -1,0 +1,12 @@
+diff -Naur sugar-toolkit-0.110.0.orig/src/sugar/presence/presenceservice.py sugar-toolkit-0.110.0/src/sugar/presence/presenceservice.py
+--- sugar-toolkit-0.110.0.orig/src/sugar/presence/presenceservice.py	2015-10-04 08:49:53.000000000 +0200
++++ sugar-toolkit-0.110.0/src/sugar/presence/presenceservice.py	2017-02-13 00:45:04.536230605 +0100
+@@ -92,8 +92,6 @@
+                     if e.get_dbus_name() == name:
+                         logging.debug("There's no shared activity with the id "
+                                       "%s", activity_id)
+-                    else:
+-                        raise
+                 else:
+                     activity = Activity(account_path, connection.connection,
+                                         room_handle=room_handle)

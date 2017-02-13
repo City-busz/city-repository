@@ -8,14 +8,14 @@ pkgdesc="GTK2 based toolkit for Sugar (deprecated)"
 arch=('i686' 'x86_64')
 url="https://sugarlabs.org/"
 license=('LGPL')
-depends=('alsa-lib' 'hippo-canvas' 'libsm' 'python2-dateutil' 'python2-dbus' 'python2-gconf'
-         'python2-telepathy' 'sugar-artwork' 'sugar-base' 'unzip')
+depends=('hippo-canvas' 'python2-gconf' 'sugar-base' 'sugar-toolkit-gtk3')
 makedepends=('intltool')
 source=(https://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.bz2
         drop-rsvg-dependency.patch
         fix-presenceservice.patch)
 sha256sums=('14e76fac034f8801c2d63c9b562e6559817a31aac72b1853370bf0bc66779f25'
-            '80f28c29f43c1cb2ccb7107e05d5ce60b5f2160298262afeba3f98172e2fdb1a')
+            '80f28c29f43c1cb2ccb7107e05d5ce60b5f2160298262afeba3f98172e2fdb1a'
+            '8714457b4934fca3a79fa33a57e81fb2841a5fc18a5ebb7d1472221a348c99ec')
 
 prepare() {
   cd $pkgname-$pkgver

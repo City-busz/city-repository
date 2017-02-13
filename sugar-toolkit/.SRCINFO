@@ -7,18 +7,16 @@ pkgbase = sugar-toolkit
 	arch = x86_64
 	license = LGPL
 	makedepends = intltool
-	depends = alsa-lib
 	depends = hippo-canvas
-	depends = libsm
-	depends = python2-dateutil
-	depends = python2-dbus
 	depends = python2-gconf
-	depends = python2-telepathy
-	depends = sugar-artwork
 	depends = sugar-base
-	depends = unzip
+	depends = sugar-toolkit-gtk3
 	source = https://download.sugarlabs.org/sources/sucrose/glucose/sugar-toolkit/sugar-toolkit-0.110.0.tar.bz2
+	source = drop-rsvg-dependency.patch
+	source = fix-presenceservice.patch
 	sha256sums = 14e76fac034f8801c2d63c9b562e6559817a31aac72b1853370bf0bc66779f25
+	sha256sums = 80f28c29f43c1cb2ccb7107e05d5ce60b5f2160298262afeba3f98172e2fdb1a
+	sha256sums = 8714457b4934fca3a79fa33a57e81fb2841a5fc18a5ebb7d1472221a348c99ec
 
 pkgname = sugar-toolkit
 

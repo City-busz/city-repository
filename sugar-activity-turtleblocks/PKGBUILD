@@ -7,17 +7,15 @@ pkgver=209
 pkgrel=1
 pkgdesc="Logo-inspired graphical turtle for Sugar"
 arch=('any')
-url="http://wiki.sugarlabs.org/go/Activities/Turtle_Art"
+url="https://wiki.sugarlabs.org/go/Activities/Turtle_Art"
 license=('GPL')
 groups=('sugar-fructose')
 depends=('sugar' 'sugar-toolkit')
-source=(http://download.sugarlabs.org/sources/sucrose/fructose/TurtleArt/$_pkgname-$pkgver.tar.bz2)
-md5sums=('ec978e1101288ad2647fb37a9a0d320a')
+source=(https://download.sugarlabs.org/sources/sucrose/fructose/TurtleArt/$_pkgname-$pkgver.tar.bz2)
+sha256sums=('ec978e1101288ad2647fb37a9a0d320a')
 
 prepare() {
   cd $_pkgname-$pkgver
-
-  # Python2 fix
   find . -type f | xargs sed -i 's@^#!.*python$@#!/usr/bin/python2@'
 }
 
@@ -26,5 +24,5 @@ package() {
   python2 setup.py install --prefix "$pkgdir/usr"
 
   # Fix permission
-  chmod 644 "$pkgdir/usr/share/sugar/activities/TurtleBlocks.activity/samples/media-scratch.ta"
+#  chmod 644 "$pkgdir/usr/share/sugar/activities/TurtleBlocks.activity/samples/media-scratch.ta"
 }

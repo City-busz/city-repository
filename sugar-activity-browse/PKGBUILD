@@ -10,7 +10,7 @@ arch=('any')
 url="https://wiki.sugarlabs.org/go/Activities/Browse"
 license=('GPL')
 groups=('sugar-fructose')
-depends=('evince' 'gconf' 'sugar-datastore' 'webkit2gtk')
+depends=('evince' 'gconf' 'sugar-toolkit-gtk3' 'webkit2gtk')
 source=(https://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
 sha256sums=('60c4d53a855f069279a38938f8b63a4c25108373cf97faf2c7e7e69017c46c73')
 

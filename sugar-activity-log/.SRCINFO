@@ -1,0 +1,14 @@
+pkgbase = sugar-activity-log
+	pkgdesc = Sugar activity to view system log files
+	pkgver = 37
+	pkgrel = 1
+	url = https://wiki.sugarlabs.org/go/Activities/Log
+	arch = any
+	groups = sugar-fructose
+	license = GPL
+	depends = sugar-toolkit-gtk3
+	source = https://download.sugarlabs.org/sources/sucrose/fructose/Log/Log-37.tar.bz2
+	sha256sums = 553f3e2cf1d2afc1105fa147713a0d7213aeb4c4901d735757811e3af4bc8311
+
+pkgname = sugar-activity-log
+

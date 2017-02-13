@@ -16,7 +16,7 @@ pkgbase = sugar-toolkit
 	source = fix-presenceservice.patch
 	sha256sums = 14e76fac034f8801c2d63c9b562e6559817a31aac72b1853370bf0bc66779f25
 	sha256sums = 80f28c29f43c1cb2ccb7107e05d5ce60b5f2160298262afeba3f98172e2fdb1a
-	sha256sums = 8714457b4934fca3a79fa33a57e81fb2841a5fc18a5ebb7d1472221a348c99ec
+	sha256sums = 8da623f071be6f87b89dd6f1436c87ce2e8e5c63dd1c12c3db7081b701b715a8
 
 pkgname = sugar-toolkit
 

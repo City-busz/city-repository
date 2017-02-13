@@ -8,7 +8,7 @@ pkgdesc="Sugar datastore service"
 arch=('i686' 'x86_64')
 url="https://sugarlabs.org/"
 license=('GPL')
-depends=('python2-xapian' 'sugar-toolkit-gtk3')
+depends=('python2-dbus' 'python2-gobject' 'python2-xapian')
 source=(https://download.sugarlabs.org/sources/sucrose/glucose/$pkgname/$pkgname-$pkgver.tar.xz)
 sha256sums=('b3d8527a196c48688eb2395f13338c2c84b104e44db7e7520597f67135af0458')
 

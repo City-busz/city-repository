@@ -6,8 +6,9 @@ pkgbase = sugar-datastore
 	arch = i686
 	arch = x86_64
 	license = GPL
+	depends = python2-dbus
+	depends = python2-gobject
 	depends = python2-xapian
-	depends = sugar-toolkit-gtk3
 	source = https://download.sugarlabs.org/sources/sucrose/glucose/sugar-datastore/sugar-datastore-0.110.0.tar.xz
 	sha256sums = b3d8527a196c48688eb2395f13338c2c84b104e44db7e7520597f67135af0458
 

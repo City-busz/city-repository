@@ -7,25 +7,24 @@ pkgver=32
 pkgrel=1
 pkgdesc="Media player for Sugar"
 arch=('any')
-url="http://sugarlabs.org/"
+url="https://wiki.sugarlabs.org/go/Activities/Jukebox"
 license=('GPL')
 groups=('sugar-fructose')
-depends=('sugar' 'gst-plugins-base')
+depends=('sugar-toolkit-gtk3' 'gst-plugins-base')
 optdepends=('gst-plugins-good: Extra media codecs'
             'gst-plugins-bad: Extra media codecs'            
             'gst-plugins-ugly: Extra media codecs'
             'gst-libav: Extra media codecs')
-source=(http://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
+source=(https://download.sugarlabs.org/sources/sucrose/fructose/$_pkgname/$_pkgname-$pkgver.tar.bz2)
 sha256sums=('6bb493b40195cbea20750bd391d1d88f3bdb3689bb0d0019b1c83406168004e3')
 
 prepare() {
   cd $_pkgname-$pkgver
-
-  # Python2 fix
   sed -i 's@^#!.*python$@#!/usr/bin/python2@' setup.py
 }
 
 package() {
   cd $_pkgname-$pkgver
   python2 setup.py install --prefix "$pkgdir/usr"
+  rm -r "$pkgdir"/usr/share/applications
 }

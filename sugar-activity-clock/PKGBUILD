@@ -10,7 +10,7 @@ arch=('any')
 url="https://wiki.sugarlabs.org/go/Activities/Clock"
 license=('GPL')
 groups=('sugar-fructose')
-depends=('sugar-toolkit-gtk3')
+depends=('espeak' 'sugar-toolkit-gtk3')
 source=(https://download.sugarlabs.org/sources/honey/$_pkgname/$_pkgname-$pkgver.tar.bz2)
 sha256sums=('441e88fc6b19e6d29fe58872de4be69b67d327ff1f98839c809aeafa582d7c5f')
 

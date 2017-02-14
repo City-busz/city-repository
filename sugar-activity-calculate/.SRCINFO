@@ -1,0 +1,17 @@
+pkgbase = sugar-activity-calculate
+	pkgdesc = Graphing calculator for Sugar
+	pkgver = 43
+	pkgrel = 1
+	url = https://wiki.sugarlabs.org/go/Activities/Calculate
+	arch = any
+	groups = sugar-fructose
+	license = GPL
+	depends = sugar-toolkit-gtk3
+	optdepends = python2-matplotlib: alternative plotting backend
+	source = https://download.sugarlabs.org/sources/sucrose/fructose/Calculate/Calculate-43.tar.bz2
+	source = 0001-Port-to-GTK3.patch
+	sha256sums = 8fa75a00c5e2799708fdca8ee189c5596558c9c98c6cada3c2e4d6002911a5ed
+	sha256sums = 28fbbe30673dea2a69d1a6600ac35a56b0e3ffe81797b963f87d98364e1b27ab
+
+pkgname = sugar-activity-calculate
+

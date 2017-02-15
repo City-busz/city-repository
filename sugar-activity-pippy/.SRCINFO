@@ -1,0 +1,19 @@
+pkgbase = sugar-activity-pippy
+	pkgdesc = Sugar activity to learn and develop in Python programming language
+	pkgver = 70
+	pkgrel = 1
+	url = https://wiki.sugarlabs.org/go/Activities/Pippy
+	arch = any
+	groups = sugar-fructose
+	license = GPL
+	depends = python2-pybox2d
+	depends = python2-pygame
+	depends = sugar
+	depends = vte3
+	source = sugar-activity-pippy-70.tar.gz::https://github.com/sugarlabs/Pippy/archive/v70.tar.gz
+	source = fix-missing-icons.patch
+	sha256sums = 7c7ca995661a4e1c0964e5788ad5dfce539beca7acaa46b278b7f71429ccf575
+	sha256sums = 38bc051a8a4b5c2dbee2c1d4b73083eb8708b689935448b9767f5d339a684f44
+
+pkgname = sugar-activity-pippy
+

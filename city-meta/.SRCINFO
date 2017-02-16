@@ -1,7 +1,7 @@
 pkgbase = city-meta
 	pkgdesc = Metapackages for Arch Linux
 	pkgver = 1
-	pkgrel = 4
+	pkgrel = 5
 	url = http://pkgbuild.com/~bgyorgy/city.html
 	arch = any
 	license = GPL
@@ -206,6 +206,7 @@ pkgname = gnome-core-utilities-meta
 	depends = gnome-software
 	depends = gnome-system-monitor
 	depends = gnome-terminal
+	depends = gnome-video-effects
 	depends = gnome-weather
 	depends = grilo-plugins
 	depends = sushi
@@ -372,4 +373,19 @@ pkgname = lxqt-core-meta
 	depends = obconf-qt
 	depends = openbox
 	depends = pcmanfm-qt
+
+pkgname = sugar-meta
+	pkgdesc = Sugar metapackage
+	groups = city-meta
+	depends = sugar
+	depends = sugar-activity-browse
+	depends = sugar-activity-calculate
+	depends = sugar-activity-chat
+	depends = sugar-activity-clock
+	depends = sugar-activity-imageviewer
+	depends = sugar-activity-jukebox
+	depends = sugar-activity-log
+	depends = sugar-activity-pippy
+	depends = sugar-activity-read
+	depends = sugar-activity-terminal
 

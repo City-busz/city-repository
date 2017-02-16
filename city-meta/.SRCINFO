@@ -206,7 +206,6 @@ pkgname = gnome-core-utilities-meta
 	depends = gnome-software
 	depends = gnome-system-monitor
 	depends = gnome-terminal
-	depends = gnome-video-effects
 	depends = gnome-weather
 	depends = grilo-plugins
 	depends = sushi

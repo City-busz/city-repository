@@ -1,0 +1,45 @@
+pkgbase = empathy-fixed
+	pkgdesc = A GNOME instant messaging client using the Telepathy framework
+	pkgver = 3.12.12+100+gb17da756d
+	pkgrel = 1
+	url = https://wiki.gnome.org/Apps/Empathy
+	arch = i686
+	arch = x86_64
+	license = GPL2
+	makedepends = intltool
+	makedepends = itstool
+	makedepends = docbook-xsl
+	makedepends = python
+	makedepends = gnome-common
+	makedepends = git
+	depends = clutter-gst
+	depends = clutter-gtk
+	depends = folks
+	depends = gcr
+	depends = iso-codes
+	depends = libcanberra
+	depends = libpulse
+	depends = webkit2gtk
+	depends = telepathy-farstream
+	depends = telepathy-glib
+	depends = telepathy-logger
+	depends = telepathy-mission-control
+	depends = geoclue2
+	depends = geocode-glib
+	depends = cheese
+	depends = libchamplain
+	depends = libgudev
+	optdepends = telepathy-gabble: XMPP/Jabber support
+	optdepends = telepathy-idle: IRC support
+	optdepends = telepathy-salut: Link-local XMPP support
+	optdepends = telepathy-rakia: SIP support
+	optdepends = telepathy-haze: libpurple support
+	provides = empathy
+	conflicts = empathy
+	source = git+https://git.gnome.org/browse/empathy#commit=b17da756dc9581544fd7ee4a134bd83440427a93
+	source = git+https://git.gnome.org/browse/telepathy-account-widgets
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = empathy-fixed
+

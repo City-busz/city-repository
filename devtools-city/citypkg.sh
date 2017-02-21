@@ -282,7 +282,7 @@ declare -a commit_arches
 declare -a skip_arches
 
 if ! srcfile=$(shopt -s nullglob;
-		getpkgfile "${SRCDEST+$SRCDEST/}${pkgbase:-${pkgname[0]}}-$fullver".src.tar.gz); then
+		getpkgfile "${PKGDEST+$PKGDEST/}${pkgbase:-${pkgname[0]}}-$fullver".src.tar.gz); then
 	die "Failed to locate source file $_pkgname-$fullver"
 fi
 uploads+=("$srcfile")

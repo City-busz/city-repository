@@ -38,8 +38,10 @@ pkgbase = empathy-fixed
 	conflicts = empathy
 	source = git+https://git.gnome.org/browse/empathy#commit=b17da756dc9581544fd7ee4a134bd83440427a93
 	source = git+https://git.gnome.org/browse/telepathy-account-widgets
+	source = 0001-Fix-crash-when-window-is-not-initialized.patch
 	sha256sums = SKIP
 	sha256sums = SKIP
+	sha256sums = 3151c0260037e0bbc6d5667c0ff13f55e86ee8cf3c49f1f64e59e17e36875cf0
 
 pkgname = empathy-fixed
 

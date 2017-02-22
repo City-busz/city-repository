@@ -1,0 +1,25 @@
+From 8129e4fcb4d4291bdb8a4a897c100569b92677ea Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ball=C3=B3=20Gy=C3=B6rgy?= <ballogyor@gmail.com>
+Date: Wed, 22 Feb 2017 00:40:19 +0100
+Subject: [PATCH] Fix crash when window is not initialized
+
+---
+ libempathy-gtk/empathy-ui-utils.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/libempathy-gtk/empathy-ui-utils.c b/libempathy-gtk/empathy-ui-utils.c
+index e662c6950..4adc243f1 100644
+--- a/libempathy-gtk/empathy-ui-utils.c
++++ b/libempathy-gtk/empathy-ui-utils.c
+@@ -1235,6 +1235,8 @@ empathy_move_to_window_desktop (GtkWindow *window,
+ 
+   xscreen = gdk_x11_screen_get_xscreen (screen);
+   gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
++  if (!GDK_IS_WINDOW (gdk_window))
++    goto out;
+ 
+   workspace = window_get_workspace (xscreen,
+       gdk_x11_window_get_xid (gdk_window));
+-- 
+2.11.1
+

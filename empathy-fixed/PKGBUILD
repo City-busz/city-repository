@@ -23,9 +23,11 @@ conflicts=($_pkgname)
 provides=($_pkgname)
 _commit=b17da756dc9581544fd7ee4a134bd83440427a93  # master
 source=("git+https://git.gnome.org/browse/empathy#commit=$_commit"
-        "git+https://git.gnome.org/browse/telepathy-account-widgets")
+        "git+https://git.gnome.org/browse/telepathy-account-widgets"
+        0001-Fix-crash-when-window-is-not-initialized.patch)
 sha256sums=('SKIP'
-            'SKIP')
+            'SKIP'
+            '3151c0260037e0bbc6d5667c0ff13f55e86ee8cf3c49f1f64e59e17e36875cf0')
 
 pkgver() {
   cd $_pkgname
@@ -34,6 +36,8 @@ pkgver() {
 
 prepare() {
   cd $_pkgname
+  patch -Np1 -i ../0001-Fix-crash-when-window-is-not-initialized.patch
+
   git config --local submodule.telepathy-account-widgets.url "$srcdir/telepathy-account-widgets"
   sed -i 's/git submodule update/git submodule update --remote --merge/' ./autogen.sh
   NOCONFIGURE=1 ./autogen.sh

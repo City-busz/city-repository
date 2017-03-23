@@ -4,7 +4,7 @@
 pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=5
+pkgrel=6
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -67,19 +67,19 @@ package_gnome-flashback-meta() {
 package_mate-core-meta() {
 	pkgdesc="MATE core metapackage"
 	groups=(city-meta)
-	depends=(caja-gtk3 marco-gtk3 mate-applets-gtk3 mate-control-center-gtk3 mate-desktop-gtk3 mate-media-gtk3 mate-netbook-gtk3 mate-notification-daemon mate-panel-gtk3 mate-power-manager-gtk3 mate-polkit mate-screensaver-gtk3 mate-sensors-applet-gtk3 mate-session-manager mate-settings-daemon-gtk3 mate-user-guide mate-user-share-gtk3)
+	depends=(caja marco mate-applets mate-control-center mate-desktop mate-media mate-netbook mate-notification-daemon mate-panel mate-power-manager mate-polkit mate-screensaver mate-sensors-applet mate-session-manager mate-settings-daemon mate-user-guide mate-user-share)
 }
 
 package_mate-apps-meta() {
 	pkgdesc="MATE applications metapackage"
 	groups=(city-meta)
-	depends=(atril-gtk3 caja-actions caja-image-converter-gtk3 caja-open-terminal-gtk3 caja-sendto-gtk3 caja-share-gtk3 caja-wallpaper-gtk3 engrampa eom-gtk3 galculator mate-applet-dock mate-applet-streamer mate-backgrounds mate-icon-theme mate-icon-theme-faenza mate-menu mate-system-monitor mate-terminal mate-themes mate-utils-gtk3 mozo pluma-gtk3)
+	depends=(atril caja-actions caja-image-converter caja-open-terminal caja-sendto caja-share caja-wallpaper engrampa eom galculator mate-applet-dock mate-applet-streamer mate-backgrounds mate-icon-theme mate-icon-theme-faenza mate-menu mate-system-monitor mate-terminal mate-themes mate-utils mozo pluma)
 }
 
 package_lxde-core-meta() {
 	pkgdesc="LXDE core metapackage"
 	groups=(city-meta)
-	depends=(lxappearance-gtk3 lxappearance-obconf-gtk3 lxde-common lxinput-gtk3 lxpanel-gtk3 lxrandr-gtk3 lxsession-gtk3 mate-power-manager-gtk3 mate-screensaver-gtk3 mate-media-gtk3 mate-notification-daemon openbox pcmanfm-gtk3 xcompmgr)
+	depends=(lxappearance-gtk3 lxappearance-obconf-gtk3 lxde-common lxinput-gtk3 lxpanel-gtk3 lxrandr-gtk3 lxsession-gtk3 mate-power-manager mate-screensaver mate-media mate-notification-daemon openbox pcmanfm-gtk3 xcompmgr)
 }
 
 package_lxde-apps-meta() {

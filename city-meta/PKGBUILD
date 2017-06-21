@@ -4,7 +4,7 @@
 pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=6
+pkgrel=7
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -37,19 +37,19 @@ package_base-data-meta() {
 package_gnome-core-shell-meta() {
 	pkgdesc="GNOME core shell metapackage"
 	groups=(city-meta)
-	depends=(gdm glib2-docs gnome-backgrounds gnome-color-manager gnome-control-center gnome-getting-started-docs gnome-keyring gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-themes-standard gnome-user-docs gnome-user-share gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb mousetweaks mutter nautilus network-manager-applet orca rygel tracker vino)
+	depends=(gdm glib2-docs gnome-backgrounds gnome-color-manager gnome-control-center gnome-getting-started-docs gnome-keyring gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-themes-standard gnome-user-docs gnome-user-share gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb mousetweaks mutter nautilus network-manager-applet orca rygel tracker vino xdg-user-dirs-gtk)
 }
 
 package_gnome-core-utilities-meta() {
 	pkgdesc="GNOME core utilities metapackage"
 	groups=(city-meta)
-	depends=(baobab cheese eog epiphany evince file-roller gedit gnome-boxes gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-contacts gnome-disk-utility gnome-documents gnome-font-viewer gnome-logs gnome-maps gnome-photos gnome-screenshot gnome-software gnome-system-monitor gnome-terminal gnome-weather grilo-plugins sushi totem yelp)
+	depends=(baobab cheese eog epiphany evince file-roller gedit gnome-boxes gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-contacts gnome-disk-utility gnome-documents gnome-font-viewer gnome-logs gnome-maps gnome-music gnome-photos gnome-screenshot gnome-software gnome-system-monitor gnome-terminal gnome-todo gnome-weather grilo-plugins simple-scan sushi totem yelp)
 }
 
 package_gnome-apps-meta() {
 	pkgdesc="GNOME applications metapackage"
 	groups=(city-meta)
-	depends=(accerciser dconf-editor devhelp evolution ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-music gnome-nettool gnome-sound-recorder gnome-todo gnome-tweak-tool nautilus-sendto polari seahorse)
+	depends=(accerciser dconf-editor devhelp evolution ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-nettool gnome-recipes gnome-sound-recorder gnome-tweak-tool nautilus-sendto polari seahorse)
 }
 
 package_gnome-games-meta() {
@@ -61,7 +61,7 @@ package_gnome-games-meta() {
 package_gnome-flashback-meta() {
 	pkgdesc="GNOME Flashback, Budgie and Cinnamon metapackage"
 	groups=(city-meta)
-	depends=(blueberry budgie-desktop cinnamon gnome-applets gnome-flashback gnome-panel gnome-screensaver lightdm-gtk-greeter metacity sensors-applet system-config-printer xdg-user-dirs-gtk)
+	depends=(blueberry budgie-desktop cinnamon gnome-applets gnome-flashback gnome-panel gnome-screensaver lightdm-gtk-greeter metacity sensors-applet system-config-printer)
 }
 
 package_mate-core-meta() {
@@ -73,19 +73,19 @@ package_mate-core-meta() {
 package_mate-apps-meta() {
 	pkgdesc="MATE applications metapackage"
 	groups=(city-meta)
-	depends=(atril caja-actions caja-image-converter caja-open-terminal caja-sendto caja-share caja-wallpaper engrampa eom galculator mate-applet-dock mate-applet-streamer mate-backgrounds mate-icon-theme mate-icon-theme-faenza mate-menu mate-system-monitor mate-terminal mate-themes mate-utils mozo pluma)
+	depends=(atril caja-actions caja-image-converter caja-open-terminal caja-sendto caja-share caja-wallpaper engrampa eom mate-applet-dock mate-applet-streamer mate-backgrounds mate-calc mate-icon-theme mate-icon-theme-faenza mate-menu mate-system-monitor mate-terminal mate-themes mate-utils mozo pluma)
 }
 
 package_lxde-core-meta() {
 	pkgdesc="LXDE core metapackage"
 	groups=(city-meta)
-	depends=(lxappearance-gtk3 lxappearance-obconf-gtk3 lxde-common lxinput-gtk3 lxpanel-gtk3 lxrandr-gtk3 lxsession-gtk3 mate-power-manager mate-screensaver mate-media mate-notification-daemon openbox pcmanfm-gtk3 xcompmgr)
+	depends=(lxappearance-gtk3 lxappearance-obconf-gtk3 lxde-common lxhotkey-gtk3 lxinput-gtk3 lxpanel-gtk3 lxrandr-gtk3 lxsession-gtk3 mate-power-manager mate-screensaver mate-media mate-notification-daemon openbox pcmanfm-gtk3 xcompmgr)
 }
 
 package_lxde-apps-meta() {
 	pkgdesc="LXDE applications metapackage"
 	groups=(city-meta)
-	depends=(galculator l3afpad lxde-icon-theme lxdm-gtk3 lxmusic-gtk3 lxtask-gtk3 lxterminal-gtk3 xarchiver)
+	depends=(galculator gpicview-gtk3 l3afpad lxde-icon-theme lxdm-gtk3 lxlauncher-gtk3 lxmusic-gtk3 lxtask-gtk3 lxterminal-gtk3 xarchiver)
 }
 
 package_lxqt-core-meta() {
@@ -97,5 +97,5 @@ package_lxqt-core-meta() {
 package_sugar-meta() {
 	pkgdesc="Sugar metapackage"
 	groups=(city-meta)
-	depends=(sugar sugar-activity-browse sugar-activity-calculate sugar-activity-chat sugar-activity-clock sugar-activity-imageviewer sugar-activity-jukebox sugar-activity-log sugar-activity-pippy sugar-activity-read sugar-activity-terminal)
+	depends=(sugar sugar-activity-browse sugar-activity-calculate sugar-activity-chat sugar-activity-clock sugar-activity-imageviewer sugar-activity-jukebox sugar-activity-log sugar-activity-paint sugar-activity-pippy sugar-activity-read sugar-activity-terminal sugar-activity-write)
 }

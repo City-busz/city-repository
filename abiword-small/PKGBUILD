@@ -1,0 +1,38 @@
+# $Id$
+# Maintainer: Jan de Groot <jgc@archlinux.org>
+# Contributor: Giovanni Scafora <giovanni@archlinux.org>
+# Contributor: Maël Lavault <moimael@neuf.fr>
+
+pkgname=abiword-small
+pkgver=3.0.2
+pkgrel=5
+pkgdesc='Fully-featured word processor'
+arch=('i686' 'x86_64')
+license=('GPL')
+url='http://www.abisource.com'
+depends=('enchant' 'fribidi' 'goffice' 'libical' 'libjpeg-turbo' 'redland' 'wv')
+makedepends=('aiksaurus' 'asio' 'boost' 'dbus-glib' 'gobject-introspection' 'gtkmathview'
+             'libots' 'libsoup' 'libwmf' 'libwpg' 'libwps' 'link-grammar' 'loudmouth'
+             'psiconv' 'python2-gobject' 'python-gobject')
+optdepends=('aiksaurus: Aiksaurus plugin'
+            'dbus-glib: Collaboration plugin'
+            'gtkmathview: AbiMathView plugin'
+            'libots: OTS plugin'
+            'libsoup: Collaboration plugin'
+            'libwmf: WMF Import plugin"'
+            'libwpg: WordPerfect(tm) Graphics Importer plugin'
+            'libwps: WordPerfect(tm) and Microsoft Works Importer plugin'
+            'link-grammar: AbiGrammar plugin'
+            'loudmouth: Collaboration plugin'
+            'psiconv: Psion Import/Export plugin')
+conflicts=('abiword')
+provides=("abiword=$pkgver")
+options=('!strip')
+source_i686=(https://archive.archlinux.org/packages/a/abiword/abiword-$pkgver-$pkgrel-i686.pkg.tar.xz)
+source_x86_64=(https://archive.archlinux.org/packages/a/abiword/abiword-$pkgver-$pkgrel-x86_64.pkg.tar.xz)
+sha256sums_i686=('bf578b4727d9097134b076d1014ffe7b14ede825b3fffa74148d4e8909085be2')
+sha256sums_x86_64=('6a8ad35a6ae8924544662466f2fdcfc8a3ea9ee3cf9a9b68ea6fcc80a9a48609')
+
+package() {
+  mv "$srcdir"/usr "$pkgdir"
+}

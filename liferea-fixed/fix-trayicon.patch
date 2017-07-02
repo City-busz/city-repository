@@ -1,0 +1,40 @@
+From 7b23161d082f433d789b01554d898f02f1e96b13 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Gy=C3=B6rgy=20Ball=C3=B3?= <ballogyor@gmail.com>
+Date: Sun, 2 Jul 2017 22:28:26 +0200
+Subject: [PATCH] Improve tray icon behaviour
+
+- Don't show the main window unconditionally. Otherwise the '-w hidden' command line option is ignored.
+- Toggle the main window when the user clicks on the tray icon instead of just showing it.
+- Deiconify after the window is iconified and hidden. Otherwise the window won't show up on next toggle.
+---
+ plugins/trayicon.py | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/plugins/trayicon.py b/plugins/trayicon.py
+index ea0fbbdf9..c2b1ba067 100644
+--- a/plugins/trayicon.py
++++ b/plugins/trayicon.py
+@@ -113,10 +113,6 @@ def do_activate(self):
+         self.minimize_to_tray_minimize_handler = self.window.connect("window-state-event",
+                                                                      self.window_state_event_cb)
+ 
+-        # show the window if it is hidden when starting liferea
+-        self.window.deiconify()
+-        self.window.show()
+-
+         feedlist = self.shell.props.feed_list
+         self.feedlist_new_items_cb(feedlist)
+         sigid = feedlist.connect("new-items", self.feedlist_new_items_cb)
+@@ -127,10 +123,10 @@ def window_state_event_cb(self, widget, event):
+         "Hide window when minimize"
+         if event.changed_mask & event.new_window_state & Gdk.WindowState.ICONIFIED:
+             self.window.hide()
++            self.window.deiconify()
+ 
+     def trayicon_click(self, widget, data = None):
+-        self.window.deiconify()
+-        self.window.show()
++        self.shell.toggle_visibility()
+ 
+     def trayicon_minimize_on_close(self, widget, data = None):
+         self.window.hide()

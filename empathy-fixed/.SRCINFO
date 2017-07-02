@@ -1,6 +1,6 @@
 pkgbase = empathy-fixed
 	pkgdesc = A GNOME instant messaging client using the Telepathy framework
-	pkgver = 3.12.12+100+gb17da756d
+	pkgver = 3.12.12+124+gd433f3c20
 	pkgrel = 1
 	url = https://wiki.gnome.org/Apps/Empathy
 	arch = i686
@@ -36,12 +36,14 @@ pkgbase = empathy-fixed
 	optdepends = telepathy-haze: libpurple support
 	provides = empathy
 	conflicts = empathy
-	source = git+https://git.gnome.org/browse/empathy#commit=b17da756dc9581544fd7ee4a134bd83440427a93
+	source = git+https://git.gnome.org/browse/empathy#commit=d433f3c20d2ca198a97f21596d8cc212bff8426c
 	source = git+https://git.gnome.org/browse/telepathy-account-widgets
 	source = 0001-Fix-crash-when-window-is-not-initialized.patch
+	source = 0001-Don-t-allow-to-detach-chat-tab.patch
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = 3151c0260037e0bbc6d5667c0ff13f55e86ee8cf3c49f1f64e59e17e36875cf0
+	sha256sums = d31438a7d762eb1231647b6fadcf4a5ec7e62d754b85cf6ae429e6685a290531
 
 pkgname = empathy-fixed
 

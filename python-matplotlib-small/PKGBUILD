@@ -1,0 +1,36 @@
+# $Id$
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Stéphane Gaudreault <stephane@archlinux.org>
+# Contributor: Stefan Husmann <stefan-husmann@t-online.de>
+# Contributor: Angel 'angvp' Velasquez <angvp[at]archlinux.com.ve>
+# Contributor: Douglas Soares de Andrade <dsa@aur.archlinux.org>
+
+pkgname=python-matplotlib-small
+pkgver=2.0.2
+pkgrel=1
+pkgdesc="A python plotting library, making publication quality plots"
+arch=('i686' 'x86_64')
+url='http://matplotlib.org'
+license=('custom')
+depends=('python-pytz' 'python-numpy' 'python-dateutil' 'python-pyparsing' 'python-cycler')
+optdepends=('python-gobject: for GTK3Agg/GTK3Cairo backend'
+            'python-cairocffi: for GTK3Agg/GTK3Cairo backend'
+            'python-pyqt5: for Qt5Agg and Qt4Agg backend'
+            'python-pyqt4: for Qt4Agg backend'
+            'tk: used by the TkAgg backend'
+            'ghostscript: usetex dependencies'
+            'texlive-bin: usetex dependencies'
+            'python-tornado: for webagg backend'
+            'python-pillow: for reading/saving .jpg/bmp/tiff files')
+conflicts=('python-matplotlib')
+provides=("python-matplotlib=$pkgver")
+options=('!strip')
+source_i686=(https://archive.archlinux.org/packages/p/python-matplotlib/python-matplotlib-$pkgver-$pkgrel-i686.pkg.tar.xz)
+source_x86_64=(https://archive.archlinux.org/packages/p/python-matplotlib/python-matplotlib-$pkgver-$pkgrel-x86_64.pkg.tar.xz)
+md5sums_i686=('167938e4d7ed86dc5f1ef1af2fe026c6')
+md5sums_x86_64=('13ff47bbfe37862638fd4e91750931fb')
+
+package_python-matplotlib-small() {
+
+  mv "$srcdir"/usr "$pkgdir"
+}

@@ -1,0 +1,29 @@
+pkgbase = liferea-fixed
+	pkgdesc = A desktop news aggregator for online news feeds and weblogs
+	pkgver = 1.12rc3
+	pkgrel = 1
+	url = http://liferea.sourceforge.net/
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = intltool
+	makedepends = gobject-introspection
+	depends = webkit2gtk
+	depends = libpeas
+	depends = python-gobject
+	optdepends = gnome-keyring: for keyring plugin support
+	optdepends = libgnome-keyring: for keyring plugin support
+	optdepends = python-cairo: for the tray icon plugin
+	optdepends = gst-plugins-base: for media player plugin support
+	optdepends = gst-plugins-good: for media player plugin support
+	optdepends = gst-plugins-bad: for media player plugin support
+	provides = liferea
+	conflicts = liferea
+	options = !emptydirs
+	source = https://github.com/lwindolf/liferea/releases/download/v1.12-rc3/liferea-1.12-rc3.tar.bz2
+	source = fix-trayicon.patch
+	sha1sums = 6f5ae98bacf01f450055f6453bba7f5dc6b96e66
+	sha1sums = 48d88d2de31879fc697ded24983b5aa4445faada
+
+pkgname = liferea-fixed
+

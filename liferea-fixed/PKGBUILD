@@ -1,0 +1,44 @@
+# $Id$
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+# Contributor: Eric Bélanger <eric@archlinux.org>
+
+pkgname=liferea-fixed
+_pkgname=liferea
+_pkgver=1.12-rc3
+pkgver=${_pkgver//-/}
+pkgrel=1
+pkgdesc="A desktop news aggregator for online news feeds and weblogs"
+arch=('i686' 'x86_64')
+url="http://liferea.sourceforge.net/"
+license=('GPL')
+depends=('webkit2gtk' 'libpeas' 'python-gobject')
+makedepends=('intltool' 'gobject-introspection')
+optdepends=('gnome-keyring: for keyring plugin support'
+            'libgnome-keyring: for keyring plugin support'
+            'python-cairo: for the tray icon plugin'
+	    'gst-plugins-base: for media player plugin support'
+	    'gst-plugins-good: for media player plugin support'
+	    'gst-plugins-bad: for media player plugin support')
+conflicts=($_pkgname)
+provides=($_pkgname)
+options=('!emptydirs')
+source=(https://github.com/lwindolf/liferea/releases/download/v${_pkgver}/liferea-${_pkgver}.tar.bz2
+        fix-trayicon.patch)
+sha1sums=('6f5ae98bacf01f450055f6453bba7f5dc6b96e66'
+          '48d88d2de31879fc697ded24983b5aa4445faada')
+
+prepare() {
+  cd liferea-${_pkgver}
+  patch -Np1 -i ../fix-trayicon.patch
+}
+
+build() {
+  cd liferea-${_pkgver}
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-schemas-compile
+  make
+}
+
+package() {
+  cd liferea-${_pkgver}
+  make DESTDIR="${pkgdir}" install
+}

@@ -1,0 +1,114 @@
+From 91ae2c296f83b1d3db352347e7598b94d7407505 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ball=C3=B3=20Gy=C3=B6rgy?= <ballogyor@gmail.com>
+Date: Sun, 2 Jul 2017 20:49:41 +0200
+Subject: [PATCH] Don't allow to detach chat tab
+
+Detaching a tab causes undesired behaviour and crash with the new UI.
+---
+ src/empathy-chat-window.c  | 22 ----------------------
+ src/empathy-chat-window.ui |  7 -------
+ 2 files changed, 29 deletions(-)
+
+diff --git a/src/empathy-chat-window.c b/src/empathy-chat-window.c
+index 3457defff..8f3b7ede3 100644
+--- a/src/empathy-chat-window.c
++++ b/src/empathy-chat-window.c
+@@ -99,7 +99,6 @@ struct _EmpathyChatWindowPriv
+   GtkAction *menu_tabs_undo_close_tab;
+   GtkAction *menu_tabs_left;
+   GtkAction *menu_tabs_right;
+-  GtkAction *menu_tabs_detach;
+ 
+   /* Last user action time we acted upon to show a tab */
+   guint32 x_user_action_time;
+@@ -567,7 +566,6 @@ chat_window_menu_context_update (EmpathyChatWindow *self,
+         wrap_around));
+   gtk_action_set_sensitive (self->priv->menu_tabs_prev, (!first_page ||
+         wrap_around));
+-  gtk_action_set_sensitive (self->priv->menu_tabs_detach, num_pages > 1);
+   gtk_action_set_sensitive (self->priv->menu_tabs_left, !first_page);
+   gtk_action_set_sensitive (self->priv->menu_tabs_right, !last_page);
+   gtk_action_set_sensitive (self->priv->menu_conv_insert_smiley, is_connected);
+@@ -1516,21 +1514,6 @@ empathy_chat_window_new (void)
+ }
+ 
+ static void
+-chat_window_detach_activate_cb (GtkAction *action,
+-    EmpathyChatWindow *self)
+-{
+-  EmpathyChatWindow *new_window;
+-  EmpathyChat *chat;
+-
+-  chat = self->priv->current_chat;
+-  new_window = empathy_chat_window_new ();
+-
+-  empathy_chat_window_move_chat (self, new_window, chat);
+-
+-  gtk_widget_show (GTK_WIDGET (new_window));
+-}
+-
+-static void
+ chat_window_help_contents_activate_cb (GtkAction *action,
+     EmpathyChatWindow *self)
+ {
+@@ -1857,8 +1840,6 @@ notebook_create_window_cb (GtkNotebook *source,
+ 
+   new_window = empathy_chat_window_new ();
+ 
+-  DEBUG ("Detach hook called");
+-
+   empathy_chat_window_move_chat (window, new_window, chat);
+ 
+   gtk_widget_show (GTK_WIDGET (new_window));
+@@ -2470,7 +2451,6 @@ empathy_chat_window_init (EmpathyChatWindow *self)
+       "menu_tabs_undo_close_tab", &self->priv->menu_tabs_undo_close_tab,
+       "menu_tabs_left", &self->priv->menu_tabs_left,
+       "menu_tabs_right", &self->priv->menu_tabs_right,
+-       "menu_tabs_detach", &self->priv->menu_tabs_detach,
+       NULL);
+   g_free (filename);
+ 
+@@ -2494,7 +2474,6 @@ empathy_chat_window_init (EmpathyChatWindow *self)
+       "menu_tabs_undo_close_tab", "activate", chat_window_tabs_undo_close_tab_activate_cb,
+       "menu_tabs_left", "activate", chat_window_tabs_left_activate_cb,
+       "menu_tabs_right", "activate", chat_window_tabs_right_activate_cb,
+-      "menu_tabs_detach", "activate", chat_window_detach_activate_cb,
+       "menu_help_contents", "activate", chat_window_help_contents_activate_cb,
+       "menu_help_about", "activate", chat_window_help_about_activate_cb,
+       NULL);
+@@ -2730,7 +2709,6 @@ empathy_chat_window_add_chat (EmpathyChatWindow *self,
+   gtk_notebook_append_page_menu (GTK_NOTEBOOK (self->priv->notebook), child, label,
+       popup_label);
+   gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (self->priv->notebook), child, TRUE);
+-  gtk_notebook_set_tab_detachable (GTK_NOTEBOOK (self->priv->notebook), child, TRUE);
+   g_value_init (&value, G_TYPE_BOOLEAN);
+   g_value_set_boolean (&value, TRUE);
+   gtk_container_child_set_property (GTK_CONTAINER (self->priv->notebook),
+diff --git a/src/empathy-chat-window.ui b/src/empathy-chat-window.ui
+index 6ab5acf64..d66f66777 100644
+--- a/src/empathy-chat-window.ui
++++ b/src/empathy-chat-window.ui
+@@ -152,12 +152,6 @@
+           <accelerator key="Page_Down" modifiers="GDK_CONTROL_MASK|GDK_SHIFT_MASK"/>
+         </child>
+         <child>
+-          <object class="GtkAction" id="menu_tabs_detach">
+-            <property name="name">menu_tabs_detach</property>
+-            <property name="label" translatable="yes">_Detach Tab</property>
+-          </object>
+-        </child>
+-        <child>
+           <object class="GtkAction" id="menu_help">
+             <property name="name">menu_help</property>
+             <property name="label" translatable="yes">_Help</property>
+@@ -210,7 +204,6 @@
+           <separator/>
+           <menuitem action="menu_tabs_left"/>
+           <menuitem action="menu_tabs_right"/>
+-          <menuitem action="menu_tabs_detach"/>
+         </menu>
+         <menu action="menu_help">
+           <menuitem action="menu_help_contents"/>
+-- 
+2.13.2
+

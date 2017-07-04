@@ -31,7 +31,7 @@ package_base-services-meta() {
 package_base-data-meta() {
 	pkgdesc="Base codecs and data metapackage"
 	groups=(city-meta)
-	depends=(aspell-en aspell-hu gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-rakia telepathy-salut ttf-dejavu ttf-freefont ttf-liberation ttf-symbola)
+	depends=(aspell-en aspell-hu gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu purple-facebook purple-skypeweb soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-rakia telepathy-salut ttf-dejavu ttf-freefont ttf-liberation ttf-symbola)
 }
 
 package_gnome-core-shell-meta() {

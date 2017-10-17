@@ -4,7 +4,7 @@
 pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta gnome-world-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=9
+pkgrel=10
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -49,7 +49,7 @@ package_gnome-core-utilities-meta() {
 package_gnome-apps-meta() {
 	pkgdesc="GNOME applications metapackage"
 	groups=(city-meta)
-	depends=(accerciser dconf-editor devhelp evolution ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-nettool gnome-recipes gnome-sound-recorder gnome-tweak-tool nautilus-sendto polari seahorse sysprof)
+	depends=(accerciser dconf-editor devhelp evolution ghex gitg gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-nettool gnome-recipes gnome-sound-recorder gnome-tweak-tool nautilus-sendto polari sysprof)
 }
 
 package_gnome-games-meta() {
@@ -67,7 +67,7 @@ package_gnome-flashback-meta() {
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix balsa bijiben brasero buoh deja-dup d-feet easytag empathy-fixed eog-plugins evolution-rss filemanager-actions gbrainy gconf-editor geary gedit-code-assistance gedit-plugins giggle glabels glom gnac gnome-2048 gnome-break-timer gnome-games gnome-packagekit gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools gwget latexila liferea-fixed lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse-nautilus shotwell snappy-player sound-juicer transmageddon transmission-gtk vinagre)
+	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix balsa bijiben brasero buoh deja-dup d-feet easytag empathy eog-plugins evolution-rss filemanager-actions gbrainy gconf-editor geary gedit-code-assistance gedit-plugins giggle glabels glade glom gnac gnome-2048 gnome-break-timer gnome-games gnome-packagekit gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools gwget latexila liferea lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse seahorse-nautilus shotwell snappy-player sound-juicer transmageddon transmission-gtk vinagre)
 }
 
 package_mate-core-meta() {

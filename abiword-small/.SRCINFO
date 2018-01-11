@@ -1,27 +1,18 @@
 pkgbase = abiword-small
 	pkgdesc = Fully-featured word processor
 	pkgver = 3.0.2
-	pkgrel = 5
+	pkgrel = 6
 	url = http://www.abisource.com
 	arch = i686
 	arch = x86_64
 	license = GPL
-	makedepends = aiksaurus
-	makedepends = asio
-	makedepends = boost
-	makedepends = dbus-glib
-	makedepends = gobject-introspection
-	makedepends = gtkmathview
-	makedepends = libots
-	makedepends = libsoup
-	makedepends = libwmf
-	makedepends = libwpg
-	makedepends = libwps
-	makedepends = link-grammar
-	makedepends = loudmouth
-	makedepends = psiconv
-	makedepends = python2-gobject
-	makedepends = python-gobject
+	options = !strip
+	source_i686 = https://mirror.archlinux32.org/i686/extra/abiword-3.0.2-6.0-i686.pkg.tar.xz
+	sha256sums_i686 = 3a1ac0a04540f8815766202c84f09bc4890e9faff411a864f2e2b804d60499d7
+	source_x86_64 = https://archive.archlinux.org/packages/a/abiword/abiword-3.0.2-6-x86_64.pkg.tar.xz
+	sha256sums_x86_64 = b07356f56c572f0b939be9f310c552a90ca5721f066dcd0756f73d6ea31f90f3
+
+pkgname = abiword-small
 	depends = enchant
 	depends = fribidi
 	depends = goffice
@@ -42,11 +33,4 @@ pkgbase = abiword-small
 	optdepends = psiconv: Psion Import/Export plugin
 	provides = abiword=3.0.2
 	conflicts = abiword
-	options = !strip
-	source_i686 = https://archive.archlinux.org/packages/a/abiword/abiword-3.0.2-5-i686.pkg.tar.xz
-	sha256sums_i686 = bf578b4727d9097134b076d1014ffe7b14ede825b3fffa74148d4e8909085be2
-	source_x86_64 = https://archive.archlinux.org/packages/a/abiword/abiword-3.0.2-5-x86_64.pkg.tar.xz
-	sha256sums_x86_64 = 6a8ad35a6ae8924544662466f2fdcfc8a3ea9ee3cf9a9b68ea6fcc80a9a48609
-
-pkgname = abiword-small
 

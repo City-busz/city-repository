@@ -1,7 +1,7 @@
 pkgbase = city-defaults
 	pkgdesc = City-busz's default configuration
 	pkgver = 1
-	pkgrel = 32
+	pkgrel = 33
 	url = http://pkgbuild.com/~bgyorgy/city.html
 	arch = any
 	license = GPL
@@ -29,8 +29,9 @@ pkgbase = city-defaults
 	source = 50-vnc.conf
 	source = 50-gnome.conf
 	source = 00-journal-size.conf
-	sha256sums = ea0403d3f838024a60f60b6bf4ade6cc77410b68bd4e77059fd7c4c77c0c555f
-	sha256sums = 4fb837ddc57cb753ea3756265c33c19af174d2df5570858d8c3e55e70b330f34
+	source = gnome-classic-wayland.desktop
+	sha256sums = 26acc3b946e280ee624a25f693e89e56b0bf7e36927a43032bd7eef5638ca5bb
+	sha256sums = faaafd4f1ca4711d3e3d56df06da3a5cf1bcf456e76a576d520b9d74e0ad7066
 	sha256sums = 78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8
 	sha256sums = 09c3801fcc89d7a5eba5bc80e849a8baa60b5d266e25ea2f77d0c7c3bc28c523
 	sha256sums = aa8d6f24dc0c7c65adcb3f47c7f07d7b52cc83023eeb89ce0d7ffb6d81783e82
@@ -53,6 +54,7 @@ pkgbase = city-defaults
 	sha256sums = ca4ae88fbfd47f53a69b7d765571e5bf104581f4920f3eb56507684343d5aa0a
 	sha256sums = 5cff3b91e788fd250266e8673d6f6457e656c031065c56a793881b043cd7f681
 	sha256sums = d4f15249b3d58ff96223c3c9e33d8490a4d82f1a4277e5badcc26aa80fa86167
+	sha256sums = c26dccf13cb324e2bc3629602306ad0da6e3ff8e9a25e38d9c7dd51c79c81d55
 
 pkgname = city-defaults
 

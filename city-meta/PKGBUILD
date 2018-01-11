@@ -4,7 +4,7 @@
 pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta gnome-world-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=9
+pkgrel=11
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -31,13 +31,13 @@ package_base-services-meta() {
 package_base-data-meta() {
 	pkgdesc="Base codecs and data metapackage"
 	groups=(city-meta)
-	depends=(aspell-en aspell-hu gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu purple-facebook purple-skypeweb soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-rakia telepathy-salut ttf-dejavu ttf-freefont ttf-liberation ttf-symbola)
+	depends=(aspell-en aspell-hu gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en_US hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu purple-facebook purple-skypeweb soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-salut ttf-dejavu ttf-freefont ttf-liberation ttf-symbola)
 }
 
 package_gnome-core-shell-meta() {
 	pkgdesc="GNOME core shell metapackage"
 	groups=(city-meta)
-	depends=(gdm glib2-docs gnome-backgrounds gnome-color-manager gnome-control-center gnome-getting-started-docs gnome-keyring gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-themes-standard gnome-user-docs gnome-user-share gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb mousetweaks mutter nautilus network-manager-applet orca rygel tracker vino xdg-user-dirs-gtk)
+	depends=(gdm glib2-docs gnome-backgrounds gnome-color-manager gnome-control-center gnome-getting-started-docs gnome-keyring gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-themes-standard gnome-user-docs gnome-user-share gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb mousetweaks mutter nautilus network-manager-applet orca rygel tracker tracker-miners vino xdg-user-dirs-gtk)
 }
 
 package_gnome-core-utilities-meta() {
@@ -49,7 +49,7 @@ package_gnome-core-utilities-meta() {
 package_gnome-apps-meta() {
 	pkgdesc="GNOME applications metapackage"
 	groups=(city-meta)
-	depends=(accerciser dconf-editor devhelp evolution ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-nettool gnome-recipes gnome-sound-recorder gnome-tweak-tool nautilus-sendto polari seahorse sysprof)
+	depends=(accerciser dconf-editor devhelp evolution ghex gitg gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-nettool gnome-recipes gnome-sound-recorder gnome-tweak-tool nautilus-sendto polari sysprof)
 }
 
 package_gnome-games-meta() {
@@ -67,7 +67,7 @@ package_gnome-flashback-meta() {
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix balsa bijiben brasero buoh deja-dup d-feet easytag empathy-fixed eog-plugins evolution-rss filemanager-actions gbrainy gconf-editor geary gedit-code-assistance gedit-plugins giggle glabels glom gnac gnome-2048 gnome-break-timer gnome-games gnome-packagekit gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools gwget latexila liferea-fixed lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse-nautilus shotwell snappy-player sound-juicer transmageddon transmission-gtk vinagre)
+	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix balsa bijiben brasero buoh deja-dup d-feet easytag empathy eog-plugins evolution-rss filemanager-actions gbrainy gconf-editor geary gedit-code-assistance gedit-plugins giggle glabels glade glom gnac gnome-2048 gnome-break-timer gnome-games gnome-packagekit gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools gwget latexila liferea lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse seahorse-nautilus shotwell snappy-player sound-juicer transmageddon transmission-gtk vinagre)
 }
 
 package_mate-core-meta() {
@@ -97,7 +97,7 @@ package_lxde-apps-meta() {
 package_lxqt-core-meta() {
 	pkgdesc="LXQt core metapackage"
 	groups=(city-meta)
-	depends=(breeze-icons lxqt-about lxqt-admin lxqt-common lxqt-config lxqt-globalkeys lxqt-notificationd lxqt-openssh-askpass lxqt-panel lxqt-policykit lxqt-powermanagement lxqt-qtplugin lxqt-runner lxqt-session lxqt-sudo obconf-qt openbox pcmanfm-qt)
+	depends=(breeze-icons lxqt-about lxqt-admin lxqt-config lxqt-globalkeys lxqt-notificationd lxqt-openssh-askpass lxqt-panel lxqt-policykit lxqt-powermanagement lxqt-qtplugin lxqt-runner lxqt-session lxqt-sudo lxqt-themes obconf-qt openbox pcmanfm-qt)
 }
 
 package_sugar-meta() {

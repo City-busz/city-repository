@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=32
+pkgrel=33
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -33,8 +33,8 @@ source=(city.gschema.override
         50-gnome.conf
         00-journal-size.conf
         gnome-classic-wayland.desktop)
-sha256sums=('ea0403d3f838024a60f60b6bf4ade6cc77410b68bd4e77059fd7c4c77c0c555f'
-            '4fb837ddc57cb753ea3756265c33c19af174d2df5570858d8c3e55e70b330f34'
+sha256sums=('26acc3b946e280ee624a25f693e89e56b0bf7e36927a43032bd7eef5638ca5bb'
+            'faaafd4f1ca4711d3e3d56df06da3a5cf1bcf456e76a576d520b9d74e0ad7066'
             '78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8'
             '09c3801fcc89d7a5eba5bc80e849a8baa60b5d266e25ea2f77d0c7c3bc28c523'
             'aa8d6f24dc0c7c65adcb3f47c7f07d7b52cc83023eeb89ce0d7ffb6d81783e82'
@@ -56,7 +56,8 @@ sha256sums=('ea0403d3f838024a60f60b6bf4ade6cc77410b68bd4e77059fd7c4c77c0c555f'
             '8b24bbe15567435bb8c5456f0feacef570f03d695d627d5f28354a4f1c567651'
             'ca4ae88fbfd47f53a69b7d765571e5bf104581f4920f3eb56507684343d5aa0a'
             '5cff3b91e788fd250266e8673d6f6457e656c031065c56a793881b043cd7f681'
-            'd4f15249b3d58ff96223c3c9e33d8490a4d82f1a4277e5badcc26aa80fa86167')
+            'd4f15249b3d58ff96223c3c9e33d8490a4d82f1a4277e5badcc26aa80fa86167'
+            'c26dccf13cb324e2bc3629602306ad0da6e3ff8e9a25e38d9c7dd51c79c81d55')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"

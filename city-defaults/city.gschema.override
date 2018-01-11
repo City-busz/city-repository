@@ -10,9 +10,7 @@ font-name='Cantarell 11'
 titlebar-font='Cantarell Bold 11'
 
 [org.cinnamon.settings-daemon.peripherals.touchpad]
-horizontal-two-finger-scrolling=true
 natural-scroll=true
-vertical-edge-scrolling=false
 
 [org.cinnamon.settings-daemon.plugins.power]
 lock-on-suspend=true

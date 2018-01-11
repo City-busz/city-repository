@@ -1,11 +1,18 @@
 pkgbase = python-matplotlib-small
 	pkgdesc = A python plotting library, making publication quality plots
-	pkgver = 2.1.0
+	pkgver = 2.1.1
 	pkgrel = 1
 	url = http://matplotlib.org
 	arch = i686
 	arch = x86_64
 	license = custom
+	options = !strip
+	source_i686 = https://mirror.archlinux32.org/i686/community/python-matplotlib-2.1.1-1.0-i686.pkg.tar.xz
+	md5sums_i686 = b05e2864c80e92280be2e988ea993cd9
+	source_x86_64 = https://archive.archlinux.org/packages/p/python-matplotlib/python-matplotlib-2.1.1-1-x86_64.pkg.tar.xz
+	md5sums_x86_64 = b678245b5b10e2a05a71d9280fc063c8
+
+pkgname = python-matplotlib-small
 	depends = python-pytz
 	depends = python-numpy
 	depends = python-dateutil
@@ -20,13 +27,6 @@ pkgbase = python-matplotlib-small
 	optdepends = texlive-bin: usetex dependencies
 	optdepends = python-tornado: for webagg backend
 	optdepends = python-pillow: for reading/saving .jpg/bmp/tiff files
-	provides = python-matplotlib=2.1.0
+	provides = python-matplotlib=2.1.1
 	conflicts = python-matplotlib
-	options = !strip
-	source_i686 = https://archive.archlinux.org/packages/p/python-matplotlib/python-matplotlib-2.1.0-1-i686.pkg.tar.xz
-	md5sums_i686 = aa6be67508bc473ea44ca36b54814205
-	source_x86_64 = https://archive.archlinux.org/packages/p/python-matplotlib/python-matplotlib-2.1.0-1-x86_64.pkg.tar.xz
-	md5sums_x86_64 = d39e755c709c42d75620994514335587
-
-pkgname = python-matplotlib-small
 

@@ -1,25 +1,27 @@
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 pkgname=devtools-city
 pkgver=1
-pkgrel=6
+pkgrel=7
 pkgdesc="Tools for György Balló package maintainer"
 arch=('any')
-url="http://pkgbuild.com/~bgyorgy/city.html"
+url="https://pkgbuild.com/~bgyorgy/city.html"
 license=('GPL')
 depends=('devtools')
 optdepends=('mono: for find-monodeps'
             'python2-snakefood: for find-pythondeps')
 source=(find-monodeps.sh
         find-pythondeps.sh
+        makepkg-i686.conf
         pacman-city.conf
-        pacman-ayatana.conf
+        pacman-city32.conf
         citypkg.sh
         aurco.sh)
 md5sums=('dba48cb20004259876d680a8ebaf6dc7'
          '34f935dc7c3577911970581e6d49a883'
-         '189cf7eec19372a452789afadf6a33e0'
-         '31a74880863ce044060859a1217c291b'
-         'e74faa28717dd8032922d9313ca54247'
+         '718b850382937e92372995ecfbc688eb'
+         'b9de8d68a692612bb425283754b4f757'
+         '8d14a24b047a7e6235db75cbd2334249'
+         '494abac3ac1217f700cad45729353468'
          'bccb46797dbc2c7a4994f0270330ee8d')
 
 package() {
@@ -27,16 +29,13 @@ package() {
 
   install -Dm755 "$srcdir/find-monodeps.sh" "$pkgdir/usr/bin/find-monodeps"
   install -Dm755 "$srcdir/find-pythondeps.sh" "$pkgdir/usr/bin/find-pythondeps"
+  install -Dm644 makepkg-i686.conf "$pkgdir/usr/share/devtools/makepkg-i686.conf"
 
   install -Dm644 pacman-city.conf "$pkgdir/usr/share/devtools/pacman-city.conf"
-  ln -s archbuild "$pkgdir/usr/bin/city-i686-build"
+  install -Dm644 pacman-city32.conf "$pkgdir/usr/share/devtools/pacman-city32.conf"
   ln -s archbuild "$pkgdir/usr/bin/city-x86_64-build"
-
-  install -Dm644 pacman-ayatana.conf "$pkgdir/usr/share/devtools/pacman-ayatana.conf"
-  ln -s archbuild "$pkgdir/usr/bin/ayatana-i686-build"
-  ln -s archbuild "$pkgdir/usr/bin/ayatana-x86_64-build"
+  ln -s archbuild "$pkgdir/usr/bin/city32-i686-build"
 
   install -Dm755 citypkg.sh "$pkgdir/usr/bin/citypkg"
-  ln -s citypkg "$pkgdir/usr/bin/ayatanapkg"
   install -Dm755 aurco.sh "$pkgdir/usr/bin/aurco"
 }

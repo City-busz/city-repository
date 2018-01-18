@@ -119,6 +119,7 @@ text/x-java=org.gnome.gedit.desktop
 text/x-javascript=org.gnome.gedit.desktop
 text/x-m4=org.gnome.gedit.desktop
 text/x-makefile=org.gnome.gedit.desktop
+text/x-markdown=org.gnome.gedit.desktop
 text/x-moc=org.gnome.gedit.desktop
 text/x-pascal=org.gnome.gedit.desktop
 text/x-patch=org.gnome.gedit.desktop

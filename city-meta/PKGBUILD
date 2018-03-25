@@ -1,7 +1,8 @@
 # $Id$
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 
-pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta gnome-world-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta)
+pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta gnome-world-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta
+         web-browsers-meta download-managers-meta email-clients-meta instant-messaging-clients-meta news-readers-meta remote-destkop-clients)
 pkgbase=city-meta
 pkgver=1
 pkgrel=12
@@ -67,7 +68,7 @@ package_gnome-flashback-meta() {
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix balsa bijiben brasero buoh deja-dup d-feet easytag empathy eog-plugins evolution-rss filemanager-actions gbrainy gconf-editor geary gedit-code-assistance gedit-plugins giggle glabels glade glom gnac gnome-2048 gnome-break-timer gnome-games gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools gwget latexila liferea lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse seahorse-nautilus shotwell snappy-player sound-juicer transmageddon transmission-gtk vinagre)
+	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix bijiben brasero buoh deja-dup d-feet easytag eog-plugins evolution-rss filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glabels glade glom gnac gnome-2048 gnome-break-timer gnome-games gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools latexila lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse seahorse-nautilus shotwell snappy-player sound-juicer transmageddon)
 }
 
 package_mate-core-meta() {
@@ -104,4 +105,40 @@ package_sugar-meta() {
 	pkgdesc="Sugar metapackage"
 	groups=(city-meta)
 	depends=(sugar sugar-activity-browse sugar-activity-calculate sugar-activity-chat sugar-activity-clock sugar-activity-imageviewer sugar-activity-jukebox sugar-activity-log sugar-activity-paint sugar-activity-pippy sugar-activity-read sugar-activity-terminal sugar-activity-write)
+}
+
+package_web-browsers-meta() {
+	pkgdesc="Web browsers metapackage"
+	groups=(city-meta)
+	depends=(firefox-i18n-hu firefox-developer-edition-i18n-hu seamonkey chromium opera eric falkon konqueror qutebrowser min eolie epiphany midori surf dillo links netsurf)
+}
+
+package_download-managers-meta() {
+	pkgdesc="Download managers metapackage"
+	groups=(city-meta)
+	depends=(gwget kget steadyflow uget transmission-gtk)
+}
+
+package_email-clients-meta() {
+	pkgdesc="Email clients metapackage"
+	groups=(city-meta)
+	depends=(balsa claws-mail evolution-rss geary gnubiff kmail mailnag-goa-plugin seamonkey sylpheed thunderbird trojita)
+}
+
+package_instant-messaging-clients-meta() {
+	pkgdesc="Instant messaging clients metapackage"
+	groups=(city-meta)
+	depends=(empathy kopete pidgin smuxi thunderbird yate hexchat konversation polari quassel-monolithic gajim licq psi ekiga ring-gnome fractal riot-desktop qtox utox caprine messengerfordesktop mumble teamspeak3 telegram-desktop)
+}
+
+package_news-readers-meta() {
+	pkgdesc="News readers metapackage"
+	groups=(city-meta)
+	depends=(akregator liferea pan choqok)
+}
+
+package_remote-destkop-clients-meta() {
+	pkgdesc="Remote desktop clients metapackage"
+	groups=(city-meta)
+	depends=(gnome-boxes krdc remmina tigervnc vinagre x2goclient)
 }

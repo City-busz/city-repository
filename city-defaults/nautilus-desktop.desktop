@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Desktop Icons
-Comment=Classic session desktop file for desktop icons
-Exec=nautilus-desktop --force
-OnlyShowIn=Budgie;MATE;X-Cinnamon;
-NoDisplay=true

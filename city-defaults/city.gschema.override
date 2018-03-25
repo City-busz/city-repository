@@ -30,6 +30,9 @@ clock-show-date=true
 natural-scroll=true
 tap-to-click=true
 
+[org.gnome.desktop.screensaver]
+picture-uri='file:///usr/share/backgrounds/gnome/adwaita-timed.xml'
+
 [org.gnome.desktop.wm.keybindings]
 show-desktop=['<Super>D']
 
@@ -115,10 +118,7 @@ sleep-display-battery=300
 sleep-display-ups=300
 
 [org.mate.session.required-components]
-filemanager='nautilus-mate'
+filemanager='nemo-desktop'
 
 [org.mate.sound]
 event-sounds=true
-
-[org.nemo.desktop]
-show-desktop-icons=false

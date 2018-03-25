@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=33
+pkgrel=34
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -15,7 +15,7 @@ source=(city.gschema.override
         mate-power-manager-lxde.desktop
         mate-screensaver-lxde.desktop
         mate-volume-control-applet-lxde.desktop
-        nautilus-desktop.desktop
+        nemo-desktop.desktop
         vncconfig.desktop
         xcompmgr.desktop
         Adwaita-metacity-theme-2.xml
@@ -33,14 +33,14 @@ source=(city.gschema.override
         50-gnome.conf
         00-journal-size.conf
         gnome-classic-wayland.desktop)
-sha256sums=('26acc3b946e280ee624a25f693e89e56b0bf7e36927a43032bd7eef5638ca5bb'
-            'faaafd4f1ca4711d3e3d56df06da3a5cf1bcf456e76a576d520b9d74e0ad7066'
+sha256sums=('d2180c3d2ce76a7c1a999861811349b53c070bd009552619bdf155ac7705b2dd'
+            '0a0a0df00aecb34aea4c40f51bbdfde214721a2e256ec26d0b672a528daf9889'
             '78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8'
             '09c3801fcc89d7a5eba5bc80e849a8baa60b5d266e25ea2f77d0c7c3bc28c523'
             'aa8d6f24dc0c7c65adcb3f47c7f07d7b52cc83023eeb89ce0d7ffb6d81783e82'
             'cec651f0200c16af6e19e4c0f053f01ec2ef6f590591eacb869ef127885bf51d'
             'd08a4510d3705c23867127241688ce99f238931d12e0baa56ab696acf66e10de'
-            '8747e57fcbc24d845b8ae7f670fc8b799b97393133cffcd49173eb1270a80bb8'
+            '4558f3b9a0f1a3a12ea4237a9deb913ad795513ceeaa89716a727fdd72a6ec35'
             'f84e1e21daa713d6bad840bb9ab8acbc68360667608ab90554060dfe62d92d74'
             'a25b667408103b53690a61b8f5f082e31f1a3f0b9b3289ce9685bdad5032586b'
             'a037585f85107a8845b6ae7479373f09a552120af9e2d3faf9118be462c5cda2'
@@ -55,7 +55,7 @@ sha256sums=('26acc3b946e280ee624a25f693e89e56b0bf7e36927a43032bd7eef5638ca5bb'
             'f6eba806fa06d1d978dafa9400cc2a0cb9948b7ef4b3bbf62c5eb9048378ac23'
             '8b24bbe15567435bb8c5456f0feacef570f03d695d627d5f28354a4f1c567651'
             'ca4ae88fbfd47f53a69b7d765571e5bf104581f4920f3eb56507684343d5aa0a'
-            '5cff3b91e788fd250266e8673d6f6457e656c031065c56a793881b043cd7f681'
+            'd31484fd60deb44c6bc374b3b2f18e3aa2e0a50f0115a9bb7a7e46697ab3aecc'
             'd4f15249b3d58ff96223c3c9e33d8490a4d82f1a4277e5badcc26aa80fa86167'
             'c26dccf13cb324e2bc3629602306ad0da6e3ff8e9a25e38d9c7dd51c79c81d55')
 
@@ -67,7 +67,7 @@ package() {
   install -Dm644 mate-power-manager-lxde.desktop "$pkgdir/etc/xdg/autostart/mate-power-manager-lxde.desktop"
   install -Dm644 mate-screensaver-lxde.desktop "$pkgdir/etc/xdg/autostart/mate-screensaver-lxde.desktop"
   install -Dm644 mate-volume-control-applet-lxde.desktop "$pkgdir/etc/xdg/autostart/mate-volume-control-applet-lxde.desktop"
-  install -Dm644 nautilus-desktop.desktop "$pkgdir/etc/xdg/autostart/nautilus-desktop.desktop"
+  install -Dm644 nemo-desktop.desktop "$pkgdir/etc/xdg/autostart/nemo-desktop.desktop"
   install -Dm644 vncconfig.desktop "$pkgdir/etc/xdg/autostart/vncconfig.desktop"
   install -Dm644 xcompmgr.desktop "$pkgdir/etc/xdg/autostart/xcompmgr.desktop"
   install -Dm644 Adwaita-metacity-theme-2.xml "$pkgdir/usr/share/themes/Adwaita/metacity-1/metacity-theme-2.xml"

@@ -1,16 +1,16 @@
 pkgbase = abiword-small
 	pkgdesc = Fully-featured word processor
 	pkgver = 3.0.2
-	pkgrel = 6
+	pkgrel = 7
 	url = http://www.abisource.com
 	arch = i686
 	arch = x86_64
 	license = GPL
 	options = !strip
-	source_i686 = https://mirror.archlinux32.org/i686/extra/abiword-3.0.2-6.0-i686.pkg.tar.xz
-	sha256sums_i686 = 3a1ac0a04540f8815766202c84f09bc4890e9faff411a864f2e2b804d60499d7
-	source_x86_64 = https://archive.archlinux.org/packages/a/abiword/abiword-3.0.2-6-x86_64.pkg.tar.xz
-	sha256sums_x86_64 = b07356f56c572f0b939be9f310c552a90ca5721f066dcd0756f73d6ea31f90f3
+	source_i686 = https://mirror.archlinux32.org/i686/extra/abiword-3.0.2-7.0-i686.pkg.tar.xz
+	sha256sums_i686 = ac8e245d364deb04e08ebafd882ae271c1ccd6a30da52fb6c88354a04b865cac
+	source_x86_64 = https://archive.archlinux.org/packages/a/abiword/abiword-3.0.2-7-x86_64.pkg.tar.xz
+	sha256sums_x86_64 = 750b8fe080777eba653119324e06ecbc71b57e2ad0548d5a70b1e770610265cc
 
 pkgname = abiword-small
 	depends = enchant

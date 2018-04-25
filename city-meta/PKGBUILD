@@ -50,7 +50,7 @@ package_gnome-core-utilities-meta() {
 package_gnome-apps-meta() {
 	pkgdesc="GNOME applications metapackage"
 	groups=(city-meta)
-	depends=(accerciser dconf-editor devhelp evolution ghex gitg gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-nettool gnome-recipes gnome-sound-recorder gnome-tweak-tool nautilus-sendto polari sysprof)
+	depends=(accerciser bijiben dconf-editor devhelp evolution ghex gitg gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-nettool gnome-recipes gnome-sound-recorder gnome-tweak-tool gnome-usage nautilus-sendto polari sysprof)
 }
 
 package_gnome-games-meta() {
@@ -62,13 +62,13 @@ package_gnome-games-meta() {
 package_gnome-flashback-meta() {
 	pkgdesc="GNOME Flashback, Budgie and Cinnamon metapackage"
 	groups=(city-meta)
-	depends=(blueberry budgie-desktop cinnamon gnome-applets gnome-flashback gnome-panel gnome-screensaver lightdm-gtk-greeter metacity network-manager-applet sensors-applet system-config-printer)
+	depends=(blueberry budgie-desktop cinnamon cinnamon-translations gnome-applets gnome-flashback gnome-panel gnome-screensaver lightdm-gtk-greeter metacity network-manager-applet sensors-applet system-config-printer)
 }
 
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix bijiben brasero buoh deja-dup d-feet easytag eog-plugins evolution-rss filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glabels glade glom gnac gnome-2048 gnome-break-timer gnome-games gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools latexila lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse seahorse-nautilus shotwell snappy-player sound-juicer transmageddon)
+	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix brasero buoh deja-dup d-feet easytag eog-plugins evolution-rss filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glabels glade glom gnac gnome-2048 gnome-break-timer gnome-games gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools gnome-latex lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse seahorse-nautilus shotwell snappy-player sound-juicer transmageddon)
 }
 
 package_mate-core-meta() {

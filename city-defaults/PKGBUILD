@@ -90,6 +90,6 @@ package() {
   install -Dm644 50-gnome.conf "$pkgdir/etc/lightdm/lightdm-gtk-greeter.conf.d/50-gnome.conf"
   install -Dm644 00-journal-size.conf "$pkgdir/etc/systemd/journald.conf.d/00-journal-size.conf"
   install -Dm644 gnome-classic-wayland.desktop "$pkgdir/usr/share/wayland-sessions/gnome-classic-wayland.desktop"
-  install -Dm644 78-mm-whitelist-internal-modem.rules "$pkgdir/lib/udev/rules.d/78-mm-whitelist-internal-modem.rules"
+  install -Dm644 78-mm-whitelist-internal-modem.rules "$pkgdir/usr/lib/udev/rules.d/78-mm-whitelist-internal-modem.rules"
   install -Dm644 org.gnome.ScreenSaver.service "$pkgdir/usr/share/dbus-1/services/org.gnome.ScreenSaver.service"
 }

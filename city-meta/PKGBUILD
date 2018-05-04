@@ -128,7 +128,7 @@ package_email-clients-meta() {
 package_instant-messaging-clients-meta() {
 	pkgdesc="Instant messaging clients metapackage"
 	groups=(city-meta)
-	depends=(empathy kopete pidgin-libnotify smuxi yate hexchat konversation polari quassel-monolithic gajim licq psi ekiga ring-gnome fractal riot-desktop qtox utox caprine messengerfordesktop mumble telegram-desktop)
+	depends=(empathy kopete pidgin-libnotify smuxi yate hexchat konversation polari quassel-monolithic gajim psi ekiga ring-gnome fractal riot-desktop qtox utox caprine licq messengerfordesktop mumble telegram-desktop)
 }
 
 package_news-readers-meta() {

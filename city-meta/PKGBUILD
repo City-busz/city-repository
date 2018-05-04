@@ -110,7 +110,7 @@ package_sugar-meta() {
 package_web-browsers-meta() {
 	pkgdesc="Web browsers metapackage"
 	groups=(city-meta)
-	depends=(firefox-i18n-hu firefox-developer-edition-i18n-hu seamonkey chromium eric falkon konqueror qutebrowser min eolie epiphany midori surf dillo links netsurf)
+	depends=(firefox-i18n-hu firefox-developer-edition-i18n-hu seamonkey chromium eric falkon konqueror min eolie epiphany midori dillo links netsurf)
 }
 
 package_download-managers-meta() {

@@ -116,7 +116,7 @@ package_web-browsers-meta() {
 package_download-managers-meta() {
 	pkgdesc="Download managers metapackage"
 	groups=(city-meta)
-	depends=(gwget kget mldonkey steadyflow uget owncloud-client sparkleshare filezilla gftp deluge ktorrent qbittorrent transmission-gtk transmission-qt transmission-remote-gtk amule nicotine+)
+	depends=(gwget kget steadyflow uget owncloud-client sparkleshare filezilla gftp deluge ktorrent qbittorrent transmission-gtk transmission-qt transmission-remote-gtk)
 }
 
 package_email-clients-meta() {

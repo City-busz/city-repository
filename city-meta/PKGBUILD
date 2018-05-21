@@ -237,5 +237,5 @@ package_webcam-meta() {
 package_metadata-meta() {
 	pkgdesc="Collection managers, media servers, metadata tools and mobile phone managers metapackage"
 	groups=(city-meta)
-	depends=(tellico vmoviedb rygel mediaelch mediainfo-gui gnokii gnome-phone-manager wammu)
+	depends=(mediaelch tellico vmoviedb rygel mediainfo-gui gnokii gnome-phone-manager wammu)
 }

@@ -2,10 +2,11 @@
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta gnome-world-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta
-         web-browsers-meta download-managers-meta email-clients-meta instant-messaging-clients-meta news-readers-meta remote-destkop-clients-meta)
+         web-browsers-meta download-managers-meta email-clients-meta instant-messaging-clients-meta news-readers-meta remote-destkop-clients-meta
+         image-viewers-meta image-organizers-meta raster-graphics-editors-meta photo-editors-meta vector-graphics-editors-meta color-pickers-meta screenshot-meta audio-players-meta audio-tag-editors-meta volume-controls-meta video-players-meta video-editors-meta subtitle-meta screencast-meta webcam-meta metadata-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=14
+pkgrel=15
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -68,7 +69,7 @@ package_gnome-flashback-meta() {
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix brasero buoh deja-dup d-feet easytag eog-plugins filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glabels glade glom gnac gnome-2048 gnome-break-timer gnome-games gnome-phone-manager gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gthumb gtranslator gucharmap gupnp-tools gnome-latex lollypop meld moserial nautilus-image-converter nemiver ocrfeeder pitivi python-matplotlib-small regexxer rhythmbox seahorse seahorse-nautilus shotwell snappy-player sound-juicer transmageddon)
+	depends=(abiword-small aisleriot alacarte almanah anjuta anjuta-extras atomix brasero buoh deja-dup d-feet eog-plugins filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glabels glade glom gnac gnome-2048 gnome-break-timer gnome-games gnome-power-manager gnome-search-tool gnome-system-log gnote gnumeric goobox gtranslator gucharmap gupnp-tools gnome-latex meld moserial nautilus-image-converter nemiver ocrfeeder python-matplotlib-small regexxer seahorse seahorse-nautilus sound-juicer)
 }
 
 package_mate-core-meta() {
@@ -141,4 +142,100 @@ package_remote-destkop-clients-meta() {
 	pkgdesc="Remote desktop clients metapackage"
 	groups=(city-meta)
 	depends=(gnome-boxes krdc remmina tigervnc vinagre x2goclient)
+}
+
+package_image-viewers-meta() {
+	pkgdesc="Image viewers metapackage"
+	groups=(city-meta)
+	depends=(eog eom geeqie gpicview-gtk3 gwenview fbida lximage-qt nomacs ristretto viewnior)
+}
+
+package_image-organizers-meta() {
+	pkgdesc="Image organizers metapackage"
+	groups=(city-meta)
+	depends=(deepin-image-viewer digikam gnome-photos gthumb kphotoalbum pantheon-photos shotwell converseen)
+}
+
+package_raster-graphics-editors-meta() {
+	pkgdesc="Raster graphics editors metapackage"
+	groups=(city-meta)
+	depends=(deepin-draw gimp kolourpaint krita mtpaint mypaint pinta)
+}
+
+package_photo-editors-meta() {
+	pkgdesc="Photo editors metapackage"
+	groups=(city-meta)
+	depends=(darktable hugin luminancehdr gimp-nufraw rawtherapee)
+}
+
+package_vector-graphics-editors-meta() {
+	pkgdesc="Vector graphics editors and 3D computer graphics tools metapackage"
+	groups=(city-meta)
+	depends=(dia inkscape calligra libreoffice-fresh sk1 xfig blender sweethome3d wings3d)
+}
+
+package_color-pickers-meta() {
+	pkgdesc="Color pickers metapackage"
+	groups=(city-meta)
+	depends=(agave deepin-picker gcolor2 gpick kcolorchooser mate-desktop)
+}
+
+package_screenshot-meta() {
+	pkgdesc="Screenshot tools metapackage"
+	groups=(city-meta)
+	depends=(deepin-screenshot flameshot gnome-screenshot mate-utils spectacle xfce4-screenshooter)
+}
+
+package_audio-players-meta() {
+	pkgdesc="Audio players metapackage"
+	groups=(city-meta)
+	depends=(clementine gnome-music lollypop muine pantheon-music pragha quodlibet rhythmbox amarok juk babe deepin-music elisa audacious deadbeef gogglesmm lxmusic-gtk3 qmmp)
+}
+
+package_audio-tag-editors-meta() {
+	pkgdesc="Audio tag editors metapackage"
+	groups=(city-meta)
+	depends=(easytag kid3 mp3info picard puddletag)
+}
+
+package_volume-controls-meta() {
+	pkgdesc="Volume controls metapackage"
+	groups=(city-meta)
+	depends=(gnome-alsamixer mate-media volumeicon volwheel paprefs pavucontrol pavucontrol-qt)
+}
+
+package_video-players-meta() {
+	pkgdesc="Video players metapackage"
+	groups=(city-meta)
+	depends=(totem pantheon-videos parole snappy-player xnoise baka-mplayer deepin-movie gnome-mpv mpv smplayer gnome-mplayer kmplayer dragon kaffeine kodi minitube qtav tvtime vlc xine-ui)
+}
+
+package_video-editors-meta() {
+	pkgdesc="Video converters and editors; DVD authoring and ripping tools metapackage"
+	groups=(city-meta)
+	depends=(handbrake mkvtoolnix-gui transmageddon avidemux-qt blender cinelerra-cv kdenlive openshot pitivi devede ogmrip)
+}
+
+package_subtitle-meta() {
+	pkgdesc="Subtitle editors metapackage"
+	groups=(city-meta)
+	depends=(aegisub gaupol gnome-subtitles subdownloader subtitleeditor)
+}
+
+package_screencast-meta() {
+	pkgdesc="Screencast tools metapackage"
+	groups=(city-meta)
+	depends=(deepin-screen-recorder obs-studio recorditnow gtk-recordmydesktop qt-recordmydesktop simplescreenrecorder)
+}
+
+package_webcam-meta() {
+	pkgdesc="Webcam tools metapackage"
+	groups=(city-meta)
+	depends=(cheese guvcview kamoso v4l2ucp v4l-utils)
+}
+
+package_metadata-meta() {
+	pkgdesc="Collection managers, media servers, metadata tools and mobile phone managers metapackage"
+	groups=(city-meta)
+	depends=(tellico vmoviedb rygel mediaelch mediainfo-gui gnokii gnome-phone-manager wammu)
 }

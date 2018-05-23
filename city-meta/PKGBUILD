@@ -123,7 +123,7 @@ package_download-managers-meta() {
 package_email-clients-meta() {
 	pkgdesc="Email clients metapackage"
 	groups=(city-meta)
-	depends=(balsa claws-mail evolution-rss geary gnubiff kmail mailnag-goa-plugin sylpheed thunderbird-i18n-hu trojita)
+	depends=(balsa claws-mail evolution-rss geary gnubiff kmail kube mailnag-goa-plugin sylpheed thunderbird-i18n-hu trojita)
 }
 
 package_instant-messaging-clients-meta() {

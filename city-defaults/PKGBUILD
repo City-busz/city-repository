@@ -3,7 +3,7 @@
 
 pkgname=city-defaults
 pkgver=1
-pkgrel=35
+pkgrel=36
 pkgdesc="City-busz's default configuration"
 arch=('any')
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -34,7 +34,7 @@ source=(city.gschema.override
         00-journal-size.conf
         gnome-classic-wayland.desktop
         78-mm-whitelist-internal-modem.rules
-        org.gnome.ScreenSaver.service)
+        org.mate.NullScreenSaver.service)
 sha256sums=('d2180c3d2ce76a7c1a999861811349b53c070bd009552619bdf155ac7705b2dd'
             '0a0a0df00aecb34aea4c40f51bbdfde214721a2e256ec26d0b672a528daf9889'
             '78870dc85bc3a5d6d1434cc8a4ce4895497f86590f92a5d0ff12f2c27dfd2ef8'
@@ -61,7 +61,7 @@ sha256sums=('d2180c3d2ce76a7c1a999861811349b53c070bd009552619bdf155ac7705b2dd'
             'd4f15249b3d58ff96223c3c9e33d8490a4d82f1a4277e5badcc26aa80fa86167'
             'c26dccf13cb324e2bc3629602306ad0da6e3ff8e9a25e38d9c7dd51c79c81d55'
             'd334cb03d0716aedc080e51388fa902e679fe1bd68728b88f278c4da19ea6693'
-            'f4474c4b25c2577bf6f6eadf328150ab1aa60a8557480304a372ff97c8680430')
+            '35472c9b8d7695e947c8850858807ab27442bf66aa15ded5ff2dfc7c489f9928')
 
 package() {
   install -Dm644 city.gschema.override "$pkgdir/usr/share/glib-2.0/schemas/city.gschema.override"
@@ -91,8 +91,8 @@ package() {
   install -Dm644 00-journal-size.conf "$pkgdir/etc/systemd/journald.conf.d/00-journal-size.conf"
   install -Dm644 gnome-classic-wayland.desktop "$pkgdir/usr/share/wayland-sessions/gnome-classic-wayland.desktop"
   install -Dm644 78-mm-whitelist-internal-modem.rules "$pkgdir/usr/lib/udev/rules.d/78-mm-whitelist-internal-modem.rules"
-  install -Dm644 org.gnome.ScreenSaver.service "$pkgdir/usr/share/dbus-1/services/org.gnome.ScreenSaver.service"
-  install -dm755 /usr/share/{soundfonts,sounds/sf2}
-  ln -s ../../soundfonts/FluidR3_GM.sf2 /usr/share/sounds/sf2/FluidR3_GM.sf2
-  ln -s FluidR3_GM.sf2 /usr/share/soundfonts/default.sf2
+  install -Dm644 org.mate.NullScreenSaver.service "$pkgdir/usr/share/dbus-1/services/org.mate.NullScreenSaver.service"
+  install -dm755 "$pkgdir"/usr/share/{soundfonts,sounds/sf2}
+  ln -s ../../soundfonts/FluidR3_GM.sf2 "$pkgdir/usr/share/sounds/sf2/FluidR3_GM.sf2"
+  ln -s FluidR3_GM.sf2 "$pkgdir/usr/share/soundfonts/default.sf2"
 }

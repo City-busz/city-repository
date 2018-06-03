@@ -6,7 +6,7 @@ pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-
          image-viewers-meta image-organizers-meta raster-graphics-editors-meta photo-editors-meta vector-graphics-editors-meta color-pickers-meta screenshot-meta
          audio-players-meta mpd-clients-meta audio-tag-editors-meta audio-editors-meta audio-workstations-meta scorewriters-meta synthesizers-meta music-trackers-meta volume-controls-meta
          video-players-meta video-editors-meta subtitle-meta screencast-meta webcam-meta metadata-meta mobile-device-managers-meta optical-disk-rippers-meta optical-disk-burners-meta
-         office-meta database-managers-meta latex-editors-meta)
+         office-meta database-managers-meta latex-editors-meta ebook-readers-meta document-readers-meta scanning-meta)
 pkgbase=city-meta
 pkgver=1
 pkgrel=16
@@ -72,7 +72,7 @@ package_gnome-flashback-meta() {
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(aisleriot alacarte almanah anjuta anjuta-extras atomix buoh deja-dup d-feet eog-plugins filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glade gnome-2048 gnome-break-timer gnome-games gnome-power-manager gnome-search-tool gnome-system-log gnote gtranslator gucharmap gupnp-tools meld moserial nautilus-image-converter nemiver ocrfeeder regexxer seahorse seahorse-nautilus)
+	depends=(aisleriot alacarte almanah anjuta anjuta-extras atomix deja-dup d-feet eog-plugins filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glade gnome-2048 gnome-break-timer gnome-games gnome-power-manager gnome-search-tool gnome-system-log gnote gtranslator gucharmap gupnp-tools meld moserial nautilus-image-converter nemiver regexxer seahorse seahorse-nautilus)
 }
 
 package_mate-core-meta() {
@@ -313,4 +313,22 @@ package_latex-editors-meta() {
 	pkgdesc="Latex editors metapackage"
 	groups=(city-meta)
 	depends=(gnome-latex gummi kile lyx texmacs texmaker texstudio kbibtex)
+}
+
+package_ebook-readers-meta() {
+	pkgdesc="E-book readers metapackage"
+	groups=(city-meta)
+	depends=(bookworm calibre fbreader sigil kchmviewer xchm)
+}
+
+package_document-readers-meta() {
+	pkgdesc="Document readers metapackage"
+	groups=(city-meta)
+	depends=(atril djview epdfview evince gnome-documents gv okular pdfmod pdfsam pdfshuffler qpdfview xournal xpdf xreader buoh mcomix)
+}
+
+package_scanning-meta() {
+	pkgdesc="Scanning and OCR metapackage"
+	groups=(city-meta)
+	depends=(gscan2pdf ocrfeeder simple-scan skanlite xsane scantailor)
 }

@@ -6,10 +6,10 @@ pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-
          image-viewers-meta image-organizers-meta raster-graphics-editors-meta photo-editors-meta vector-graphics-editors-meta color-pickers-meta screenshot-meta
          audio-players-meta mpd-clients-meta audio-tag-editors-meta audio-editors-meta audio-workstations-meta scorewriters-meta synthesizers-meta music-trackers-meta volume-controls-meta
          video-players-meta video-editors-meta subtitle-meta screencast-meta webcam-meta metadata-meta mobile-device-managers-meta optical-disk-rippers-meta optical-disk-burners-meta
-         office-meta database-managers-meta latex-editors-meta ebook-readers-meta document-readers-meta scanning-meta)
+         text-editors-meta office-meta database-tools-meta markup-editors-meta ebook-readers-meta document-readers-meta scanning-meta notes-meta dictionaries-meta translation-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=16
+pkgrel=17
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -18,7 +18,7 @@ license=('GPL')
 package_base-meta() {
 	pkgdesc="Base metapackage"
 	groups=(city-meta)
-	depends=(bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip inetutils iproute2 iputils jfsutils less licenses linux logrotate lvm2 man-db man-pages mdadm nano netctl pacman pciutils pcmciautils perl procps-ng psmisc reiserfsprogs s-nail sed shadow sysfsutils systemd-sysvcompat tar texinfo usbutils util-linux vi which xfsprogs)
+	depends=(bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip inetutils iproute2 iputils jfsutils less licenses linux logrotate lvm2 man-db man-pages mdadm nano netctl pacman pciutils perl procps-ng psmisc reiserfsprogs s-nail sed shadow sysfsutils systemd-sysvcompat tar texinfo usbutils util-linux vi which xfsprogs)
 }
 
 package_base-devel-meta() {
@@ -30,13 +30,13 @@ package_base-devel-meta() {
 package_base-services-meta() {
 	pkgdesc="Base services metapackage"
 	groups=(city-meta)
-	depends=(alsa-tools alsa-utils avahi bluez cups dosfstools gdb gpsd grub intel-ucode lm_sensors mesa-demos modemmanager networkmanager nfs-utils nss-mdns ntfs-3g openssh os-prober pkgstats pulseaudio-alsa smartmontools sudo tigervnc usb_modeswitch xorg-server)
+	depends=(alsa-utils avahi bluez cups dosfstools gdb gpsd grub intel-ucode lm_sensors mesa-demos modemmanager networkmanager nfs-utils nss-mdns ntfs-3g openssh os-prober pkgstats pulseaudio-alsa smartmontools sudo tigervnc usb_modeswitch xorg-server)
 }
 
 package_base-data-meta() {
 	pkgdesc="Base codecs and data metapackage"
 	groups=(city-meta)
-	depends=(aspell-en aspell-hu gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en_US hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu purple-facebook purple-skypeweb soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-salut ttf-dejavu ttf-freefont ttf-liberation ttf-symbola)
+	depends=(aspell-en aspell-hu gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en_US hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu noto-fonts noto-fonts-emoji purple-facebook purple-skypeweb soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-salut ttf-dejavu ttf-freefont ttf-liberation)
 }
 
 package_gnome-core-shell-meta() {
@@ -72,7 +72,7 @@ package_gnome-flashback-meta() {
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(aisleriot alacarte almanah anjuta anjuta-extras atomix deja-dup d-feet eog-plugins filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glade gnome-2048 gnome-break-timer gnome-games gnome-power-manager gnome-search-tool gnome-system-log gnote gtranslator gucharmap gupnp-tools meld moserial nautilus-image-converter nemiver regexxer seahorse seahorse-nautilus)
+	depends=(aisleriot alacarte anjuta anjuta-extras atomix deja-dup d-feet eog-plugins filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glade gnome-2048 gnome-break-timer gnome-games gnome-power-manager gnome-search-tool gnome-system-log gupnp-tools meld moserial nautilus-image-converter nemiver regexxer seahorse seahorse-nautilus)
 }
 
 package_mate-core-meta() {
@@ -120,7 +120,7 @@ package_web-browsers-meta() {
 package_download-managers-meta() {
 	pkgdesc="Download managers metapackage"
 	groups=(city-meta)
-	depends=(gwget kget steadyflow uget owncloud-client sparkleshare filezilla gftp deluge ktorrent qbittorrent transmission-gtk transmission-qt transmission-remote-gtk)
+	depends=(youtube-viewer gtk2-perl perl-file-sharedir gwget kget steadyflow uget cozy-desktop owncloud-client filezilla gftp deluge ktorrent qbittorrent transmission-gtk transmission-qt transmission-remote-gtk)
 }
 
 package_email-clients-meta() {
@@ -178,9 +178,9 @@ package_vector-graphics-editors-meta() {
 }
 
 package_color-pickers-meta() {
-	pkgdesc="Color pickers and managers metapackage"
+	pkgdesc="Color pickers metapackage"
 	groups=(city-meta)
-	depends=(agave deepin-picker gcolor2 gpick kcolorchooser mate-desktop displaycal gnome-color-manager)
+	depends=(agave deepin-picker gcolor2 gpick kcolorchooser mate-desktop)
 }
 
 package_screenshot-meta() {
@@ -264,7 +264,7 @@ package_subtitle-meta() {
 package_screencast-meta() {
 	pkgdesc="Screencast tools metapackage"
 	groups=(city-meta)
-	depends=(deepin-screen-recorder obs-studio recorditnow gtk-recordmydesktop qt-recordmydesktop simplescreenrecorder)
+	depends=(deepin-screen-recorder obs-studio recorditnow gtk-recordmydesktop simplescreenrecorder)
 }
 
 package_webcam-meta() {
@@ -282,7 +282,7 @@ package_metadata-meta() {
 package_mobile-device-managers-meta() {
 	pkgdesc="Mobile device managers metapackage"
 	groups=(city-meta)
-	depends=(gnokii gmtp gnome-phone-manager modem-manager-gui wammu)
+	depends=(android-file-transfer gnokii gmtp gnome-phone-manager modem-manager-gui wammu)
 }
 
 package_optical-disk-rippers-meta() {
@@ -297,22 +297,28 @@ package_optical-disk-burners-meta() {
 	depends=(devede acetoneiso2 brasero k3b xfburn)
 }
 
+package_text-editors-meta() {
+	pkgdesc="Text editors metapackage"
+	groups=(city-meta)
+	depends=(fox atom beaver deepin-editor gedit gobby jedit kate kwrite l3afpad leafpad liri-text medit mousepad nedit nfoview notepadqq pantheon-code pluma scribes)
+}
+
 package_office-meta() {
 	pkgdesc="Office suites metapackage"
 	groups=(city-meta)
 	depends=(calligra libreoffice-fresh abiword bluegriffon glabels kompozer scribus seamonkey gnumeric)
 }
 
-package_database-managers-meta() {
+package_database-tools-meta() {
 	pkgdesc="Database managers metapackage"
 	groups=(city-meta)
 	depends=(sqlitebrowser dbeaver libgda glom gsql kexi mysql-workbench pgadmin3 pgadmin4)
 }
 
-package_latex-editors-meta() {
-	pkgdesc="Latex editors metapackage"
+package_markup-editors-meta() {
+	pkgdesc="Markup editors and bibliographic reference managers metapackage"
 	groups=(city-meta)
-	depends=(gnome-latex gummi kile lyx texmacs texmaker texstudio kbibtex)
+	depends=(retext gnome-latex gummi kile ktikz lyx texmacs texmaker texstudio libreoffice-extension-texmaths kbibtex)
 }
 
 package_ebook-readers-meta() {
@@ -324,11 +330,29 @@ package_ebook-readers-meta() {
 package_document-readers-meta() {
 	pkgdesc="Document readers metapackage"
 	groups=(city-meta)
-	depends=(atril djview epdfview evince gnome-documents gv okular pdfmod pdfsam pdfshuffler qpdfview xournal xpdf xreader buoh mcomix)
+	depends=(atril djview epdfview evince gnome-documents gv okular qpdfview xpdf xreader xournal pdfmod pdfsam pdfshuffler buoh mcomix)
 }
 
 package_scanning-meta() {
 	pkgdesc="Scanning and OCR metapackage"
 	groups=(city-meta)
 	depends=(gscan2pdf ocrfeeder simple-scan skanlite xsane scantailor)
+}
+
+package_notes-meta() {
+	pkgdesc="Note taking and mind mapping tools metapackage"
+	groups=(city-meta)
+	depends=(basket cherrytree bijiben gnote keepnote kjots zanshin tomboy tuxcards wiznote zim almanah freemind labyrinth vym knotes xfce4-notes-plugin xpad)
+}
+
+package_dictionaries-meta() {
+	pkgdesc="Dictionaries metapackage"
+	groups=(city-meta)
+	depends=(gnome-dictionary goldendict kiten mate-utils qstardict stardict xfce4-dict)
+}
+
+package_translation-meta() {
+	pkgdesc="Translation and localization tools metapackage"
+	groups=(city-meta)
+	depends=(gtranslator lokalize poedit qt5-tools zint-qt)
 }

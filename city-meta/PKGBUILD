@@ -9,7 +9,7 @@ pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-
          text-editors-meta office-meta database-tools-meta markup-editors-meta ebook-readers-meta document-readers-meta scanning-meta notes-meta dictionaries-meta translation-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=17
+pkgrel=18
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -24,7 +24,7 @@ package_base-meta() {
 package_base-devel-meta() {
 	pkgdesc="Base development metapackage"
 	groups=(city-meta)
-	depends=(autoconf automake binutils bison fakeroot file findutils flex gawk gcc gettext grep groff gzip libtool m4 make pacman patch pkg-config sed sudo texinfo util-linux which)
+	depends=(autoconf automake binutils bison fakeroot file findutils flex gawk gcc gettext grep groff gzip libtool m4 make pacman patch pkgconf sed sudo systemd texinfo util-linux which)
 }
 
 package_base-services-meta() {
@@ -42,25 +42,25 @@ package_base-data-meta() {
 package_gnome-core-shell-meta() {
 	pkgdesc="GNOME core shell metapackage"
 	groups=(city-meta)
-	depends=(gdm glib2-docs gnome-backgrounds gnome-color-manager gnome-control-center gnome-getting-started-docs gnome-keyring gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-themes-standard gnome-user-docs gnome-user-share gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb mousetweaks mutter nautilus orca rygel tracker tracker-miners vino xdg-user-dirs-gtk)
+	depends=(gdm glib2-docs gnome-backgrounds gnome-color-manager gnome-control-center gnome-getting-started-docs gnome-keyring gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-themes-extra gnome-user-docs gnome-user-share gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb mutter nautilus orca rygel tracker tracker-miners vino xdg-user-dirs-gtk)
 }
 
 package_gnome-core-utilities-meta() {
 	pkgdesc="GNOME core utilities metapackage"
 	groups=(city-meta)
-	depends=(baobab cheese eog epiphany evince file-roller gedit gnome-boxes gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-contacts gnome-disk-utility gnome-documents gnome-font-viewer gnome-logs gnome-maps gnome-music gnome-photos gnome-screenshot gnome-software gnome-system-monitor gnome-terminal gnome-todo gnome-video-effects gnome-weather grilo-plugins simple-scan sushi totem yelp)
+	depends=(baobab cheese eog epiphany evince file-roller gedit gnome-boxes gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-contacts gnome-disk-utility gnome-font-viewer gnome-logs gnome-maps gnome-music gnome-photos gnome-screenshot gnome-system-monitor gnome-terminal gnome-weather grilo-plugins simple-scan sushi totem yelp)
 }
 
 package_gnome-apps-meta() {
 	pkgdesc="GNOME applications metapackage"
 	groups=(city-meta)
-	depends=(accerciser bijiben dconf-editor devhelp evolution ghex gitg gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-multi-writer gnome-nettool gnome-recipes gnome-sound-recorder gnome-tweak-tool gnome-usage nautilus-sendto polari sysprof)
+	depends=(accerciser dconf-editor devhelp evolution ghex gitg glade gnome-builder gnome-code-assistance gnome-devel-docs gnome-dictionary gnome-documents gnome-multi-writer gnome-nettool gnome-notes gnome-recipes gnome-sound-recorder gnome-todo gnome-tweaks polari)
 }
 
 package_gnome-games-meta() {
 	pkgdesc="GNOME games metapackage"
 	groups=(city-meta)
-	depends=(five-or-more four-in-a-row gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-taquin gnome-tetravex gnuchess hitori iagno lightsoff quadrapassel swell-foop tali)
+	depends=(five-or-more four-in-a-row gnome-chess gnome-games gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-taquin gnome-tetravex gnuchess hitori iagno lightsoff quadrapassel swell-foop tali)
 }
 
 package_gnome-flashback-meta() {
@@ -72,7 +72,7 @@ package_gnome-flashback-meta() {
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(aisleriot alacarte anjuta anjuta-extras atomix deja-dup d-feet eog-plugins filemanager-actions gbrainy gconf-editor gedit-code-assistance gedit-plugins giggle glade gnome-2048 gnome-break-timer gnome-games gnome-power-manager gnome-search-tool gnome-system-log gupnp-tools meld moserial nautilus-image-converter nemiver regexxer seahorse seahorse-nautilus)
+	depends=(aisleriot alacarte anjuta anjuta-extras atomix deja-dup d-feet eog-plugins filemanager-actions gbrainy gconf-editor gedit-plugins giggle gnome-2048 gnome-break-timer gnome-power-manager gnome-search-tool gnome-system-log  gnome-usage gupnp-tools meld moserial mousetweaks nautilus-image-converter nautilus-sendto nemiver regexxer seahorse seahorse-nautilus)
 }
 
 package_mate-core-meta() {
@@ -84,7 +84,7 @@ package_mate-core-meta() {
 package_mate-apps-meta() {
 	pkgdesc="MATE applications metapackage"
 	groups=(city-meta)
-	depends=(atril caja-actions caja-image-converter caja-open-terminal caja-sendto caja-share caja-wallpaper engrampa eom mate-applet-dock mate-applet-streamer mate-backgrounds mate-calc mate-icon-theme mate-icon-theme-faenza mate-menu mate-system-monitor mate-terminal mate-themes mate-utils mozo pluma)
+	depends=(atril caja-actions caja-image-converter caja-open-terminal caja-sendto caja-share caja-wallpaper engrampa eom mate-applet-dock mate-applet-streamer mate-backgrounds mate-calc mate-icon-theme mate-icon-theme-faenza mate-system-monitor mate-terminal mate-themes mate-utils mozo pluma)
 }
 
 package_lxde-core-meta() {
@@ -114,13 +114,13 @@ package_sugar-meta() {
 package_web-browsers-meta() {
 	pkgdesc="Web browsers metapackage"
 	groups=(city-meta)
-	depends=(firefox-i18n-hu firefox-developer-edition-i18n-hu seamonkey chromium eric falkon konqueror min eolie epiphany midori dillo links netsurf)
+	depends=(firefox-i18n-hu firefox-developer-edition-i18n-hu seamonkey chromium eric falkon konqueror otter-browser min eolie epiphany midori dillo links netsurf)
 }
 
 package_download-managers-meta() {
 	pkgdesc="Download managers metapackage"
 	groups=(city-meta)
-	depends=(youtube-viewer gtk2-perl perl-file-sharedir gwget kget steadyflow uget cozy-desktop owncloud-client filezilla gftp deluge ktorrent qbittorrent transmission-gtk transmission-qt transmission-remote-gtk)
+	depends=(clipgrab youtube-viewer gtk2-perl perl-file-sharedir gwget kget steadyflow uget cozy-desktop nextcloud-client owncloud-client filezilla gftp deluge fragments ktorrent qbittorrent transmission-gtk transmission-qt transmission-remote-gtk tribler)
 }
 
 package_email-clients-meta() {
@@ -132,13 +132,13 @@ package_email-clients-meta() {
 package_instant-messaging-clients-meta() {
 	pkgdesc="Instant messaging clients metapackage"
 	groups=(city-meta)
-	depends=(empathy kopete pidgin-libnotify smuxi yate hexchat konversation polari quassel-monolithic gajim psi ekiga ring-gnome fractal riot-desktop qtox utox caprine esmska licq messengerfordesktop mumble telegram-desktop)
+	depends=(empathy kopete pidgin-libnotify yate hexchat konversation polari quassel-monolithic gajim psi ring-kde jami-gnome fractal riot-desktop qtox utox caprine esmska mumble telegram-desktop wire-desktop)
 }
 
 package_news-readers-meta() {
 	pkgdesc="News readers metapackage"
 	groups=(city-meta)
-	depends=(akregator feedreader liferea quiterss rssguard gpodder vocal pan choqok corebird)
+	depends=(akregator feedreader liferea quiterss rssguard gnome-podcasts gpodder vocal pan choqok)
 }
 
 package_remote-destkop-clients-meta() {
@@ -162,7 +162,7 @@ package_image-organizers-meta() {
 package_raster-graphics-editors-meta() {
 	pkgdesc="Raster graphics editors metapackage"
 	groups=(city-meta)
-	depends=(deepin-draw gimp kolourpaint krita mtpaint mypaint pinta)
+	depends=(deepin-draw drawing gimp kolourpaint krita mtpaint mypaint photoflare pinta)
 }
 
 package_photo-editors-meta() {
@@ -174,13 +174,13 @@ package_photo-editors-meta() {
 package_vector-graphics-editors-meta() {
 	pkgdesc="Vector graphics editors, font editors and 3D computer graphics tools metapackage"
 	groups=(city-meta)
-	depends=(dia inkscape calligra libreoffice-fresh sk1 xfig fontforge blender luxrender sweethome3d wings3d)
+	depends=(dia inkscape calligra libreoffice-fresh sk1 fontforge blender sweethome3d wings3d)
 }
 
 package_color-pickers-meta() {
 	pkgdesc="Color pickers metapackage"
 	groups=(city-meta)
-	depends=(agave deepin-picker gcolor2 gpick kcolorchooser mate-desktop)
+	depends=(deepin-picker gcolor2 gcolor3 gpick kcolorchooser mate-desktop)
 }
 
 package_screenshot-meta() {
@@ -192,19 +192,19 @@ package_screenshot-meta() {
 package_audio-players-meta() {
 	pkgdesc="Audio players metapackage"
 	groups=(city-meta)
-	depends=(clementine gnome-music lollypop muine pantheon-music pragha quodlibet rhythmbox amarok juk babe deepin-music elisa audacious deadbeef gogglesmm lxmusic-gtk3 qmmp osdlyrics)
+	depends=(clementine gnome-music lollypop pantheon-music pragha quodlibet rhythmbox strawberry juk babe deepin-music elisa audacious deadbeef gogglesmm lxmusic-gtk3 qmmp osdlyrics)
 }
 
 package_mpd-clients-meta() {
 	pkgdesc="MPD clients metapackage"
 	groups=(city-meta)
-	depends=(ario cantata gmpc pympd qmpdclient sonata xfmpc)
+	depends=(ario cantata pympd qmpdclient sonata xfmpc)
 }
 
 package_audio-tag-editors-meta() {
 	pkgdesc="Audio tag editors metapackage"
 	groups=(city-meta)
-	depends=(easytag kid3 mp3info picard puddletag)
+	depends=(easytag kid3 mp3info picard)
 }
 
 package_audio-editors-meta() {
@@ -234,13 +234,13 @@ package_synthesizers-meta() {
 package_music-trackers-meta() {
 	pkgdesc="Music trackers, DJ tools, audio effects and visualizers metapackage"
 	groups=(city-meta)
-	depends=(milkytracker giada luppp mixxx calf carla guitarix2 projectm-jack projectm-pulseaudio)
+	depends=(milkytracker giada luppp mixxx calf carla guitarix2 projectm-pulseaudio)
 }
 
 package_volume-controls-meta() {
 	pkgdesc="Volume controls metapackage"
 	groups=(city-meta)
-	depends=(gnome-alsamixer mate-media qastools volumeicon volwheel paprefs pavucontrol pavucontrol-qt)
+	depends=(mate-media qastools volumeicon volwheel paprefs pavucontrol pavucontrol-qt)
 }
 
 package_video-players-meta() {
@@ -252,31 +252,31 @@ package_video-players-meta() {
 package_video-editors-meta() {
 	pkgdesc="Video converters and editors metapackage"
 	groups=(city-meta)
-	depends=(handbrake mkvtoolnix-gui transmageddon avidemux-qt blender cinelerra-cv kdenlive openshot pitivi)
+	depends=(ciano handbrake transmageddon mkvtoolnix-gui avidemux-qt blender kdenlive openshot pitivi shotcut)
 }
 
 package_subtitle-meta() {
 	pkgdesc="Subtitle editors metapackage"
 	groups=(city-meta)
-	depends=(aegisub gaupol gnome-subtitles subdownloader subtitleeditor)
+	depends=(subdownloader aegisub gaupol gnome-subtitles subtitleeditor)
 }
 
 package_screencast-meta() {
 	pkgdesc="Screencast tools metapackage"
 	groups=(city-meta)
-	depends=(deepin-screen-recorder obs-studio recorditnow gtk-recordmydesktop simplescreenrecorder)
+	depends=(deepin-screen-recorder obs-studio peek gtk-recordmydesktop simplescreenrecorder)
 }
 
 package_webcam-meta() {
 	pkgdesc="Webcam tools metapackage"
 	groups=(city-meta)
-	depends=(cheese guvcview kamoso v4l2ucp v4l-utils)
+	depends=(cheese guvcview kamoso v4l-utils)
 }
 
 package_metadata-meta() {
 	pkgdesc="Collection managers, media servers and metadata tools metapackage"
 	groups=(city-meta)
-	depends=(mediaelch tellico vmoviedb rygel mediainfo-gui)
+	depends=(mediaelch tellico rygel mediainfo-gui)
 }
 
 package_mobile-device-managers-meta() {
@@ -300,7 +300,7 @@ package_optical-disk-burners-meta() {
 package_text-editors-meta() {
 	pkgdesc="Text editors metapackage"
 	groups=(city-meta)
-	depends=(fox atom beaver deepin-editor gedit gobby jedit kate kwrite l3afpad leafpad liri-text medit mousepad nedit nfoview notepadqq pantheon-code pluma scribes)
+	depends=(fox atom beaver deepin-editor gedit gobby jedit kate kwrite l3afpad leafpad liri-text mousepad nedit nfoview notepadqq pantheon-code pluma code xed)
 }
 
 package_office-meta() {
@@ -312,7 +312,7 @@ package_office-meta() {
 package_database-tools-meta() {
 	pkgdesc="Database managers metapackage"
 	groups=(city-meta)
-	depends=(sqlitebrowser dbeaver libgda glom gsql kexi mysql-workbench pgadmin3 pgadmin4)
+	depends=(dbeaver libgda kexi mysql-workbench pgadmin4 sqlitebrowser glom)
 }
 
 package_markup-editors-meta() {
@@ -321,28 +321,28 @@ package_markup-editors-meta() {
 	depends=(retext gnome-latex gummi kile ktikz lyx texmacs texmaker texstudio libreoffice-extension-texmaths kbibtex)
 }
 
-package_ebook-readers-meta() {
-	pkgdesc="E-book readers metapackage"
-	groups=(city-meta)
-	depends=(bookworm calibre fbreader sigil kchmviewer xchm)
-}
-
 package_document-readers-meta() {
 	pkgdesc="Document readers metapackage"
 	groups=(city-meta)
-	depends=(atril djview epdfview evince gnome-documents gv okular qpdfview xpdf xreader xournal pdfmod pdfsam pdfshuffler buoh mcomix)
+	depends=(atril djview epdfview evince gv okular qpdfview xpdf xreader pdfarranger pdfarranger pdfmod pdfsam pdftricks buoh mcomix)
+}
+
+package_ebook-readers-meta() {
+	pkgdesc="E-book readers metapackage"
+	groups=(city-meta)
+	depends=(bookworm calibre fbreader gnome-documents sigil kchmviewer xchm)
 }
 
 package_scanning-meta() {
 	pkgdesc="Scanning and OCR metapackage"
 	groups=(city-meta)
-	depends=(gscan2pdf ocrfeeder simple-scan skanlite xsane scantailor)
+	depends=(simple-scan skanlite xsane gimagereader-gtk gscan2pdf ocrfeeder paperwork scantailor)
 }
 
 package_notes-meta() {
 	pkgdesc="Note taking and mind mapping tools metapackage"
 	groups=(city-meta)
-	depends=(basket cherrytree bijiben gnote keepnote kjots zanshin tomboy tuxcards wiznote zim almanah freemind labyrinth vym knotes xfce4-notes-plugin xpad)
+	depends=(basket gnome-notes gnote kjots zanshin tuxcards wiznote zim xournalpp almanah freemind vym knotes xfce4-notes-plugin xpad)
 }
 
 package_dictionaries-meta() {
@@ -354,5 +354,5 @@ package_dictionaries-meta() {
 package_translation-meta() {
 	pkgdesc="Translation and localization tools metapackage"
 	groups=(city-meta)
-	depends=(gtranslator lokalize poedit qt5-tools zint-qt)
+	depends=(gtranslator lokalize poedit qt5-tools qreator zint-qt)
 }

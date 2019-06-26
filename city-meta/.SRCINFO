@@ -290,7 +290,6 @@ pkgname = gnome-world-meta
 	depends = eog-plugins
 	depends = filemanager-actions
 	depends = gbrainy
-	depends = gconf-editor
 	depends = gedit-plugins
 	depends = giggle
 	depends = gnome-2048

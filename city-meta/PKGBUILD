@@ -72,7 +72,7 @@ package_gnome-flashback-meta() {
 package_gnome-world-meta() {
 	pkgdesc="GNOME world metapackage"
 	groups=(city-meta)
-	depends=(aisleriot alacarte anjuta anjuta-extras atomix deja-dup d-feet eog-plugins filemanager-actions gbrainy gconf-editor gedit-plugins giggle gnome-2048 gnome-break-timer gnome-power-manager gnome-search-tool gnome-system-log  gnome-usage gupnp-tools meld moserial mousetweaks nautilus-image-converter nautilus-sendto nemiver regexxer seahorse seahorse-nautilus)
+	depends=(aisleriot alacarte anjuta anjuta-extras atomix deja-dup d-feet eog-plugins filemanager-actions gbrainy gedit-plugins giggle gnome-2048 gnome-break-timer gnome-power-manager gnome-search-tool gnome-system-log  gnome-usage gupnp-tools meld moserial mousetweaks nautilus-image-converter nautilus-sendto nemiver regexxer seahorse seahorse-nautilus)
 }
 
 package_mate-core-meta() {

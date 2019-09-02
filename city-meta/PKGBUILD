@@ -1,15 +1,10 @@
 # $Id$
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
 
-pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta gnome-world-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta
-         web-browsers-meta download-managers-meta email-clients-meta instant-messaging-clients-meta news-readers-meta remote-destkop-clients-meta
-         image-viewers-meta image-organizers-meta raster-graphics-editors-meta photo-editors-meta vector-graphics-editors-meta color-pickers-meta screenshot-meta
-         audio-players-meta mpd-clients-meta audio-tag-editors-meta audio-editors-meta audio-workstations-meta scorewriters-meta synthesizers-meta music-trackers-meta volume-controls-meta
-         video-players-meta video-editors-meta subtitle-meta screencast-meta webcam-meta metadata-meta mobile-device-managers-meta optical-disk-rippers-meta optical-disk-burners-meta
-         text-editors-meta office-meta database-tools-meta markup-editors-meta ebook-readers-meta document-readers-meta scanning-meta notes-meta dictionaries-meta translation-meta)
+pkgname=(base-meta base-devel-meta base-services-meta base-data-meta gnome-core-shell-meta gnome-core-utilities-meta gnome-apps-meta gnome-games-meta gnome-flashback-meta xfce-meta xfce-goodies-meta mate-core-meta mate-apps-meta lxde-core-meta lxde-apps-meta lxqt-core-meta sugar-meta)
 pkgbase=city-meta
 pkgver=1
-pkgrel=18
+pkgrel=19
 pkgdesc="Metapackages for Arch Linux"
 arch=(any)
 url="http://pkgbuild.com/~bgyorgy/city.html"
@@ -36,7 +31,7 @@ package_base-services-meta() {
 package_base-data-meta() {
 	pkgdesc="Base codecs and data metapackage"
 	groups=(city-meta)
-	depends=(aspell-en aspell-hu gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en_US hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu noto-fonts noto-fonts-emoji purple-facebook purple-skypeweb soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-salut ttf-dejavu ttf-freefont ttf-liberation)
+	depends=(aspell-en aspell-hu gnu-free-fonts gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly hunspell-en_US hunspell-hu hyphen-en hyphen-hu mythes-en mythes-hu noto-fonts noto-fonts-emoji purple-facebook purple-skypeweb soundfont-fluid telepathy-gabble telepathy-haze telepathy-idle telepathy-salut ttf-dejavu ttf-liberation)
 }
 
 package_gnome-core-shell-meta() {
@@ -69,10 +64,16 @@ package_gnome-flashback-meta() {
 	depends=(blueberry budgie-desktop cinnamon cinnamon-translations gnome-applets gnome-flashback gnome-panel gnome-screensaver lightdm-gtk-greeter metacity network-manager-applet sensors-applet system-config-printer)
 }
 
-package_gnome-world-meta() {
-	pkgdesc="GNOME world metapackage"
+package_xfce-meta() {
+	pkgdesc="Xfce metapackage"
 	groups=(city-meta)
-	depends=(aisleriot alacarte anjuta anjuta-extras atomix deja-dup d-feet eog-plugins filemanager-actions gbrainy gedit-plugins giggle gnome-2048 gnome-break-timer gnome-power-manager gnome-search-tool gnome-system-log  gnome-usage gupnp-tools meld moserial mousetweaks nautilus-image-converter nautilus-sendto nemiver regexxer seahorse seahorse-nautilus)
+	depends=(thunar thunar-volman tumbler xfce4-appfinder xfce4-notifyd xfce4-panel xfce4-power-manager xfce4-screensaver xfce4-session xfce4-settings xfdesktop xfwm4)
+}
+
+package_xfce-goodies-meta() {
+	pkgdesc="Xfce Goodies metapackage"
+	groups=(city-meta)
+	depends=(mousepad orage ristretto thunar-archive-plugin thunar-media-tags-plugin xfce4-artwork xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-dict xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-mount-plugin xfce4-mpc-plugin xfce4-netload-plugin xfce4-pulseaudio-plugin xfce4-screenshooter xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-taskmanager xfce4-terminal xfce4-timer-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-xkb-plugin parole xfce4-whiskermenu-plugin xfwm4-themes)
 }
 
 package_mate-core-meta() {
@@ -108,251 +109,5 @@ package_lxqt-core-meta() {
 package_sugar-meta() {
 	pkgdesc="Sugar metapackage"
 	groups=(city-meta)
-	depends=(sugar sugar-activity-browse sugar-activity-calculate sugar-activity-chat sugar-activity-clock sugar-activity-imageviewer sugar-activity-jukebox sugar-activity-log sugar-activity-paint sugar-activity-pippy sugar-activity-read sugar-activity-terminal sugar-activity-write)
-}
-
-package_web-browsers-meta() {
-	pkgdesc="Web browsers metapackage"
-	groups=(city-meta)
-	depends=(firefox-i18n-hu firefox-developer-edition-i18n-hu seamonkey chromium eric falkon konqueror otter-browser min eolie epiphany midori dillo links netsurf)
-}
-
-package_download-managers-meta() {
-	pkgdesc="Download managers metapackage"
-	groups=(city-meta)
-	depends=(clipgrab youtube-viewer gtk2-perl perl-file-sharedir gwget kget steadyflow uget cozy-desktop nextcloud-client owncloud-client filezilla gftp deluge fragments ktorrent qbittorrent transmission-gtk transmission-qt transmission-remote-gtk tribler)
-}
-
-package_email-clients-meta() {
-	pkgdesc="Email clients metapackage"
-	groups=(city-meta)
-	depends=(balsa claws-mail evolution-rss geary gnubiff kmail kube mailnag-goa-plugin sylpheed thunderbird-i18n-hu trojita)
-}
-
-package_instant-messaging-clients-meta() {
-	pkgdesc="Instant messaging clients metapackage"
-	groups=(city-meta)
-	depends=(empathy kopete pidgin-libnotify yate hexchat konversation polari quassel-monolithic gajim psi ring-kde jami-gnome fractal riot-desktop qtox utox caprine esmska mumble telegram-desktop wire-desktop)
-}
-
-package_news-readers-meta() {
-	pkgdesc="News readers metapackage"
-	groups=(city-meta)
-	depends=(akregator feedreader liferea quiterss rssguard gnome-podcasts gpodder vocal pan choqok)
-}
-
-package_remote-destkop-clients-meta() {
-	pkgdesc="Remote desktop clients metapackage"
-	groups=(city-meta)
-	depends=(gnome-boxes krdc remmina virt-viewer tigervnc vinagre x2goclient)
-}
-
-package_image-viewers-meta() {
-	pkgdesc="Image viewers metapackage"
-	groups=(city-meta)
-	depends=(eog eom geeqie gpicview-gtk3 gwenview fbida lximage-qt nomacs ristretto viewnior)
-}
-
-package_image-organizers-meta() {
-	pkgdesc="Image organizers metapackage"
-	groups=(city-meta)
-	depends=(deepin-image-viewer digikam gnome-photos gthumb kphotoalbum pantheon-photos rapid-photo-downloader shotwell converseen)
-}
-
-package_raster-graphics-editors-meta() {
-	pkgdesc="Raster graphics editors metapackage"
-	groups=(city-meta)
-	depends=(deepin-draw drawing gimp kolourpaint krita mtpaint mypaint photoflare pinta)
-}
-
-package_photo-editors-meta() {
-	pkgdesc="Photo editors metapackage"
-	groups=(city-meta)
-	depends=(darktable hugin luminancehdr gimp-nufraw rawtherapee)
-}
-
-package_vector-graphics-editors-meta() {
-	pkgdesc="Vector graphics editors, font editors and 3D computer graphics tools metapackage"
-	groups=(city-meta)
-	depends=(dia inkscape calligra libreoffice-fresh sk1 fontforge blender sweethome3d wings3d)
-}
-
-package_color-pickers-meta() {
-	pkgdesc="Color pickers metapackage"
-	groups=(city-meta)
-	depends=(deepin-picker gcolor2 gcolor3 gpick kcolorchooser mate-desktop)
-}
-
-package_screenshot-meta() {
-	pkgdesc="Screenshot tools metapackage"
-	groups=(city-meta)
-	depends=(deepin-screenshot flameshot gnome-screenshot mate-utils spectacle xfce4-screenshooter)
-}
-
-package_audio-players-meta() {
-	pkgdesc="Audio players metapackage"
-	groups=(city-meta)
-	depends=(clementine gnome-music lollypop pantheon-music pragha quodlibet rhythmbox strawberry juk babe deepin-music elisa audacious deadbeef gogglesmm lxmusic-gtk3 qmmp osdlyrics)
-}
-
-package_mpd-clients-meta() {
-	pkgdesc="MPD clients metapackage"
-	groups=(city-meta)
-	depends=(ario cantata pympd qmpdclient sonata xfmpc)
-}
-
-package_audio-tag-editors-meta() {
-	pkgdesc="Audio tag editors metapackage"
-	groups=(city-meta)
-	depends=(easytag kid3 mp3info picard)
-}
-
-package_audio-editors-meta() {
-	pkgdesc="Audio converters, editors and analyzers metapackage"
-	groups=(city-meta)
-	depends=(gnac soundconverter soundkonverter audacity deepin-voice-recorder gnome-sound-recorder kwave mp3splt-gtk sweep sonic-visualiser)
-}
-
-package_audio-workstations-meta() {
-	pkgdesc="Audio workstations metapackage"
-	groups=(city-meta)
-	depends=(ardour lmms non-mixer non-sequencer non-session-manager non-timeline qtractor rosegarden)
-}
-
-package_scorewriters-meta() {
-	pkgdesc="Scorewriters and audio synthesis environments metapackage"
-	groups=(city-meta)
-	depends=(canorus musescore csoundqt pd supercollider)
-}
-
-package_synthesizers-meta() {
-	pkgdesc="Synthesizers metapackage"
-	groups=(city-meta)
-	depends=(ams amsynth din drumstick gigedit helm hydrogen jsampler qmidiarp qmidiroute qsampler qsynth drumkv1 padthv1 samplv1 synthv1 vmpk yoshimi zynaddsubfx)
-}
-
-package_music-trackers-meta() {
-	pkgdesc="Music trackers, DJ tools, audio effects and visualizers metapackage"
-	groups=(city-meta)
-	depends=(milkytracker giada luppp mixxx calf carla guitarix2 projectm-pulseaudio)
-}
-
-package_volume-controls-meta() {
-	pkgdesc="Volume controls metapackage"
-	groups=(city-meta)
-	depends=(mate-media qastools volumeicon volwheel paprefs pavucontrol pavucontrol-qt)
-}
-
-package_video-players-meta() {
-	pkgdesc="Video players metapackage"
-	groups=(city-meta)
-	depends=(totem pantheon-videos parole snappy-player xnoise baka-mplayer deepin-movie gnome-mpv mpv smplayer gnome-mplayer kmplayer dragon kaffeine kodi minitube qtav tvtime vlc xine-ui)
-}
-
-package_video-editors-meta() {
-	pkgdesc="Video converters and editors metapackage"
-	groups=(city-meta)
-	depends=(ciano handbrake transmageddon mkvtoolnix-gui avidemux-qt blender kdenlive openshot pitivi shotcut)
-}
-
-package_subtitle-meta() {
-	pkgdesc="Subtitle editors metapackage"
-	groups=(city-meta)
-	depends=(subdownloader aegisub gaupol gnome-subtitles subtitleeditor)
-}
-
-package_screencast-meta() {
-	pkgdesc="Screencast tools metapackage"
-	groups=(city-meta)
-	depends=(deepin-screen-recorder obs-studio peek gtk-recordmydesktop simplescreenrecorder)
-}
-
-package_webcam-meta() {
-	pkgdesc="Webcam tools metapackage"
-	groups=(city-meta)
-	depends=(cheese guvcview kamoso v4l-utils)
-}
-
-package_metadata-meta() {
-	pkgdesc="Collection managers, media servers and metadata tools metapackage"
-	groups=(city-meta)
-	depends=(mediaelch tellico rygel mediainfo-gui)
-}
-
-package_mobile-device-managers-meta() {
-	pkgdesc="Mobile device managers metapackage"
-	groups=(city-meta)
-	depends=(android-file-transfer gnokii gmtp gnome-phone-manager modem-manager-gui wammu)
-}
-
-package_optical-disk-rippers-meta() {
-	pkgdesc="Optical disc ripping tools metapackage"
-	groups=(city-meta)
-	depends=(asunder audex goobox kaudiocreator sound-juicer ogmrip)
-}
-
-package_optical-disk-burners-meta() {
-	pkgdesc="Optical disc authoring and burning tools metapackage"
-	groups=(city-meta)
-	depends=(devede acetoneiso2 brasero k3b xfburn)
-}
-
-package_text-editors-meta() {
-	pkgdesc="Text editors metapackage"
-	groups=(city-meta)
-	depends=(fox atom beaver deepin-editor gedit gobby jedit kate kwrite l3afpad leafpad liri-text mousepad nedit nfoview notepadqq pantheon-code pluma code xed)
-}
-
-package_office-meta() {
-	pkgdesc="Office suites metapackage"
-	groups=(city-meta)
-	depends=(calligra libreoffice-fresh abiword bluegriffon glabels kompozer scribus seamonkey gnumeric)
-}
-
-package_database-tools-meta() {
-	pkgdesc="Database managers metapackage"
-	groups=(city-meta)
-	depends=(dbeaver libgda kexi mysql-workbench pgadmin4 sqlitebrowser glom)
-}
-
-package_markup-editors-meta() {
-	pkgdesc="Markup editors and bibliographic reference managers metapackage"
-	groups=(city-meta)
-	depends=(retext gnome-latex gummi kile ktikz lyx texmacs texmaker texstudio libreoffice-extension-texmaths kbibtex)
-}
-
-package_document-readers-meta() {
-	pkgdesc="Document readers metapackage"
-	groups=(city-meta)
-	depends=(atril djview epdfview evince gv okular qpdfview xpdf xreader pdfarranger pdfarranger pdfmod pdfsam pdftricks buoh mcomix)
-}
-
-package_ebook-readers-meta() {
-	pkgdesc="E-book readers metapackage"
-	groups=(city-meta)
-	depends=(bookworm calibre fbreader gnome-documents sigil kchmviewer xchm)
-}
-
-package_scanning-meta() {
-	pkgdesc="Scanning and OCR metapackage"
-	groups=(city-meta)
-	depends=(simple-scan skanlite xsane gimagereader-gtk gscan2pdf ocrfeeder paperwork scantailor)
-}
-
-package_notes-meta() {
-	pkgdesc="Note taking and mind mapping tools metapackage"
-	groups=(city-meta)
-	depends=(basket gnome-notes gnote kjots zanshin tuxcards wiznote zim xournalpp almanah freemind vym knotes xfce4-notes-plugin xpad)
-}
-
-package_dictionaries-meta() {
-	pkgdesc="Dictionaries metapackage"
-	groups=(city-meta)
-	depends=(gnome-dictionary goldendict kiten mate-utils qstardict stardict xfce4-dict)
-}
-
-package_translation-meta() {
-	pkgdesc="Translation and localization tools metapackage"
-	groups=(city-meta)
-	depends=(gtranslator lokalize poedit qt5-tools qreator zint-qt)
+	depends=(sugar sugar-activity-browse sugar-activity-calculate sugar-activity-chat sugar-activity-clock sugar-activity-imageviewer sugar-activity-jukebox sugar-activity-log sugar-activity-paint sugar-activity-pippy sugar-activity-read sugar-activity-terminal sugar-activity-turtleart sugar-activity-write)
 }

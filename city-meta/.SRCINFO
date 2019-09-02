@@ -355,7 +355,6 @@ pkgname = mate-apps-meta
 	pkgdesc = MATE applications metapackage
 	groups = city-meta
 	depends = atril
-	depends = caja-actions
 	depends = caja-image-converter
 	depends = caja-open-terminal
 	depends = caja-sendto
@@ -406,7 +405,7 @@ pkgname = lxde-apps-meta
 	depends = lxlauncher-gtk3
 	depends = lxmusic-gtk3
 	depends = lxtask-gtk3
-	depends = lxterminal-gtk3
+	depends = lxterminal
 	depends = midori
 	depends = xarchiver
 

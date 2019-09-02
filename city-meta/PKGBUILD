@@ -85,7 +85,7 @@ package_mate-core-meta() {
 package_mate-apps-meta() {
 	pkgdesc="MATE applications metapackage"
 	groups=(city-meta)
-	depends=(atril caja-actions caja-image-converter caja-open-terminal caja-sendto caja-share caja-wallpaper engrampa eom mate-applet-dock mate-applet-streamer mate-backgrounds mate-calc mate-icon-theme mate-icon-theme-faenza mate-system-monitor mate-terminal mate-themes mate-utils mozo pluma)
+	depends=(atril caja-image-converter caja-open-terminal caja-sendto caja-share caja-wallpaper engrampa eom mate-applet-dock mate-applet-streamer mate-backgrounds mate-calc mate-icon-theme mate-icon-theme-faenza mate-system-monitor mate-terminal mate-themes mate-utils mozo pluma)
 }
 
 package_lxde-core-meta() {
@@ -97,7 +97,7 @@ package_lxde-core-meta() {
 package_lxde-apps-meta() {
 	pkgdesc="LXDE applications metapackage"
 	groups=(city-meta)
-	depends=(galculator gpicview-gtk3 l3afpad lxde-icon-theme lxdm-gtk3 lxlauncher-gtk3 lxmusic-gtk3 lxtask-gtk3 lxterminal-gtk3 midori xarchiver)
+	depends=(galculator gpicview-gtk3 l3afpad lxde-icon-theme lxdm-gtk3 lxlauncher-gtk3 lxmusic-gtk3 lxtask-gtk3 lxterminal midori xarchiver)
 }
 
 package_lxqt-core-meta() {
